@@ -1,0 +1,20 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "theme": {
+    "light": "Thème clair",
+    "dark": "Thème sombre",
+    "system": "Thème système"
+  },
+  "home": {
+    "title": "Salut, je suis Votre Nom",
+    "description": "Je construis des choses pour le web. C'est le point de départ de votre portfolio."
+  },
+  "about": { "title": "À propos" },
+  "projects": { "title": "Projets" },
+  "contact": { "title": "Contact" }
+}

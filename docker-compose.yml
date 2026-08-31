@@ -1,0 +1,54 @@
+x-frontend-common: &frontend-common
+  init: true
+  restart: unless-stopped
+  ports:
+    - "3000:3000"
+
+x-backend-common: &backend-common
+  init: true
+  restart: unless-stopped
+
+services:
+  frontend-dev:
+    <<: *frontend-common
+    profiles: ["dev"]
+    build:
+      context: ./frontend
+      target: dev
+    image: portfolio-frontend:dev
+    container_name: portfolio-frontend
+    volumes:
+      - ./frontend/postcss.config.mjs:/home/node/workdir/postcss.config.mjs
+      - ./frontend/next-env.d.ts:/home/node/workdir/next-env.d.ts
+      - ./frontend/next.config.ts:/home/node/workdir/next.config.ts
+      - ./frontend/tsconfig.json:/home/node/workdir/tsconfig.json
+      - ./frontend/eslint.config.mjs:/home/node/workdir/eslint.config.mjs
+      - ./frontend/public:/home/node/workdir/public
+      - ./frontend/src:/home/node/workdir/src
+
+  frontend-prod:
+    <<: *frontend-common
+    profiles: ["prod"]
+    build:
+      context: ./frontend
+      target: prod
+    image: portfolio-frontend
+    container_name: portfolio-frontend
+
+  backend-dev:
+    <<: *backend-common
+    profiles: ["dev"]
+    build:
+      context: ./backend
+      target: dev
+    image: portfolio-backend:dev
+    container_name: portfolio-backend
+
+  backend-prod:
+    <<: *backend-common
+    profiles: ["prod"]
+    build:
+      context: ./backend
+      target: prod
+    image: portfolio-backend
+    container_name: portfolio-backend

@@ -1,0 +1,9 @@
+#======== OS
+.env*
+
+#======== NODE
+node_modules/
+
+#======== NEXT.JS
+.next/
+next-env.d.ts
