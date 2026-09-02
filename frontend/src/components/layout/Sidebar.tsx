@@ -1,63 +1,194 @@
 "use client"
 
-import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState } from "react"
-import { navItems } from "@/constants/nav"
-import { useLanguage } from "@/lib/hooks/useLanguage"
+import { useState, useRef, useEffect } from "react"
+
+import { Button } from "@/components/tag/Button"
+import { Options } from "@/components/tag/Options"
 import { ThemeSwitcher } from "@/components/theme/ThemeSwitcher"
 import { LanguageSwitcher } from "@/components/i18n/LanguageSwitcher"
+import { TextAlignJustify } from "@/components/svg/TextAlignJustify"
+
+import { useClickOutside } from "@/lib/hooks/useClickOutside"
+import { useLanguage } from "@/lib/hooks/useLanguage"
 import { cn } from "@/lib/utils"
 
-export function Sidebar() {
+import { navItems } from "@/constants/nav"
+
+export interface SidebarProps {
+  className?: string
+}
+export function Sidebar({ className }: SidebarProps) {
+  const [open, setOpen] = useState(false)
+  const [visible, setVisible] = useState(false)
+  const [navEntered, setNavEntered] = useState(false)
+  const [mobileNavEntered, setMobileNavEntered] = useState(false)
+
   const pathname = usePathname()
   const { t } = useLanguage()
-  const [open, setOpen] = useState(false)
+
+  const mobileNavbarRef = useRef<HTMLDivElement>(null)
+  useClickOutside(mobileNavbarRef, () => setOpen(false), open)
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setVisible(true))
+    return () => cancelAnimationFrame(frame)
+  }, [])
+
+  useEffect(() => {
+    if (!visible) return
+    const timeout = setTimeout(
+      () => setNavEntered(true),
+      (navItems.length - 1) * 60 + 300
+    )
+    return () => clearTimeout(timeout)
+  }, [visible])
+
+  useEffect(() => {
+    if (!open) return
+    const timeout = setTimeout(
+      () => setMobileNavEntered(true),
+      (navItems.length - 1) * 60 + 400
+    )
+    return () => {
+      clearTimeout(timeout)
+      setMobileNavEntered(false)
+    }
+  }, [open])
+
+  const fullTitle = t("metadata.title").split(" - ")
+  const title = fullTitle[0]
+  const subtitle = fullTitle[1]
 
   return (
     <>
-      <header className="flex items-center justify-between border-b border-border px-4 py-3 md:hidden">
-        <span className="font-semibold">Portfolio</span>
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Menu"
-          aria-expanded={open}
-          className="border border-border px-3 py-1.5 text-sm">
-          {open ? "✕" : "☰"}
-        </button>
-      </header>
+      <div className="flex flex-col md:hidden">
+        <header
+          className={cn(
+            "flex items-center border-b-2 border-border transition duration-400 gap-4 shadow-2xs z-10 justify-between relative",
+            visible
+              ? "translate-y-0 opacity-100 ease-out"
+              : "-translate-y-4 opacity-0 ease-in pointer-events-none",
+            className
+          )}>
+          <div className="flex items-center gap-3 px-4 py-3 shrink-0">
+            <span className="text-lg font-semibold tracking-wide mb-0.5">
+              {title}
+            </span>
+            {subtitle && (
+              <span className="text-xs uppercase text-muted font-light tracking-wider">
+                {subtitle}
+              </span>
+            )}
+          </div>
+          <div
+            ref={mobileNavbarRef}
+            className="h-full">
+            <Button
+              onClick={() => setOpen((value) => !value)}
+              ariaExpanded={open}
+              ariaLabel={t("nav.menu")}
+              title={t("nav.menu")}
+              className="h-full aspect-square">
+              <TextAlignJustify
+                width={16}
+                height={16}
+                className="shrink-0 transition-colors"
+              />
+            </Button>
+            <Options
+              open={open}
+              from="bottom"
+              className="py-0 mx-4 left-0 right-0">
+              <nav className="flex flex-col py-1">
+                {navItems.map((item, index) => {
+                  const isActive = pathname === item.href
+                  return (
+                    <Button
+                      key={item.href}
+                      href={item.href}
+                      selected={isActive}
+                      onClick={() => setOpen(false)}
+                      className="justify-start py-2.5 shrink-0">
+                      <span
+                        className={cn(
+                          "inline-block transition-[opacity,translate] duration-400",
+                          open
+                            ? "translate-x-0 opacity-100 ease-out"
+                            : "translate-x-4 opacity-0 ease-in"
+                        )}
+                        style={{
+                          transitionDelay:
+                            open && !mobileNavEntered
+                              ? `${index * 60}ms`
+                              : "0ms"
+                        }}>
+                        {t(item.labelKey)}
+                      </span>
+                    </Button>
+                  )
+                })}
+              </nav>
+              <div className="flex items-center justify-between border-t border-border transition-colors">
+                <ThemeSwitcher className="h-10" />
+                <LanguageSwitcher
+                  className="h-10"
+                  optionsFrom="left"
+                  optionsClassName="right-0 top-[calc(100%+1rem)] bottom-auto left-auto"
+                />
+              </div>
+            </Options>
+          </div>
+        </header>
+      </div>
 
       <aside
         className={cn(
-          "flex-col border-border md:fixed md:inset-y-0 md:left-0 md:flex md:w-60 md:border-r",
-          open ? "flex" : "hidden md:flex"
+          "hidden md:flex flex-col md:w-60 md:border-r-2 border-border transition duration-400 shadow-xs z-10 relative",
+          visible
+            ? "translate-x-0 opacity-100 ease-out"
+            : "-translate-x-4 opacity-0 ease-in pointer-events-none",
+          className
         )}>
-        <div className="hidden px-6 py-6 md:block">
-          <span className="font-semibold">Portfolio</span>
+        <div className="flex py-6 pl-6 pr-4">
+          <div className="flex flex-col gap-0.5">
+            <span className="text-xl font-semibold tracking-wide">{title}</span>
+            {subtitle && (
+              <span className="text-xs uppercase text-muted font-light tracking-wider">
+                {subtitle}
+              </span>
+            )}
+          </div>
         </div>
 
-        <nav className="flex flex-1 flex-col gap-1 px-4 py-4">
-          {navItems.map((item) => {
-            const active = pathname === item.href
+        <nav className="flex flex-1 flex-col px-4 overflow-y-auto">
+          {navItems.map((item, index) => {
+            const isActive = pathname === item.href
             return (
-              <Link
+              <Button
                 key={item.href}
                 href={item.href}
-                onClick={() => setOpen(false)}
-                className={cn(
-                  "px-2 py-2 text-sm transition-colors",
-                  active
-                    ? "bg-foreground text-background"
-                    : "text-muted hover:text-foreground"
-                )}>
-                {t(item.labelKey)}
-              </Link>
+                selected={isActive}
+                className="justify-start py-2.5 shrink-0">
+                <span
+                  className={cn(
+                    "inline-block transition-[opacity,translate] duration-400",
+                    visible
+                      ? "translate-x-0 opacity-100 ease-out"
+                      : "translate-x-4 opacity-0 ease-in"
+                  )}
+                  style={{
+                    transitionDelay:
+                      visible && !navEntered ? `${index * 60}ms` : "0ms"
+                  }}>
+                  {t(item.labelKey)}
+                </span>
+              </Button>
             )
           })}
         </nav>
 
-        <div className="flex flex-col gap-2 border-t border-border px-4 py-4">
+        <div className="flex gap-2 border-t border-border px-4 py-3 items-center justify-between transition-colors">
           <ThemeSwitcher />
           <LanguageSwitcher />
         </div>

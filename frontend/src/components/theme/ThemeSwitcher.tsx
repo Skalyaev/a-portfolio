@@ -1,40 +1,52 @@
 "use client"
 
 import { useTheme } from "next-themes"
+
+import { Button } from "@/components/tag/Button"
+import { Sun } from "@/components/svg/Sun"
+import { Moon } from "@/components/svg/Moon"
+
 import { useLanguage } from "@/lib/hooks/useLanguage"
 import { useHasMounted } from "@/lib/hooks/useHasMounted"
 import { cn } from "@/lib/utils"
 
 const options = [
-  { value: "light", icon: "☀" },
-  { value: "dark", icon: "☾" },
-  { value: "system", icon: "◐" }
+  { value: "light", Icon: Sun },
+  { value: "dark", Icon: Moon }
 ] as const
 
-export function ThemeSwitcher() {
-  const { theme, setTheme } = useTheme()
-  const { t } = useLanguage()
+export interface ThemeSwitcherProps {
+  className?: string
+}
+export function ThemeSwitcher({ className }: ThemeSwitcherProps) {
+  const { resolvedTheme, setTheme } = useTheme()
+
   const mounted = useHasMounted()
+  const { t } = useLanguage()
 
   return (
-    <div className="flex border border-border">
-      {options.map((option) => (
-        <button
-          key={option.value}
-          type="button"
-          onClick={() => setTheme(option.value)}
-          disabled={!mounted}
-          aria-label={t(`theme.${option.value}`)}
-          title={t(`theme.${option.value}`)}
-          className={cn(
-            "flex-1 px-2 py-1.5 text-sm transition-colors",
-            mounted && theme === option.value
-              ? "bg-foreground text-background"
-              : "text-muted hover:text-foreground"
-          )}>
-          {option.icon}
-        </button>
-      ))}
+    <div className={cn("flex h-8", className)}>
+      {options.map(({ value, Icon }) => {
+        const isSelected = mounted && resolvedTheme === value
+        return (
+          <Button
+            key={value}
+            onClick={() => setTheme(value)}
+            className="w-max h-full px-4"
+            disabled={!mounted}
+            suppressHydrationWarning
+            selected={isSelected}
+            ariaLabel={t(`theme.${value}`)}
+            title={t(`theme.${value}`)}>
+            <Icon
+              width={16}
+              height={16}
+              fill={isSelected}
+              className="transition-colors"
+            />
+          </Button>
+        )
+      })}
     </div>
   )
 }

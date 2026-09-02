@@ -1,14 +1,19 @@
 "use client"
 
+import { useState } from "react"
+
+import { Loader } from "@/components/status/Loader"
+
 import { useLanguage } from "@/lib/hooks/useLanguage"
 
 export default function Home() {
+  const [loading, setLoading] = useState(true)
+
   const { t } = useLanguage()
 
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-3xl font-semibold">{t("home.title")}</h1>
-      <p className="max-w-xl text-muted">{t("home.description")}</p>
+    <div className="h-full w-full flex flex-col">
+      {loading ? <Loader /> : <h1>{t("home.title")}</h1>}
     </div>
   )
 }

@@ -1,19 +1,30 @@
 {
+  "metadata": {
+    "title": "Anthony - Ingénieur logiciel",
+    "description": "Découvrez mes projets, mon parcours et mes réalisations en développement logiciel."
+  },
   "nav": {
     "home": "Accueil",
     "about": "À propos",
     "projects": "Projets",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menu": "Menu"
   },
   "theme": {
     "light": "Thème clair",
     "dark": "Thème sombre",
     "system": "Thème système"
   },
-  "home": {
-    "title": "Salut, je suis Votre Nom",
-    "description": "Je construis des choses pour le web. C'est le point de départ de votre portfolio."
+  "language": {
+    "en": "Anglais",
+    "fr": "Français",
+    "select": "Choisir une langue"
   },
+  "common": {
+    "loadingLine1": "Merci de patienter un instant,",
+    "loadingLine2": "je rassemble tout ce qu'il faut."
+  },
+  "home": { "title": "Accueil" },
   "about": { "title": "À propos" },
   "projects": { "title": "Projets" },
   "contact": { "title": "Contact" }

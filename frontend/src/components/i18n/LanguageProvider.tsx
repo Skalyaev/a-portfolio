@@ -1,13 +1,17 @@
 "use client"
 
 import { useCallback, useMemo, useState } from "react"
-import { localeCookieName, type Locale } from "@/constants/i18n/config"
-import en from "@/constants/i18n/messages/en.json"
-import fr from "@/constants/i18n/messages/fr.json"
+
 import { LanguageContext } from "@/components/i18n/LanguageContext"
 
-type Messages = typeof en
-const messages: Record<Locale, Messages> = { en, fr }
+import { localeCookieName } from "@/constants/i18n/config"
+import en from "@/constants/i18n/messages/en.json"
+import fr from "@/constants/i18n/messages/fr.json"
+
+import type { Messages, Locale } from "@/constants/i18n/config"
+import type { LanguageContextValue } from "@/components/i18n/LanguageContext"
+
+const messages: Messages = { en, fr }
 
 function resolve(dict: unknown, key: string): string {
   const value = key
@@ -22,13 +26,14 @@ function resolve(dict: unknown, key: string): string {
   return typeof value === "string" ? value : key
 }
 
+export interface LanguageProviderProps {
+  children: React.ReactNode
+  initialLocale: Locale
+}
 export function LanguageProvider({
   children,
   initialLocale
-}: {
-  children: React.ReactNode
-  initialLocale: Locale
-}) {
+}: LanguageProviderProps) {
   const [locale, setLocaleState] = useState<Locale>(initialLocale)
 
   const setLocale = useCallback((next: Locale) => {
@@ -42,7 +47,7 @@ export function LanguageProvider({
     [locale]
   )
 
-  const value = useMemo(
+  const value = useMemo<LanguageContextValue>(
     () => ({ locale, setLocale, t }),
     [locale, setLocale, t]
   )

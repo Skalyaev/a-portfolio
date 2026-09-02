@@ -1,19 +1,30 @@
 {
+  "metadata": {
+    "title": "Anthony - Software Engineer",
+    "description": "Discover my projects, background, and work as a software engineer."
+  },
   "nav": {
     "home": "Home",
     "about": "About",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menu": "Menu"
   },
   "theme": {
     "light": "Light theme",
     "dark": "Dark theme",
     "system": "System theme"
   },
-  "home": {
-    "title": "Hi, I'm Your Name",
-    "description": "I build things for the web. This is the starting point of your portfolio."
+  "language": {
+    "en": "English",
+    "fr": "French",
+    "select": "Choose a language"
   },
+  "common": {
+    "loadingLine1": "Thank you for your patience,",
+    "loadingLine2": "I'm gathering everything you need."
+  },
+  "home": { "title": "Home" },
   "about": { "title": "About" },
   "projects": { "title": "Projects" },
   "contact": { "title": "Contact" }

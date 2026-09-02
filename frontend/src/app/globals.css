@@ -2,17 +2,19 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --muted: #6b7280;
-  --border: #e5e7eb;
+  --background: theme(colors.zinc.100);
+  --foreground: theme(colors.zinc.800);
+  --muted: theme(colors.zinc.500);
+  --border: theme(colors.zinc.200);
+  --accent: theme(colors.zinc.200);
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --muted: #9ca3af;
-  --border: #262626;
+  --background: theme(colors.zinc.900);
+  --foreground: theme(colors.zinc.100);
+  --muted: theme(colors.zinc.400);
+  --border: theme(colors.zinc.800);
+  --accent: theme(colors.zinc.800);
 }
 
 @theme inline {
@@ -20,19 +22,40 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-}
-
-button,
-input,
-textarea,
-select {
-  border-radius: 0;
+@layer base {
+  h1 {
+    @apply text-4xl font-semibold;
+    @apply transition-colors;
+  }
+  h2 {
+    @apply text-3xl font-semibold;
+    @apply transition-colors;
+  }
+  h3 {
+    @apply text-2xl font-semibold;
+    @apply transition-colors;
+  }
+  h4 {
+    @apply text-xl font-semibold;
+    @apply transition-colors;
+  }
+  h5 {
+    @apply text-lg font-semibold;
+    @apply transition-colors;
+  }
+  h6 {
+    @apply text-base font-semibold;
+    @apply transition-colors;
+  }
+  p {
+    @apply transition-colors;
+  }
+  span {
+    @apply transition-colors;
+  }
 }
