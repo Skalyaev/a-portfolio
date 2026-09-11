@@ -35,24 +35,25 @@ export function ToolCategory({
         </span>
       </div>
       <div className="flex flex-col divide-y divide-border">
-        {skillsByCategory[category].map((item) => (
-          <HoverProjects
-            key={item}
-            className="block"
-            placement="side"
-            projects={projectsByTechnology[item] ?? []}>
-            <div className="group flex flex-col gap-0.5 px-2 py-1.5 group">
-              <span className="text-xs font-medium text-foreground group-hover:underline">
-                {item}
-              </span>
-              <span className="text-2xs text-muted">
-                {t(
-                  `skills.tools.descriptions.${skillDescriptionKeys[item] ?? item}`
-                )}
-              </span>
-            </div>
-          </HoverProjects>
-        ))}
+        {skillsByCategory[category].map((item) => {
+          const key = skillDescriptionKeys[item] ?? item
+          return (
+            <HoverProjects
+              key={item}
+              className="block"
+              placement="side"
+              projects={projectsByTechnology[item] ?? []}>
+              <div className="group flex flex-col gap-0.5 px-2 py-1.5 group">
+                <span className="text-xs font-medium text-foreground group-hover:underline">
+                  {t(`skills.tools.names.${key}`)}
+                </span>
+                <span className="text-2xs text-muted">
+                  {t(`skills.tools.descriptions.${key}`)}
+                </span>
+              </div>
+            </HoverProjects>
+          )
+        })}
       </div>
     </div>
   )

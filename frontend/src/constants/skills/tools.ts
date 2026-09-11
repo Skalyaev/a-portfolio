@@ -39,15 +39,12 @@ export const skillDescriptionKeys: Record<string, string> = {
   PostgreSQL: "postgresql",
   Nginx: "nginx",
   MariaDB: "mariadb",
-  WordPress: "wordpress",
   Docker: "docker",
   "Kubernetes (K3s)": "kubernetes",
   Vagrant: "vagrant",
   "Argo CD (GitOps)": "argocd",
   Git: "git",
   GNS3: "gns3",
-  "Linux / Debian": "linux",
-  Bash: "bash",
   "System Calls": "systemCalls",
   "IPC (Shared Memory, Semaphores, Message Queues)": "ipc",
   "Memory Management": "memoryManagement",
@@ -62,24 +59,20 @@ export const skillDescriptionKeys: Record<string, string> = {
   "Binary Exploitation": "binaryExploitation",
   "SQL Injection": "sqlInjection",
   "ARP Spoofing (MITM)": "arpSpoofing",
-  "Malware Analysis": "malwareAnalysis",
-  "TOTP (RFC 6238)": "totp"
+  "Malware Analysis": "malwareAnalysis"
 }
 
 export const skillsByCategory: Record<SkillCategory, string[]> = {
-  web: [
-    "Next.js",
-    "React",
-    "NestJS",
-    "PostgreSQL",
-    "Nginx",
-    "MariaDB",
-    "WordPress"
+  web: ["Next.js", "React", "NestJS", "PostgreSQL", "Nginx", "MariaDB"],
+  devops: [
+    "Docker",
+    "Kubernetes (K3s)",
+    "Vagrant",
+    "Argo CD (GitOps)",
+    "Git",
+    "GNS3"
   ],
-  devops: ["Docker", "Kubernetes (K3s)", "Vagrant", "Argo CD (GitOps)", "Git", "GNS3"],
   systems: [
-    "Linux / Debian",
-    "Bash",
     "System Calls",
     "IPC (Shared Memory, Semaphores, Message Queues)",
     "Memory Management",
@@ -98,7 +91,6 @@ export const skillsByCategory: Record<SkillCategory, string[]> = {
     "Binary Exploitation",
     "SQL Injection",
     "ARP Spoofing (MITM)",
-    "Malware Analysis",
-    "TOTP (RFC 6238)"
+    "Malware Analysis"
   ]
 }
