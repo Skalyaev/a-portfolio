@@ -1,19 +1,24 @@
-"use client"
-
-import { useState } from "react"
+import { Suspense } from "react"
 
 import { Loader } from "@/components/status/Loader"
 
-import { useLanguage } from "@/lib/hooks/useLanguage"
+import { getProjects } from "./_lib/getProjects"
+import { ProjectsBrowser } from "./_components/ProjectsBrowser"
+
+async function ProjectsData() {
+  const projects = await getProjects()
+  return <ProjectsBrowser projects={projects} />
+}
 
 export default function ProjectsPage() {
-  const [loading, setLoading] = useState(true)
-
-  const { t } = useLanguage()
-
   return (
-    <div className="h-full w-full flex flex-col">
-      {loading ? <Loader /> : <h1>{t("projects.title")}</h1>}
-    </div>
+    <Suspense
+      fallback={
+        <div className="h-full w-full flex flex-col">
+          <Loader />
+        </div>
+      }>
+      <ProjectsData />
+    </Suspense>
   )
 }

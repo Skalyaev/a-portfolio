@@ -27,6 +27,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@theme {
+  --text-2xs: 0.625rem;
+  --text-2xs--line-height: 1rem;
+}
+
 @layer base {
   h1 {
     @apply text-4xl font-semibold;
@@ -58,4 +63,120 @@
   span {
     @apply transition-colors;
   }
+}
+
+@keyframes dot-bounce-0 {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(80px);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateY(-80px);
+  }
+  75% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dot-bounce-1 {
+  0%,
+  7.5%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  32.5% {
+    opacity: 1;
+    transform: translateY(80px);
+  }
+  57.5% {
+    opacity: 0.3;
+    transform: translateY(-80px);
+  }
+  82.5% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dot-bounce-2 {
+  0%,
+  15%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(80px);
+  }
+  65% {
+    opacity: 0.3;
+    transform: translateY(-80px);
+  }
+  90% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dot-bounce-3 {
+  0%,
+  22.5%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  47.5% {
+    opacity: 1;
+    transform: translateY(80px);
+  }
+  72.5% {
+    opacity: 0.3;
+    transform: translateY(-80px);
+  }
+  97.5% {
+    transform: translateY(0);
+  }
+}
+
+.dot-bounce-0,
+.dot-bounce-1,
+.dot-bounce-2,
+.dot-bounce-3 {
+  animation-duration: 1.333s;
+  animation-timing-function: cubic-bezier(0.167, 0, 0.833, 1);
+  animation-iteration-count: infinite;
+  opacity: 0.3;
+}
+.dot-bounce-0 {
+  animation-name: dot-bounce-0;
+}
+.dot-bounce-1 {
+  animation-name: dot-bounce-1;
+}
+.dot-bounce-2 {
+  animation-name: dot-bounce-2;
+}
+.dot-bounce-3 {
+  animation-name: dot-bounce-3;
+}
+
+@keyframes fade-in-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-slide-left {
+  animation: fade-in-slide-left 200ms ease-out;
 }

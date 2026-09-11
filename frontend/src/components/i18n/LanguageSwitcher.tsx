@@ -9,7 +9,7 @@ import { Fr } from "@/components/svg/i18n/Fr"
 
 import { useClickOutside } from "@/lib/hooks/useClickOutside"
 import { useLanguage } from "@/lib/hooks/useLanguage"
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils/style"
 
 import { locales } from "@/constants/i18n/config"
 
@@ -47,7 +47,7 @@ export function LanguageSwitcher({
         ariaExpanded={open}
         ariaLabel={t("language.select")}
         title={t("language.select")}
-        className="h-full font-normal">
+        className="h-full gap-2 font-normal">
         <span>{locale.toUpperCase()}</span>
         <Flag className={flagClassname} />
       </Button>

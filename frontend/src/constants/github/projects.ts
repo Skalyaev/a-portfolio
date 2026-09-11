@@ -1,0 +1,247 @@
+import { Globe } from "@/components/svg/Globe"
+import { Shield } from "@/components/svg/Shield"
+import { Server } from "@/components/svg/Server"
+import { Chart } from "@/components/svg/Chart"
+import { Processor } from "@/components/svg/Processor"
+import { Variable } from "@/components/svg/Variable"
+
+import type { ComponentType } from "react"
+
+export const githubUsername = "Skalyaev"
+
+export type ProjectTag =
+  "web" | "cybersecurity" | "sysadmin" | "network" | "unix" | "algorithms"
+
+export const allProjectTags: ProjectTag[] = [
+  "web",
+  "cybersecurity",
+  "sysadmin",
+  "network",
+  "unix",
+  "algorithms"
+]
+
+type ProjectTagIcon = ComponentType<{
+  className?: string
+  width?: number | string
+  height?: number | string
+  fill?: boolean
+}>
+
+export const projectTagIcons: Record<ProjectTag, ProjectTagIcon> = {
+  web: Globe,
+  cybersecurity: Shield,
+  sysadmin: Server,
+  network: Chart,
+  unix: Processor,
+  algorithms: Variable
+}
+
+export type Technology =
+  "Next.js" |
+  "Kubernetes (K3s)" |
+  "Vagrant" |
+  "Argo CD (GitOps)" |
+  "TCP/IP" |
+  "Port Scanning" |
+  "Binary Exploitation" |
+  "Linux / Debian" |
+  "Reverse Engineering (ELF)" |
+  "SQL Injection" |
+  "ARP Spoofing (MITM)" |
+  "Malware Analysis" |
+  "TOTP (RFC 6238)" |
+  "IPC (Shared Memory, Semaphores, Message Queues)" |
+  "System Calls" |
+  "BGP / EVPN" |
+  "Docker" |
+  "GNS3" |
+  "Subnetting & Routing" |
+  "ICMP (Ping, Traceroute)" |
+  "React" |
+  "NestJS" |
+  "PostgreSQL" |
+  "WordPress" |
+  "Nginx" |
+  "MariaDB" |
+  "Bash" |
+  "Memory Management" |
+  "Multithreading (pthreads)" |
+  "Assembly (x86-64)"
+
+export interface ProjectOverride {
+  htmlUrl: string
+  tags: ProjectTag[]
+  technologies?: Technology[]
+}
+
+export const projectOverrides: ProjectOverride[] = [
+  {
+    htmlUrl: "https://github.com/Skalyaev/a-portfolio",
+    tags: ["web", "sysadmin"],
+    technologies: ["Next.js", "React"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/inception-of-things",
+    tags: ["sysadmin", "network"],
+    technologies: ["Kubernetes (K3s)", "Vagrant", "Argo CD (GitOps)"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/boot2root",
+    tags: ["cybersecurity", "network", "unix"],
+    technologies: [
+      "TCP/IP",
+      "Port Scanning",
+      "Binary Exploitation",
+      "Linux / Debian"
+    ]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/override",
+    tags: ["cybersecurity", "algorithms", "unix"],
+    technologies: ["Reverse Engineering (ELF)", "Binary Exploitation"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/rainfall",
+    tags: ["cybersecurity", "algorithms", "unix"],
+    technologies: ["Reverse Engineering (ELF)", "Binary Exploitation"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/snow-crash",
+    tags: ["cybersecurity", "unix", "algorithms"],
+    technologies: ["Binary Exploitation", "Reverse Engineering (ELF)"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/vaccine",
+    tags: ["cybersecurity", "web"],
+    technologies: ["SQL Injection"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/inquisitor",
+    tags: ["cybersecurity", "network"],
+    technologies: ["ARP Spoofing (MITM)", "TCP/IP"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/iron_dome",
+    tags: ["cybersecurity", "unix", "algorithms"],
+    technologies: ["Malware Analysis"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/stockholm",
+    tags: ["cybersecurity", "unix", "algorithms"],
+    technologies: ["Malware Analysis"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/reverse_me",
+    tags: ["cybersecurity", "algorithms", "unix"],
+    technologies: ["Reverse Engineering (ELF)"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/ft_otp",
+    tags: ["cybersecurity", "algorithms"],
+    technologies: ["TOTP (RFC 6238)"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/arachnida",
+    tags: ["cybersecurity", "web"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/lem-ipc",
+    tags: ["unix"],
+    technologies: [
+      "IPC (Shared Memory, Semaphores, Message Queues)",
+      "System Calls"
+    ]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/badass",
+    tags: ["network"],
+    technologies: ["BGP / EVPN", "Docker", "GNS3", "TCP/IP"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/ft_nmap",
+    tags: ["network", "cybersecurity"],
+    technologies: ["Port Scanning", "TCP/IP", "Multithreading (pthreads)"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/net_practice",
+    tags: ["network", "sysadmin"],
+    technologies: ["Subnetting & Routing"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/ft_traceroute",
+    tags: ["network"],
+    technologies: ["ICMP (Ping, Traceroute)", "TCP/IP"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/ft_ping",
+    tags: ["network"],
+    technologies: ["ICMP (Ping, Traceroute)"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/ft_strace",
+    tags: ["unix"],
+    technologies: ["System Calls"]
+  },
+
+  {
+    htmlUrl: "https://github.com/Skalyaev/ft_transcendence",
+    tags: ["web"],
+    technologies: ["React", "NestJS", "PostgreSQL", "Docker"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/webserv",
+    tags: ["web", "network"],
+    technologies: ["TCP/IP"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/inception",
+    tags: ["sysadmin", "web"],
+    technologies: ["Docker", "WordPress", "Nginx", "MariaDB"]
+  },
+
+  {
+    htmlUrl: "https://github.com/Skalyaev/ft_containers",
+    tags: ["algorithms"]
+  },
+  { htmlUrl: "https://github.com/Skalyaev/cpp_modules", tags: ["algorithms"] },
+  { htmlUrl: "https://github.com/Skalyaev/cub3d", tags: ["algorithms"] },
+  {
+    htmlUrl: "https://github.com/Skalyaev/minishell",
+    tags: ["unix"],
+    technologies: ["Bash", "System Calls"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/philosophers",
+    tags: ["algorithms"],
+    technologies: ["Multithreading (pthreads)"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/pipex",
+    tags: ["unix"],
+    technologies: ["System Calls"]
+  },
+  { htmlUrl: "https://github.com/Skalyaev/push_swap", tags: ["algorithms"] },
+  { htmlUrl: "https://github.com/Skalyaev/so_long", tags: ["algorithms"] },
+  {
+    htmlUrl: "https://github.com/Skalyaev/born2beroot",
+    tags: ["sysadmin", "unix"],
+    technologies: ["Linux / Debian"]
+  },
+  { htmlUrl: "https://github.com/Skalyaev/ft_printf", tags: ["algorithms"] },
+  {
+    htmlUrl: "https://github.com/Skalyaev/get_next_line",
+    tags: ["algorithms"]
+  },
+  { htmlUrl: "https://github.com/Skalyaev/libft", tags: ["algorithms"] },
+  {
+    htmlUrl: "https://github.com/Skalyaev/malloc",
+    tags: ["unix", "algorithms"],
+    technologies: ["Memory Management"]
+  },
+  {
+    htmlUrl: "https://github.com/Skalyaev/libasm",
+    tags: ["unix", "algorithms"],
+    technologies: ["Assembly (x86-64)"]
+  }
+]

@@ -16,6 +16,8 @@
 
 - Components: every component `FooBar` must type its props via a named `FooBarProps` interface.
 
+- Constants: camelCase (not `SCREAMING_SNAKE_CASE`), including module-level ones.
+
 ## Import order
 
 Group imports in this order, one blank line between each group:
@@ -32,7 +34,7 @@ Split a combined value/type import (`import { foo, type Bar } from "..."`) into 
 
 ## Typing
 
-- Objects and arrays must always be explicitly typed. `as const` suffices as typing.
+- Objects and arrays must always be explicitly typed.
 
 ## HTML
 

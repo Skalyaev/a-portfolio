@@ -17,6 +17,9 @@ services:
       target: dev
     image: portfolio-frontend:dev
     container_name: portfolio-frontend
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
+      - HTB_APP_TOKEN=${HTB_APP_TOKEN:-}
     volumes:
       - ./frontend/postcss.config.mjs:/home/node/workdir/postcss.config.mjs
       - ./frontend/next-env.d.ts:/home/node/workdir/next-env.d.ts
@@ -34,6 +37,9 @@ services:
       target: prod
     image: portfolio-frontend
     container_name: portfolio-frontend
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
+      - HTB_APP_TOKEN=${HTB_APP_TOKEN:-}
 
   backend-dev:
     <<: *backend-common

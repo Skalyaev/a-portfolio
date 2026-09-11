@@ -40,9 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     description,
-    icons: {
-      icon: [{ url: "/favicon.svg", type: "image/svg+xml" }]
-    }
+    icons: { icon: [{ url: "/favicon.svg", type: "image/svg+xml" }] }
   }
 }
 
@@ -65,7 +63,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             <div className="h-full w-full flex flex-col md:flex-row">
               <Sidebar />
               <main className="flex-1 overflow-y-auto">
-                <div className="h-full w-full mx-auto max-w-4xl px-6 py-10 md:px-10">
+                <div className="h-full w-full mx-auto max-w-4xl p-6 md:p-10">
                   {children}
                 </div>
               </main>

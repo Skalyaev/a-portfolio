@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils/style"
 
 export type OptionsFrom = "top" | "bottom" | "left" | "right"
 
@@ -28,7 +28,7 @@ export function Options({ children, open, from, className }: OptionsProps) {
   return (
     <div
       className={cn(
-        "absolute z-50 flex flex-col border-2 border-border bg-background transition py-1 shadow-xs",
+        "absolute z-50 flex flex-col border-2 border-border bg-background transition p-1 shadow-xs",
         position[from],
         open
           ? "translate-x-0 translate-y-0 opacity-100 ease-out"

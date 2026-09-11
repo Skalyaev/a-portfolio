@@ -1,7 +1,9 @@
+"use client"
+
 import { Loading } from "@/components/svg/Loading"
 
 import { useLanguage } from "@/lib/hooks/useLanguage"
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils/style"
 
 export interface LoaderProps {
   className?: string
@@ -21,8 +23,8 @@ export function Loader({ className }: LoaderProps) {
         height={150}
       />
       <div className="flex flex-col items-center -mt-10 gap-1">
-        <p className="font-medium">{t("common.loadingLine1")}</p>
-        <p className="text-xs font-light text-muted">
+        <p className="font-medium text-lg">{t("common.loadingLine1")}</p>
+        <p className="text-sm font-light text-muted">
           {t("common.loadingLine2")}
         </p>
       </div>

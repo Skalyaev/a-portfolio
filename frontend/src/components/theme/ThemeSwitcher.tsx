@@ -8,11 +8,11 @@ import { Moon } from "@/components/svg/Moon"
 
 import { useLanguage } from "@/lib/hooks/useLanguage"
 import { useHasMounted } from "@/lib/hooks/useHasMounted"
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils/style"
 
 const options = [
-  { value: "light", Icon: Sun },
-  { value: "dark", Icon: Moon }
+  { value: "light", Icon: Sun, animateBackground: "fromRight" },
+  { value: "dark", Icon: Moon, animateBackground: "fromLeft" }
 ] as const
 
 export interface ThemeSwitcherProps {
@@ -26,7 +26,7 @@ export function ThemeSwitcher({ className }: ThemeSwitcherProps) {
 
   return (
     <div className={cn("flex h-8", className)}>
-      {options.map(({ value, Icon }) => {
+      {options.map(({ value, Icon, animateBackground }) => {
         const isSelected = mounted && resolvedTheme === value
         return (
           <Button
@@ -36,6 +36,7 @@ export function ThemeSwitcher({ className }: ThemeSwitcherProps) {
             disabled={!mounted}
             suppressHydrationWarning
             selected={isSelected}
+            animateBackground={animateBackground}
             ariaLabel={t(`theme.${value}`)}
             title={t(`theme.${value}`)}>
             <Icon

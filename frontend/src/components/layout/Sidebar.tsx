@@ -7,11 +7,11 @@ import { Button } from "@/components/tag/Button"
 import { Options } from "@/components/tag/Options"
 import { ThemeSwitcher } from "@/components/theme/ThemeSwitcher"
 import { LanguageSwitcher } from "@/components/i18n/LanguageSwitcher"
-import { TextAlignJustify } from "@/components/svg/TextAlignJustify"
+import { Bars } from "@/components/svg/Bars"
 
 import { useClickOutside } from "@/lib/hooks/useClickOutside"
 import { useLanguage } from "@/lib/hooks/useLanguage"
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils/style"
 
 import { navItems } from "@/constants/nav"
 
@@ -90,7 +90,7 @@ export function Sidebar({ className }: SidebarProps) {
               ariaLabel={t("nav.menu")}
               title={t("nav.menu")}
               className="h-full aspect-square">
-              <TextAlignJustify
+              <Bars
                 width={16}
                 height={16}
                 className="shrink-0 transition-colors"
@@ -150,7 +150,7 @@ export function Sidebar({ className }: SidebarProps) {
             : "-translate-x-4 opacity-0 ease-in pointer-events-none",
           className
         )}>
-        <div className="flex py-6 pl-6 pr-4">
+        <div className="flex p-6">
           <div className="flex flex-col gap-0.5">
             <span className="text-xl font-semibold tracking-wide">{title}</span>
             {subtitle && (
@@ -169,7 +169,8 @@ export function Sidebar({ className }: SidebarProps) {
                 key={item.href}
                 href={item.href}
                 selected={isActive}
-                className="justify-start py-2.5 shrink-0">
+                animateBackground="fromLeft"
+                className="justify-start py-2.5 shrink-0 group">
                 <span
                   className={cn(
                     "inline-block transition-[opacity,translate] duration-400",
@@ -181,7 +182,15 @@ export function Sidebar({ className }: SidebarProps) {
                     transitionDelay:
                       visible && !navEntered ? `${index * 60}ms` : "0ms"
                   }}>
-                  {t(item.labelKey)}
+                  <span
+                    className={cn(
+                      "transition-none",
+                      isActive
+                        ? "text-background"
+                        : "text-muted group-hover:transition-colors group-hover:text-foreground"
+                    )}>
+                    {t(item.labelKey)}
+                  </span>
                 </span>
               </Button>
             )

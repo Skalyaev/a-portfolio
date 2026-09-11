@@ -7,7 +7,7 @@ import { Loader } from "@/components/status/Loader"
 import { useLanguage } from "@/lib/hooks/useLanguage"
 
 export default function Home() {
-  const [loading, setLoading] = useState(true)
+  const [loading] = useState(true)
 
   const { t } = useLanguage()
 
