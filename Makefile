@@ -1,32 +1,54 @@
 SHELL := /bin/bash
 
-FRONTEND_DIR := frontend
-BACKEND_DIR := backend
+IMAGE := portfolio-frontend
+CONTAINER := portfolio-frontend
 
-.PHONY: dev prod build down code fmt lint typecheck
+.PHONY: dev prod build down code fmt lint typecheck data htb
 
 dev:
-	docker compose --profile dev up --build
+	docker build --target dev -t $(IMAGE):dev .
+	docker run --rm -it \
+		--init \
+		--name $(CONTAINER) \
+		-p 3000:3000 \
+		--env-file .env \
+		-v $(CURDIR)/postcss.config.mjs:/home/node/workdir/postcss.config.mjs \
+		-v $(CURDIR)/next-env.d.ts:/home/node/workdir/next-env.d.ts \
+		-v $(CURDIR)/next.config.ts:/home/node/workdir/next.config.ts \
+		-v $(CURDIR)/tsconfig.json:/home/node/workdir/tsconfig.json \
+		-v $(CURDIR)/eslint.config.mjs:/home/node/workdir/eslint.config.mjs \
+		-v $(CURDIR)/public:/home/node/workdir/public \
+		-v $(CURDIR)/src:/home/node/workdir/src \
+		$(IMAGE):dev
 
 prod:
-	docker compose --profile prod up --build
+	docker build --target prod -t $(IMAGE):prod .
+	docker run --rm -it \
+		--init \
+		--name $(CONTAINER) \
+		-p 3000:3000 \
+		--env-file .env \
+		$(IMAGE):prod
 
 build:
-	docker compose --profile prod build
+	docker build --target prod -t $(IMAGE):prod .
 
 down:
-	docker compose --profile '*' down
+	-docker stop $(CONTAINER)
 
 code: fmt lint typecheck
 
 fmt:
-	$(MAKE) -C $(FRONTEND_DIR) fmt
-	$(MAKE) -C $(BACKEND_DIR) fmt
+	npm run fmt
 
 lint:
-	$(MAKE) -C $(FRONTEND_DIR) lint
-	$(MAKE) -C $(BACKEND_DIR) lint
+	npm run lint
 
 typecheck:
-	$(MAKE) -C $(FRONTEND_DIR) typecheck
-	$(MAKE) -C $(BACKEND_DIR) typecheck
+	npm run typecheck
+
+data: htb
+
+htb:
+	npm run htb:academy
+	npm run htb:lab
