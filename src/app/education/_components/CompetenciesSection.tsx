@@ -29,9 +29,9 @@ function CompetencyBlockItem({ block }: CompetencyBlockItemProps) {
 
   return (
     <details className="group border-2 border-border transition-colors has-[.block-trigger:hover]:border-foreground has-[:focus-visible]:border-foreground">
-      <summary className="flex cursor-pointer list-none flex-col gap-1 px-4 py-3 select-none focus-visible:outline-none [&::-webkit-details-marker]:hidden">
-        <span className="block-trigger flex items-center justify-between gap-4">
-          <span className="flex flex-col gap-1">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 select-none focus-visible:outline-none [&::-webkit-details-marker]:hidden">
+        <span className="flex flex-col gap-1">
+          <span className="block-trigger flex flex-col gap-1">
             <span className="flex flex-wrap items-center gap-2">
               <span className={labelClassName}>{block.code}</span>
               <span className="border border-border px-2 py-0.5 text-2xs text-muted">
@@ -42,15 +42,15 @@ function CompetencyBlockItem({ block }: CompetencyBlockItemProps) {
               {t(`${blockKey}.title`)}
             </span>
           </span>
-          <span
-            aria-hidden="true"
-            className="relative flex h-4 w-4 shrink-0 items-center justify-center text-muted">
-            <span className="absolute h-0.5 w-3 bg-current" />
-            <span className="absolute h-3 w-0.5 bg-current group-open:scale-y-0" />
+          <span className="text-xs text-muted">
+            {t(`${blockKey}.description`)}
           </span>
         </span>
-        <span className="text-xs text-muted">
-          {t(`${blockKey}.description`)}
+        <span
+          aria-hidden="true"
+          className="block-trigger relative flex h-4 w-4 shrink-0 items-center justify-center text-muted group-has-[.block-trigger:hover]:text-foreground group-has-[:focus-visible]:text-foreground">
+          <span className="absolute h-0.5 w-3 bg-current" />
+          <span className="absolute h-3 w-0.5 bg-current group-open:scale-y-0" />
         </span>
       </summary>
       <ul className="mx-4 flex list-[square] flex-col gap-1.5 border-t border-border px-4 pt-3 pb-4 text-xs text-muted">
