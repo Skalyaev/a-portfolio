@@ -10,9 +10,10 @@ import {
   skillsByCategory
 } from "@/constants/skills/tools"
 
-import { HoverProjects } from "../HoverProjects"
+import { HoverRelated } from "../HoverRelated"
 
 import type { Technology } from "@/constants/github/projects"
+import type { Experience } from "@/constants/experience/experiences"
 import type { SkillCategory } from "@/constants/skills/tools"
 import type { LanguageProject } from "../../_lib/getSkills"
 
@@ -21,18 +22,20 @@ const transitionDurationMs = 400
 export interface ToolCategoryProps {
   category: SkillCategory
   projectsByTechnology: Partial<Record<Technology, LanguageProject[]>>
+  experiencesByTechnology: Partial<Record<Technology, Experience[]>>
   delayMs: number
 }
 
 /**
- * Displays a tool category card listing its technologies with their related projects.
+ * Displays a tool category card listing its technologies with their related projects and experiences.
  *
- * @param props - Category, projects by technology and entrance animation delay.
+ * @param props - Category, projects and experiences by technology, and entrance animation delay.
  * @returns The tool category card.
  */
 export function ToolCategory({
   category,
   projectsByTechnology,
+  experiencesByTechnology,
   delayMs
 }: ToolCategoryProps) {
   const { t } = useLanguage()
@@ -69,10 +72,11 @@ export function ToolCategory({
         {skillsByCategory[category].map((item) => {
           const key = skillDescriptionKeys[item]
           return (
-            <HoverProjects
+            <HoverRelated
               key={item}
               placement="side"
-              projects={projectsByTechnology[item] ?? []}>
+              projects={projectsByTechnology[item] ?? []}
+              experiences={experiencesByTechnology[item] ?? []}>
               <div
                 tabIndex={0}
                 className="group flex flex-col gap-0.5 px-2 py-1.5 focus:outline-none">
@@ -83,7 +87,7 @@ export function ToolCategory({
                   {t(`skills.tools.descriptions.${key}`)}
                 </span>
               </div>
-            </HoverProjects>
+            </HoverRelated>
           )
         })}
       </div>

@@ -1,14 +1,17 @@
 import { useLanguage } from "@/components/i18n/LanguageContext"
 
 import { useMasonryLayout } from "@/lib/hooks/useMasonryLayout"
+import { groupByKeys } from "@/lib/utils/collection"
 
 import { skillCategories } from "@/constants/skills/tools"
 import { projectOverrides } from "@/constants/github/projects"
+import { experiences } from "@/constants/experience/experiences"
 
 import { SkillsSection } from "../SkillsSection"
 import { ToolCategory } from "./ToolCategory"
 
 import type { Technology } from "@/constants/github/projects"
+import type { Experience } from "@/constants/experience/experiences"
 import type { LanguageProject } from "../../_lib/getSkills"
 
 /**
@@ -33,6 +36,9 @@ for (const project of projectOverrides) {
     })
   }
 }
+
+const experiencesByTechnology: Partial<Record<Technology, Experience[]>> =
+  groupByKeys(experiences, (experience) => experience.technologies)
 
 const toolCategoryCascadeStepMs = 80
 const toolCategoryCascadeBatchSize = 3
@@ -85,6 +91,7 @@ export function ToolsSection() {
               <ToolCategory
                 category={category}
                 projectsByTechnology={projectsByTechnology}
+                experiencesByTechnology={experiencesByTechnology}
                 delayMs={
                   (index % toolCategoryCascadeBatchSize) *
                   toolCategoryCascadeStepMs

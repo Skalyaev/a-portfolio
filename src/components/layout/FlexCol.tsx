@@ -18,8 +18,8 @@ export function FlexCol({
   children
 }: FlexColProps) {
   return (
-    <div className="flex h-full w-full flex-col gap-6">
-      <div className="flex flex-col gap-1">
+    <div className="flex h-full w-full flex-col gap-8">
+      <div className="flex flex-col gap-1.5">
         <h2>{title}</h2>
         <p className="text-sm text-muted">{subtitle}</p>
       </div>

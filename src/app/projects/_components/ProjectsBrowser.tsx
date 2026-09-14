@@ -24,7 +24,7 @@ const cardCascadeStepMs = 80
 const cardCascadeBatchSize = 4
 const cardGridGapPx = 16
 const cardGridBreakpointPx = 640
-const cardGridTrailingSpacePx = 24
+const cardGridTrailingSpacePx = 0
 
 /**
  * Returns the number of project card columns for a viewport width.
@@ -166,7 +166,7 @@ export function ProjectsBrowser({ projects }: ProjectsBrowserProps) {
       errorMessage={
         projects.length === 0 ? t("projects.loadError") : undefined
       }>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 -mt-2">
         <Input
           value={search}
           onChange={handleSearch}
@@ -199,26 +199,28 @@ export function ProjectsBrowser({ projects }: ProjectsBrowserProps) {
         </p>
       </div>
 
-      <div
-        ref={containerRef}
-        className="relative shrink-0"
-        style={{ height: containerHeight }}>
-        {filteredProjects.map((project, index) => {
-          const { ref, style } = getItemProps(index)
-          return (
-            <div
-              key={project.name}
-              ref={ref}
-              style={style}
-              className="w-full">
-              <ProjectCard
-                project={project}
-                animate={!hasInteracted}
-                delayMs={(index % cardCascadeBatchSize) * cardCascadeStepMs}
-              />
-            </div>
-          )
-        })}
+      <div className="pb-6 md:pb-10">
+        <div
+          ref={containerRef}
+          className="relative shrink-0 -mt-3"
+          style={{ height: containerHeight }}>
+          {filteredProjects.map((project, index) => {
+            const { ref, style } = getItemProps(index)
+            return (
+              <div
+                key={project.name}
+                ref={ref}
+                style={style}
+                className="w-full">
+                <ProjectCard
+                  project={project}
+                  animate={!hasInteracted}
+                  delayMs={(index % cardCascadeBatchSize) * cardCascadeStepMs}
+                />
+              </div>
+            )
+          })}
+        </div>
       </div>
     </FlexCol>
   )

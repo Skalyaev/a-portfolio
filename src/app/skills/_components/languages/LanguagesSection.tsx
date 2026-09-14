@@ -3,16 +3,26 @@ import { useState } from "react"
 import { LanguageBar } from "@/components/chart/LanguageBar"
 import { useLanguage } from "@/components/i18n/LanguageContext"
 
+import { groupByKeys } from "@/lib/utils/collection"
+
+import { experiences } from "@/constants/experience/experiences"
 import {
   otherLanguageColor,
   otherLanguageKey
 } from "@/constants/github/languages"
 
-import { HoverProjects } from "../HoverProjects"
+import { HoverRelated } from "../HoverRelated"
 import { SkillsSection } from "../SkillsSection"
 import { LanguageTag } from "./LanguageTag"
 
+import type { Experience } from "@/constants/experience/experiences"
 import type { LanguageStat, LanguageProject } from "../../_lib/getSkills"
+
+const experiencesByLanguage: Partial<Record<string, Experience[]>> =
+  groupByKeys<Experience, string>(
+    experiences,
+    (experience) => experience.languages
+  )
 
 export interface LanguagesSectionProps {
   languages: LanguageStat[]
@@ -21,7 +31,7 @@ export interface LanguagesSectionProps {
 }
 
 /**
- * Renders the languages section: a distribution bar and a tag per language linked to its projects.
+ * Renders the languages section: a distribution bar and a tag per language linked to its projects and experiences.
  *
  * @param props - Language statistics and projects by language.
  * @returns The languages section, or an error message when no data is available.
@@ -64,9 +74,10 @@ export function LanguagesSection({
           />
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
             {languages.map((language) => (
-              <HoverProjects
+              <HoverRelated
                 key={language.name}
                 projects={projectsByLanguage[language.name] ?? []}
+                experiences={experiencesByLanguage[language.name] ?? []}
                 onHoverChange={(hovering) =>
                   handleHoverChange(language.name, hovering)
                 }>
@@ -76,11 +87,12 @@ export function LanguagesSection({
                   percent={language.percent}
                   highlighted={hoveredLanguage === language.name}
                 />
-              </HoverProjects>
+              </HoverRelated>
             ))}
             {otherLanguagesPercent > 0 && (
-              <HoverProjects
+              <HoverRelated
                 projects={[]}
+                experiences={[]}
                 onHoverChange={(hovering) =>
                   handleHoverChange(otherLanguageKey, hovering)
                 }>
@@ -90,7 +102,7 @@ export function LanguagesSection({
                   percent={otherLanguagesPercent}
                   highlighted={hoveredLanguage === otherLanguageKey}
                 />
-              </HoverProjects>
+              </HoverRelated>
             )}
           </div>
         </div>

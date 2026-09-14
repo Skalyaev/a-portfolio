@@ -28,9 +28,10 @@
   },
   "home": { "title": "Home" },
   "skills": {
-    "title": "Skills",
+    "title": "Technical Skills",
     "subtitle": "An overview of my technical skills and the tools I use.",
     "relatedProject": "Related Projects",
+    "relatedExperience": "Related Experience",
     "languages": {
       "title": "Programming",
       "subtitle": "Code breakdown across all my public GitHub projects.",
@@ -52,7 +53,7 @@
         "nestjs": "NestJS",
         "postgresql": "PostgreSQL",
         "nginx": "Nginx",
-        "mariadb": "MariaDB",
+        "tailwindcss": "Tailwind CSS",
         "docker": "Docker",
         "kubernetes": "Kubernetes (K3s)",
         "vagrant": "Vagrant",
@@ -73,7 +74,14 @@
         "binaryExploitation": "Binary Exploitation",
         "sqlInjection": "SQL Injection",
         "arpSpoofing": "ARP Spoofing (MITM)",
-        "malwareAnalysis": "Malware Analysis"
+        "malwareAnalysis": "Malware Analysis",
+        "vuejs": "Vue.js",
+        "fastapi": "FastAPI",
+        "figma": "Figma",
+        "hostinger": "Hostinger",
+        "raspberryPi": "Raspberry Pi",
+        "sentry": "Sentry",
+        "burpsuite": "Burp Suite"
       },
       "descriptions": {
         "nextjs": "React framework with server-side rendering (SSR), used for this portfolio.",
@@ -81,7 +89,7 @@
         "nestjs": "Progressive Node.js framework for backend APIs.",
         "postgresql": "Relational database used for persistent storage.",
         "nginx": "Reverse proxy and web server for deployments.",
-        "mariadb": "Open-source relational database, MySQL-compatible.",
+        "tailwindcss": "Utility-first CSS framework for building interfaces directly in markup.",
         "docker": "Containerizing services for consistent deployments.",
         "kubernetes": "Container orchestration, deployed as a lightweight K3s cluster.",
         "vagrant": "Provisioning reproducible virtual machines for labs.",
@@ -102,7 +110,11 @@
         "binaryExploitation": "Exploiting memory corruption vulnerabilities in binaries.",
         "sqlInjection": "Exploiting unsanitized queries to access databases.",
         "arpSpoofing": "Man-in-the-middle attacks via ARP cache poisoning.",
-        "malwareAnalysis": "Studying malicious samples to understand their behavior."
+        "malwareAnalysis": "Studying malicious samples to understand their behavior.",
+        "vuejs": "Progressive JavaScript framework for reactive user interfaces.",
+        "fastapi": "High-performance Python framework for typed REST APIs.",
+        "sentry": "Error and performance monitoring in production.",
+        "burpsuite": "Toolkit for testing the security of web applications."
       }
     },
     "cybersecurity": {
@@ -169,7 +181,7 @@
     "loadError": "This data is temporarily unavailable.\nPlease try again later."
   },
   "projects": {
-    "title": "Projects",
+    "title": "Public Projects",
     "subtitle": "A list of my public projects hosted on GitHub.",
     "searchPlaceholder": "Search a term...",
     "clearSearch": "Clear search",
@@ -227,7 +239,143 @@
       "libasm": "Reimplementation of libc functions for the x86-64 architecture."
     }
   },
-  "experience": { "title": "Experience" },
-  "education": { "title": "Education" },
+  "experience": {
+    "title": "Professional Experience",
+    "subtitle": "My professional background: the companies I worked with, what I built there and the technologies involved.",
+    "website": "Website",
+    "leadership": "Leadership",
+    "leaderRoles": {
+      "ceo": "CEO",
+      "cto": "CTO",
+      "founder": "Founder",
+      "cofounder": "Co-founder"
+    },
+    "contracts": {
+      "internship": "Internship",
+      "freelance": "Freelance",
+      "permanent": "Full-time"
+    },
+    "languages": "Languages",
+    "technologies": "Technologies",
+    "items": {
+      "klaire": {
+        "about": "AI for the notarial profession.",
+        "role": "Software Engineer · Technical Lead",
+        "highlights": {
+          "fullstack": "Development of fullstack solutions for a platform leveraging generative AI for notaries, from feature design through to production deployment.",
+          "fullstackContribution": "Contribute to the fullstack development of the application.",
+          "rituals": "Take part in daily and weekly meetings with the team to track product progress.",
+          "frontendRedesign": "Lead the frontend's visual redesign.",
+          "bugTracking": "Ensure bug tracking and customer feedback follow-up through Sentry."
+        }
+      },
+      "limed": {
+        "about": "Tech services company. Internal missions and projects.",
+        "role": "Software Engineer",
+        "highlights": {
+          "internalProjects": "Contribution to the development of various SaaS products and other internal projects (automated article retrieval, scraping, bypassing Cloudflare protections, etc.).",
+          "saasApps": "Contribute to the development of the different SaaS products (WebApp, Chatbot).",
+          "botExtension": "Develop a JS bot and a Chrome automation extension.",
+          "salesPoc": "Collaborate with the sales team to prepare PoCs."
+        }
+      },
+      "mbc": {
+        "about": "International music agency curating bespoke playlists for luxury hotels, restaurants and spas since 2006.",
+        "role": "Software Engineer · Tech Lead",
+        "highlights": {
+          "webInterface": "Design and deployment of a software infrastructure for storing, scheduling and streaming music to connected devices (Raspberry Pi & Android).",
+          "backend": "Develop a complete, secure and high-performance backend service.",
+          "crossPlatform": "Develop a cross-platform solution for streaming music.",
+          "deployment": "Deploy the services to production."
+        }
+      },
+      "opale": {
+        "about": "AI for investment funds.",
+        "role": "Software Engineer",
+        "highlights": {
+          "fullstack": "Development of full stack solutions for a platform leveraging generative AI to improve M&A decision-making.",
+          "designCollab": "Collaborate with a designer to develop an optimized web interface.",
+          "backend": "Contribute to the development of a secure and high-performance backend service.",
+          "testing": "Develop a robust and scalable test suite."
+        }
+      }
+    }
+  },
+  "education": {
+    "title": "Academic Education",
+    "subtitle": "The professional certification awarded by 42 at the end of my curriculum.",
+    "diploma": {
+      "name": "IT Architecture Expert",
+      "levelName": "Level",
+      "levelEquivalent": "Bac+5",
+      "objective": "The IT Architecture Expert's mission is to define and design robust architectures that align information systems with the strategic goals of companies. Their role includes assessing user needs, designing technical solutions, and monitoring technology to keep up with changes in the field."
+    },
+    "actions": {
+      "download": "View the diploma",
+      "franceCompetences": "View on France Compétences"
+    },
+    "awardNote": "Available on",
+    "competencies": {
+      "title": "Certified Skills",
+      "subtitle": "The skills validated by the certification.",
+      "common": "Common block",
+      "option": "Selected option",
+      "blocks": {
+        "bc01": {
+          "title": "Define and design the IT architecture of a digital solution",
+          "description": "Analyze needs, design the hardware and software architecture, and assess security risks for an IT project.",
+          "items": {
+            "techWatch": "Carry out continuous technology watch across various digital fields to stay up to date and offer clients innovative and responsible solutions",
+            "innovation": "Look for innovative solutions by testing new techniques and software and integrating them into existing solutions, in order to optimize processes and strengthen the organization's technological capabilities",
+            "infrastructureAudit": "Analyze the current IT infrastructure to identify its strengths and weaknesses, using audit and performance analysis tools, in order to understand the system's starting point",
+            "stakeholderNeeds": "Identify the project stakeholders and gather their needs and expectations through interviews and workshops, in order to define the project's goals and constraints while taking everyone's specifics and interests into account",
+            "feasibility": "Assess the project's feasibility by estimating the resources required to carry it out, using simulation and prototyping tools, in order to validate the viability of the proposed solutions",
+            "specifications": "Formalize the sponsor's needs in a technical specification covering both the current infrastructure and a functional projection of the target infrastructure, in order to provide a clear and structured basis for designing, implementing and accepting solutions aligned with the project's strategic goals",
+            "architectureDesign": "Design the hardware and software architecture by choosing among possible strategies and using architecture modeling tools, following eco-responsible practices, to visualize the system's components and their interactions",
+            "technologySelection": "Select the hardware, tools and technologies suited to the defined architecture based on project needs, budget constraints and current trends, in order to ensure a high-performing and scalable solution",
+            "securityRisks": "Assess security risks through standard risk analyses, modeling of known threats and specific risk scenarios, in order to build security measures in from the project's design and protect data and systems against threats"
+          }
+        },
+        "bc02": {
+          "title": "Build the architecture of information systems and networks",
+          "description": "Install, secure and administer the servers, networks and services that make up the information system.",
+          "items": {
+            "servers": "Install and administer physical and virtual servers, on-premises and remote (Cloud), using operating systems such as Linux and Windows Server and virtualization and containerization methods such as ESXi and Docker, to ensure the availability, performance and eco-responsibility of hosted services",
+            "ipNetwork": "Set up an IP network architecture by installing, connecting and configuring network equipment (routers, switches, firewalls, gateways, …), following communication protocols and integrating architecture, performance, eco-responsibility and transit constraints, so that machines can communicate with each other and meet the need",
+            "networkServices": "Install and configure the network services that together make up the information system, such as centralized user management, messaging, shared and distributed storage and computing, business tools and DevOps tools, to ensure a stable, secure and high-performing infrastructure that lets users and applications run optimally and continuously in an evolving environment",
+            "administration": "Administer the network and services using scheduled tasks, suitable monitoring software, or ad-hoc software or scripts tailored to the information system's specifics, to ensure the daily service delivered to all its users",
+            "testing": "Carry out and supervise, with dedicated teams, functional and load tests on the architecture to verify that it meets client needs, the technical specification and activity peaks, and apply the appropriate fixes when needed",
+            "securityObjectives": "Set clear and specific security objectives in collaboration with stakeholders, to ensure that security measures address the organization's challenges",
+            "securityPolicies": "Implement network and system security policies by selecting, installing and configuring firewalls, VPNs and intrusion detection systems (IDS/IPS), to protect data and infrastructures against threats and increase resilience (redundancy, backup)",
+            "identityAccess": "Manage access and identities by configuring user databases or directories (such as Active Directory, LDAP) and authentication and authorization policies, to ensure secure and compliant access to network and system resources",
+            "securityTesting": "Organize and carry out security tests (penetration tests, security audits, vulnerability scans) using methods such as attack simulations (virus, rootkit, man-in-the-middle), code analyses and configuration reviews, and tools such as Nessus, OpenVAS and Qualys, to identify and fix security flaws in networks and systems, as well as social engineering tests aimed at tricking users into granting undue access"
+          }
+        },
+        "bc04": {
+          "title": "Lead the implementation of the IT architecture",
+          "description": "Select resources, organize the project and lead teams through to delivery of the architecture.",
+          "items": {
+            "selectionCriteria": "Set the selection criteria for external resources in terms of data security, environmental responsibility, expertise, range of services and solutions, quality of support and accessibility, in order to be as competitive as possible in delivering the project and the expressed needs",
+            "externalResources": "Select the external resources (hardware, human, services) needed to build the chosen system and network or database and data architecture, within budget, at the expected quality and in compliance with standards (environmental, security, legislation)",
+            "projectPlan": "Build the project organization plan by identifying its phases and the actions to carry out, within cost-time-quality constraints, communicating objectives to the teams and identifying technical risks, to ensure the IT project runs smoothly",
+            "teamLeadership": "Lead the project and all its contributors, preventing conflicts and adapting to the various profiles involved, including people with disabilities, to maintain strong overall cohesion",
+            "projectSteering": "Steer and supervise the IT project's implementation, ensuring objectives are defined and met, anticipating and managing risks, and adjusting the project when needed, to guarantee its success in line with client needs and the specification",
+            "delivery": "Deliver the finished project to production, checking deliverables internally and then with the client, and reviewing changes and their impacts, to ensure client satisfaction, compliance with initial requirements and a smooth transition to operations"
+          }
+        },
+        "bc05": {
+          "title": "Manage the deployment and continuous optimization of the IT architecture",
+          "description": "Document, maintain and evolve the architecture to meet new needs.",
+          "items": {
+            "documentation": "Write and review user documentation for clients, users and production managers, to ensure the accuracy and consistency of the information provided",
+            "documentationSharing": "Share the documentation with all stakeholders across the organization through explanatory or training sessions, to ensure a shared and consistent understanding of key information",
+            "maintenance": "Carry out evolutive maintenance of applications by fixing issues reported automatically from production or raised (bugs) by users or dedicated teams, to ensure the performance, stability and continuous evolution of applications",
+            "newNeeds": "Gather new infrastructure needs from clients and users in order to optimize the existing architecture",
+            "architectureEvolution": "Implement architecture changes to meet the new needs of the various stakeholders (client, user, supervisor, developer, …), taking into account technical constraints, performance and security requirements, as well as allocated deadlines and budgets, to ensure a consistent and effective adaptation of systems"
+          }
+        }
+      }
+    }
+  },
   "contact": { "title": "Contact" }
 }

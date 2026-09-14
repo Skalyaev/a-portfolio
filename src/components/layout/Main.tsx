@@ -10,7 +10,7 @@ export interface MainProps {
 }
 
 /**
- * Scrollable main area, scrolled back to the top on every navigation.
+ * Scrollable main area, scrolled back to the top on every navigation without a hash.
  *
  * @param props - Component props.
  * @param props.children - Active route content.
@@ -21,6 +21,8 @@ export function Main({ children }: MainProps) {
   const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    // The router has already scrolled to the hash anchor; resetting would undo it.
+    if (window.location.hash) return
     ref.current?.scrollTo({ top: 0 })
   }, [pathname])
 

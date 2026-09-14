@@ -28,9 +28,10 @@
   },
   "home": { "title": "Accueil" },
   "skills": {
-    "title": "Compétences",
+    "title": "Compétences techniques",
     "subtitle": "Aperçu de mes compétences techniques et des outils que j'utilise.",
     "relatedProject": "Projets Associés",
+    "relatedExperience": "Expériences Associées",
     "languages": {
       "title": "Programmation",
       "subtitle": "Répartition du code sur l'ensemble de mes projets publics GitHub.",
@@ -52,7 +53,7 @@
         "nestjs": "NestJS",
         "postgresql": "PostgreSQL",
         "nginx": "Nginx",
-        "mariadb": "MariaDB",
+        "tailwindcss": "Tailwind CSS",
         "docker": "Docker",
         "kubernetes": "Kubernetes (K3s)",
         "vagrant": "Vagrant",
@@ -73,7 +74,14 @@
         "binaryExploitation": "Exploitation de binaires",
         "sqlInjection": "Injection SQL",
         "arpSpoofing": "Usurpation ARP (MITM)",
-        "malwareAnalysis": "Analyse de malwares"
+        "malwareAnalysis": "Analyse de malwares",
+        "vuejs": "Vue.js",
+        "fastapi": "FastAPI",
+        "figma": "Figma",
+        "hostinger": "Hostinger",
+        "raspberryPi": "Raspberry Pi",
+        "sentry": "Sentry",
+        "burpsuite": "Burp Suite"
       },
       "descriptions": {
         "nextjs": "Framework React avec rendu côté serveur (SSR), utilisé pour ce portfolio.",
@@ -81,7 +89,7 @@
         "nestjs": "Framework Node.js pour des API backend.",
         "postgresql": "Base de données relationnelle pour le stockage persistant.",
         "nginx": "Serveur web et reverse proxy pour les déploiements.",
-        "mariadb": "Base de données relationnelle open-source, compatible MySQL.",
+        "tailwindcss": "Framework CSS utilitaire pour construire des interfaces directement dans le balisage.",
         "docker": "Conteneurisation des services pour des déploiements homogènes.",
         "kubernetes": "Orchestration de conteneurs via un cluster K3s léger.",
         "vagrant": "Provisionnement de machines virtuelles reproductibles pour des labs.",
@@ -102,7 +110,11 @@
         "binaryExploitation": "Exploitation de vulnérabilités de corruption mémoire dans des binaires.",
         "sqlInjection": "Exploitation de requêtes non filtrées pour accéder aux bases de données.",
         "arpSpoofing": "Attaques de type man-in-the-middle via empoisonnement du cache ARP.",
-        "malwareAnalysis": "Étude d'échantillons malveillants pour comprendre leur comportement."
+        "malwareAnalysis": "Étude d'échantillons malveillants pour comprendre leur comportement.",
+        "vuejs": "Framework JavaScript progressif pour des interfaces réactives.",
+        "fastapi": "Framework Python performant pour des API REST typées.",
+        "sentry": "Suivi des erreurs et des performances en production.",
+        "burpsuite": "Suite d'outils pour tester la sécurité des applications web."
       }
     },
     "cybersecurity": {
@@ -169,7 +181,7 @@
     "loadError": "Ces données sont temporairement indisponibles.\nVeuillez réessayer ultérieurement."
   },
   "projects": {
-    "title": "Projets",
+    "title": "Projets publics",
     "subtitle": "Liste de mes projets publics hébergés sur GitHub.",
     "searchPlaceholder": "Rechercher un terme...",
     "clearSearch": "Effacer la recherche",
@@ -227,7 +239,143 @@
       "libasm": "Réimplémentation de fonctions libc pour l'architecture x86-64."
     }
   },
-  "experience": { "title": "Expérience" },
-  "education": { "title": "Formation" },
+  "experience": {
+    "title": "Expérience professionnelle",
+    "subtitle": "Mon parcours professionnel : les entreprises où j'ai travaillé, ce que j'y ai construit et les technologies utilisées.",
+    "website": "Site web",
+    "leadership": "Direction",
+    "leaderRoles": {
+      "ceo": "CEO",
+      "cto": "CTO",
+      "founder": "Fondateur",
+      "cofounder": "Cofondateur"
+    },
+    "contracts": {
+      "internship": "Stage",
+      "freelance": "Freelance",
+      "permanent": "CDI"
+    },
+    "languages": "Langages",
+    "technologies": "Technologies",
+    "items": {
+      "klaire": {
+        "about": "L'IA au service du notariat.",
+        "role": "Ingénieur logiciel · Lead technique",
+        "highlights": {
+          "fullstack": "Développement de solutions fullstack pour une plateforme exploitant l'IA générative au service des notaires, de la conception des fonctionnalités jusqu'à leur mise en production.",
+          "fullstackContribution": "Contribuer au développement fullstack de l'application.",
+          "rituals": "Participer aux daily et weekly avec l'équipe pour suivre l'avancement du produit.",
+          "frontendRedesign": "Piloter la refonte graphique du frontend de l'application.",
+          "bugTracking": "Assurer un suivi des bugs et des retours clients via Sentry."
+        }
+      },
+      "limed": {
+        "about": "Entreprise de services tech. Missions et projets internes.",
+        "role": "Ingénieur logiciel",
+        "highlights": {
+          "internalProjects": "Contribution au développement de différents SaaS et d'autres projets internes (acquisition automatique d'articles, scraping, contournement de protections Cloudflare, etc.).",
+          "saasApps": "Contribuer au développement des différents SaaS (WebApp, Chatbot).",
+          "botExtension": "Développer un bot JS et une extension Chrome d'automatisation.",
+          "salesPoc": "Collaborer avec l'équipe vente pour préparer les PoC."
+        }
+      },
+      "mbc": {
+        "about": "Agence musicale internationale créant depuis 2006 des playlists sur mesure pour des hôtels, restaurants et spas de luxe.",
+        "role": "Ingénieur logiciel · Lead technique",
+        "highlights": {
+          "webInterface": "Conception et déploiement d'une infrastructure logicielle permettant le stockage, la planification et la diffusion de musiques sur des appareils connectés (Raspberry Pi & Android).",
+          "backend": "Développer un service backend complet, sécurisé et performant.",
+          "crossPlatform": "Développer une solution cross-plateforme pour diffuser de la musique.",
+          "deployment": "Déployer les services en production."
+        }
+      },
+      "opale": {
+        "about": "L'IA au service des fonds d'investissement.",
+        "role": "Ingénieur logiciel",
+        "highlights": {
+          "fullstack": "Développement de solutions full stack pour une plateforme exploitant l'IA générative pour améliorer la prise de décisions M&A.",
+          "designCollab": "Collaborer avec un graphiste pour développer une interface web optimisée.",
+          "backend": "Contribuer au développement d'un service backend sécurisé et performant.",
+          "testing": "Développer un programme de tests robuste et scalable."
+        }
+      }
+    }
+  },
+  "education": {
+    "title": "Formation académique",
+    "subtitle": "La certification professionnelle délivrée par 42 à l'issue de mon cursus.",
+    "diploma": {
+      "name": "Expert en architecture informatique",
+      "levelName": "Niveau",
+      "levelEquivalent": "Bac+5",
+      "objective": "L’expert en Architecture Informatique a pour mission de définir et concevoir des architectures robustes qui alignent les systèmes informatiques sur les objectifs stratégiques des entreprises. Leur rôle inclut l'évaluation des besoins des utilisateurs, la conception de solutions techniques, et la veille technologique pour suivre les évolutions du secteur."
+    },
+    "actions": {
+      "download": "Voir le diplôme",
+      "franceCompetences": "Voir sur France Compétences"
+    },
+    "awardNote": "Disponible le",
+    "competencies": {
+      "title": "Compétences attestées",
+      "subtitle": "Les compétences validées par la certification.",
+      "common": "Bloc commun",
+      "option": "Option choisie",
+      "blocks": {
+        "bc01": {
+          "title": "Définir et concevoir l’architecture informatique d’une solution numérique",
+          "description": "Analyser les besoins, concevoir l'architecture matérielle et logicielle et évaluer les risques de sécurité d'un projet informatique.",
+          "items": {
+            "techWatch": "Réaliser une veille technologique continue sur différents domaines liés au numérique afin de toujours être dans la tendance et proposer aux clients des solutions innovantes et responsables",
+            "innovation": "Rechercher des solutions innovantes en testant de nouvelles techniques et nouveaux logiciels, et en les intégrant à des solutions existantes dans le but d’optimiser les processus et renforcer les capacités technologiques de la structure",
+            "infrastructureAudit": "Analyser l'infrastructure informatique actuelle pour identifier les points forts et les faiblesses, en utilisant des outils d'audit et d'analyse de performance afin de comprendre l'état de départ du système",
+            "stakeholderNeeds": "Identifier les parties prenantes du projet et collecter les besoins et attentes en menant des entretiens et ateliers, afin de définir les objectifs et les contraintes du projet tout en prenant en compte les spécificités et les intérêts de chacun",
+            "feasibility": "Évaluer la faisabilité du projet en effectuant des estimations quant aux besoins nécessaires à sa réalisation, à l'aide d’outils de simulation et de prototypage dans le but de valider la viabilité des solutions proposées",
+            "specifications": "Formaliser les besoins du commanditaire dans un cahier des charges technique comprenant d’une part l’existant de l’infrastructure actuelle et une projection fonctionnelle de ce que devrait être l’infrastructure cible afin de fournir une base claire et structurée pour la conception, la mise en œuvre et la recette de solutions alignées avec les objectifs stratégiques du projet",
+            "architectureDesign": "Concevoir l'architecture matérielle et logicielle en choisissant parmi les stratégies possibles, et en utilisant des outils de modélisation de l'architecture dans le respect des pratiques écoresponsables pour visualiser les composants du système et leurs interactions",
+            "technologySelection": "Sélectionner les matériels, outils, et technologies appropriées pour l’architecture définie en fonction des besoins du projet, des contraintes de budget et des tendances actuelles afin de garantir une solution performante et évolutive",
+            "securityRisks": "Évaluer les risques en matière de sécurité à travers des analyses de risques classiques, la modélisation des menaces connues, et des scénarios de risques spécifiques, afin d’intégrer des mesures de sécurité dès la conception du projet, et ainsi protéger les données et les systèmes contre les menaces"
+          }
+        },
+        "bc02": {
+          "title": "Réaliser l’architecture des systèmes d’information et réseaux",
+          "description": "Installer, sécuriser et administrer les serveurs, réseaux et services qui composent le système d'information.",
+          "items": {
+            "servers": "Installer et administrer des serveurs physiques et virtuels, locaux et à distance (Cloud), en utilisant des systèmes d'exploitation tels que Linux et Windows Server et des méthodes de virtualisation et de conteneurisation comme ESXI et Docker pour garantir la disponibilité, la performance, mais également l’écoresponsabilité des services hébergés",
+            "ipNetwork": "Mettre en place une architecture réseau I.P. en installant, connectant et configurant les équipements réseau (routeurs, commutateurs, pare-feu, passerelles, … ), en respectant les protocoles de communication, et en intégrant les contraintes d’architecture, de performance, d’éco-responsabilité et de transit afin de permettre aux machines de communiquer entre elles et de répondre au besoin",
+            "networkServices": "Installer et configurer les services réseau qui ensemble constituent le système d’information, comme les services centralisés de gestion des utilisateurs, la messagerie, les stockages et calculs partagés et distribués, les outils métiers, mais également les outils DevOps afin de garantir une infrastructure stable, sécurisée et performante, permettant aux utilisateurs et aux applications de fonctionner de manière optimale et continue dans un environnement évolutif",
+            "administration": "Administrer le réseau et les services en utilisant des tâches planifiées, des logiciels de surveillance appropriés ou en créant des logiciels ou scripts ad-hoc pour tenir compte des spécificités du système d’information afin de garantir au quotidien le service rendu à l’ensemble de ses utilisateurs",
+            "testing": "Réaliser et superviser avec les équipes dédiées des tests fonctionnels et des tests de charge sur l’architecture afin de vérifier que celle-ci réponde bien aux besoins client et au cahier des charges technique, ainsi qu’aux situations de surcroît d’activité, et appliquer si nécessaire les correctifs appropriés",
+            "securityObjectives": "Établir des objectifs de sécurité clairs et spécifiques en collaborant avec les parties prenantes afin de garantir que les mesures de sécurisation répondent aux enjeux de l'organisation",
+            "securityPolicies": "Mettre en œuvre des politiques de sécurité réseau et système en sélectionnant, en installant et en configurant des pare-feu, des VPN, des systèmes de détection d'intrusion (IDS/IPS) afin de protéger les données et les infrastructures contre les menaces, et augmenter la résilience (redondance, sauvegarde)",
+            "identityAccess": "Administrer les accès et les identités en configurant des bases utilisateurs ou annuaires (comme Active Directory, LDAP) et des politiques d'authentification et d'autorisation pour garantir la sécurité et la conformité des accès aux ressources réseau et système",
+            "securityTesting": "Organiser et réaliser des tests de sécurité (tests de pénétration, audits de sécurité, scans de vulnérabilité) en utilisant des méthodes telles que les simulations d’attaques (virus, rootkit, man-in-the-middle), les analyses de code et les revues de configuration et en s’appuyant sur des outils tels que Nessus, OpenVAS, Qualys afin d’identifier et corriger les failles de sécurité dans les réseaux et systèmes, ainsi que des tests de “social engineering” visant à abuser des utilisateurs pour obtenir des accès indus"
+          }
+        },
+        "bc04": {
+          "title": "Piloter la mise en œuvre de l’architecture informatique",
+          "description": "Sélectionner les ressources, organiser le projet et diriger les équipes jusqu'à la livraison de l'architecture.",
+          "items": {
+            "selectionCriteria": "Établir les critères de sélection des ressources externes en matière de sécurité des données, de respect de l’environnement, d’expertise, de gamme de services et solutions, de qualité du soutien, et d’accessibilité, afin d’être le plus compétitif dans la réalisation du projet et des besoins exprimés",
+            "externalResources": "Sélectionner les ressources externes (matérielles, humaines, services) permettant de réaliser l’architecture système et réseau ou base de données et data qui a été décidée, dans le respect des budgets, de la qualité attendue, et du respect des normes (environnemental, sécurité, législation)",
+            "projectPlan": "Réaliser le plan d’organisation du projet en identifiant les différentes phases et les différentes actions à mener, dans le respect des éléments de coût-délai-qualité, en communiquant auprès des équipes sur les objectifs et en identifiant les risques techniques, afin de s’assurer de la bonne conduite du projet informatique",
+            "teamLeadership": "Assurer la direction du projet et de l’ensemble des collaborateurs et intervenants, tout en s’assurant de la prévention des conflits et en s’adaptant aux divers profils impliqués, y compris des profils en situation de handicap, afin d’avoir une bonne cohésion d’ensemble",
+            "projectSteering": "Piloter et superviser la mise en œuvre du projet informatique, en s'assurant de la définition et de l'atteinte des objectifs, en anticipant et gérant les risques, et en faisant évoluer le projet le cas échéant, pour garantir la réussite du projet en accord avec les besoins clients et le cahier des charges",
+            "delivery": "Livrer le projet terminé et en production, en contrôlant les attendus en interne puis avec le client, et en faisant le bilan des changements et de leurs impacts afin de garantir la satisfaction du client, la conformité aux exigences initiales, et d’assurer une transition fluide vers l’exploitation opérationnelle"
+          }
+        },
+        "bc05": {
+          "title": "Gérer le déploiement et l’optimisation continue de l’architecture informatique",
+          "description": "Documenter, maintenir et faire évoluer l'architecture pour répondre aux nouveaux besoins.",
+          "items": {
+            "documentation": "Réaliser et contrôler la documentation utilisateur à destination des clients, des utilisateurs et des responsables de la production, afin de garantir l'exactitude et la cohérence des informations fournies",
+            "documentationSharing": "Communiquer la documentation à tous les interlocuteurs à travers l’organisation au travers de sessions explicatives ou de formation afin de garantir une compréhension partagée et homogène des informations essentielles",
+            "maintenance": "Mettre en œuvre une maintenance évolutive des applications en assurant les corrections suite aux remontées automatiques d’informations de production, aux problèmes soulevés (bugs) par les utilisateurs ou les équipes dédiées afin de garantir la performance, la stabilité et l’évolution continue des applications",
+            "newNeeds": "Recueillir les nouveaux besoins d’infrastructure auprès des clients et utilisateurs afin d’optimiser l’architecture existante",
+            "architectureEvolution": "Mettre en œuvre les évolutions de l’architecture pour répondre aux nouveaux besoins des différents interlocuteurs (client, utilisateur, superviseur, développeur, …) en tenant compte des contraintes techniques, des exigences de performance et de sécurité, ainsi que des délais et des budgets alloués pour garantir une adaptation cohérente et efficace des systèmes"
+          }
+        }
+      }
+    }
+  },
   "contact": { "title": "Contact" }
 }

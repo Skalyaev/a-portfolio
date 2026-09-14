@@ -6,7 +6,7 @@
 - `src/lib/hooks/` — one hook `useFooBar` per file.
 - `src/constants/` — project constants, portable with modification.
 - `src/components/` — UI used (or soon used) by several routes.
-- `src/app/<route>/_components/`, `src/app/<route>/_lib/` — code used by a single route. No `_lib/` or `_components/` directly in `src/app/`: shared code goes to `src/lib/` or `src/components/`.
+- `src/app/<route>/_components/`, `src/app/<route>/_lib/` — code used by a single route.
 
 ## Naming
 

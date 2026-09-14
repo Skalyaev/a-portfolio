@@ -1,10 +1,10 @@
-import Loading from "../loading"
+import { EducationView } from "./_components/EducationView"
 
 /**
- * Renders the education page, a loader until its content exists.
+ * Renders the education page from the static diploma description.
  *
  * @returns The education page content.
  */
 export default function EducationPage() {
-  return <Loading />
+  return <EducationView />
 }

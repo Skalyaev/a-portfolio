@@ -7,32 +7,39 @@ import { cn } from "@/lib/utils/style"
 import { useClickOutside } from "@/lib/hooks/useClickOutside"
 
 import type { FocusEvent, ReactNode } from "react"
+import type { Experience } from "@/constants/experience/experiences"
 import type { LanguageProject } from "../_lib/getSkills"
 
 const edgeMargin = 16
 const sideMinSpace = 212
+const itemClassName =
+  "flex shrink-0 flex-col px-2 py-1 hover:bg-accent group transition-colors items-start gap-0"
+const sectionLabelClassName =
+  "px-1 pb-1 text-2xs text-muted uppercase tracking-wide"
 
-export interface HoverProjectsProps {
+export interface HoverRelatedProps {
   projects: LanguageProject[]
+  experiences: Experience[]
   placement?: "bottom" | "side"
   children: ReactNode
   onHoverChange?: (hovering: boolean) => void
 }
 
 /**
- * Wraps content with a popover listing related projects, opened on hover, focus or click.
+ * Wraps content with a popover listing related projects and experiences, opened on hover, focus or click.
  *
  * The popover opens on the side with the most room and is height-capped to the viewport.
  *
- * @param props - Projects, trigger content, placement and hover handler.
+ * @param props - Projects, experiences, trigger content, placement and hover handler.
  * @returns The trigger with its popover.
  */
-export function HoverProjects({
+export function HoverRelated({
   projects,
+  experiences,
   placement = "bottom",
   children,
   onHoverChange
-}: HoverProjectsProps) {
+}: HoverRelatedProps) {
   const { t } = useLanguage()
   const [visible, setVisible] = useState(false)
   const [entered, setEntered] = useState(false)
@@ -40,6 +47,10 @@ export function HoverProjects({
   const [effectivePlacement, setEffectivePlacement] = useState(placement)
   const [maxHeight, setMaxHeight] = useState<number | undefined>(undefined)
   const ref = useRef<HTMLDivElement>(null)
+
+  const hasProjects = projects.length > 0
+  const hasExperiences = experiences.length > 0
+  const hasRelated = hasProjects || hasExperiences
 
   useEffect(() => {
     if (!visible) return
@@ -65,10 +76,10 @@ export function HoverProjects({
     setMaxHeight(Math.max(window.innerHeight - anchorBottom - edgeMargin, 0))
   }
 
-  /** Notifies the hover start and opens the popover when there are projects. */
+  /** Notifies the hover start and opens the popover when there is related content. */
   function handleEnter() {
     onHoverChange?.(true)
-    if (projects.length === 0) return
+    if (!hasRelated) return
     computePosition()
     setVisible(true)
   }
@@ -94,7 +105,7 @@ export function HoverProjects({
 
   /** Opens the popover on click, for touch devices without hover. */
   function handleClick() {
-    if (projects.length === 0) return
+    if (!hasRelated) return
     onHoverChange?.(true)
     computePosition()
     setVisible(true)
@@ -112,7 +123,7 @@ export function HoverProjects({
       onBlur={handleBlur}
       onClick={handleClick}>
       {children}
-      {visible && projects.length > 0 && (
+      {visible && hasRelated && (
         <div
           className={cn(
             "absolute z-20",
@@ -131,24 +142,52 @@ export function HoverProjects({
                     fromLeft ? "translate-x-2" : "-translate-x-2"
                   )
             )}>
-            <span className="px-1 pb-1 text-2xs text-muted uppercase tracking-wide">
-              {t("skills.relatedProject")}
-            </span>
-            {projects.map((project) => (
-              <Button
-                key={project.htmlUrl}
-                href={project.htmlUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex shrink-0 flex-col px-2 py-1 hover:bg-accent group transition-colors items-start">
-                <span className="text-xs font-medium text-foreground">
-                  {project.name}
+            {hasProjects && (
+              <>
+                <span className={sectionLabelClassName}>
+                  {t("skills.relatedProject")}
                 </span>
-                <span className="text-2xs text-muted group-hover:text-foreground">
-                  {t(project.descriptionKey)}
+                {projects.map((project) => (
+                  <Button
+                    key={project.htmlUrl}
+                    href={project.htmlUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={itemClassName}>
+                    <span className="text-xs font-medium text-foreground">
+                      {project.name}
+                    </span>
+                    <span className="text-2xs text-muted group-hover:text-foreground font-normal">
+                      {t(project.descriptionKey)}
+                    </span>
+                  </Button>
+                ))}
+              </>
+            )}
+            {hasExperiences && (
+              <>
+                <span
+                  className={cn(
+                    sectionLabelClassName,
+                    hasProjects && "mt-2 border-t border-border pt-2"
+                  )}>
+                  {t("skills.relatedExperience")}
                 </span>
-              </Button>
-            ))}
+                {experiences.map((experience) => (
+                  <Button
+                    key={experience.id}
+                    href={`/experience#${experience.id}`}
+                    className={itemClassName}>
+                    <span className="text-xs font-medium text-foreground">
+                      {experience.company}
+                    </span>
+                    <span className="text-2xs text-muted group-hover:text-foreground font-normal">
+                      {t(`experience.items.${experience.id}.role`)}
+                    </span>
+                  </Button>
+                ))}
+              </>
+            )}
           </div>
         </div>
       )}

@@ -15,7 +15,7 @@ export function CyberSecuritySection() {
 
   return (
     <SkillsSection
-      className="gap-8 pb-6"
+      className="gap-8 pb-6 md:pb-10"
       title={t("skills.cybersecurity.title")}
       subtitle={t("skills.cybersecurity.subtitle")}>
       <RootMe />

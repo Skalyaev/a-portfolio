@@ -109,7 +109,7 @@ export function ProjectFilters({
             onClick={onClearFilters}
             ariaLabel={t("projects.clearFilters")}
             title={t("projects.clearFilters")}
-            className="animate-fade-in-slide-left border-2 border-border p-1.5 hover:border-foreground hover:bg-background focus-visible:border-foreground focus-visible:bg-background">
+            className="animate-fade-in-slide-left border-2 border-border p-1.5 hover:border-foreground hover:bg-background focus-visible:border-foreground focus-visible:bg-background shadow-xs">
             <X
               width={16}
               height={16}

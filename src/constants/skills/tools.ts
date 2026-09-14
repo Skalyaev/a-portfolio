@@ -13,8 +13,8 @@ export type SkillCategory =
 export const skillCategories: SkillCategory[] = [
   "web",
   "devops",
-  "network",
   "systems",
+  "network",
   "security"
 ]
 
@@ -32,7 +32,7 @@ export const skillDescriptionKeys: Record<Technology, string> = {
   "NestJS": "nestjs",
   "PostgreSQL": "postgresql",
   "Nginx": "nginx",
-  "MariaDB": "mariadb",
+  "Tailwind CSS": "tailwindcss",
   "Docker": "docker",
   "Kubernetes (K3s)": "kubernetes",
   "Vagrant": "vagrant",
@@ -53,18 +53,35 @@ export const skillDescriptionKeys: Record<Technology, string> = {
   "Binary Exploitation": "binaryExploitation",
   "SQL Injection": "sqlInjection",
   "ARP Spoofing (MITM)": "arpSpoofing",
-  "Malware Analysis": "malwareAnalysis"
+  "Malware Analysis": "malwareAnalysis",
+  "Vue.js": "vuejs",
+  "FastAPI": "fastapi",
+  "Figma": "figma",
+  "Hostinger": "hostinger",
+  "Raspberry Pi": "raspberryPi",
+  "Sentry": "sentry",
+  "Burp Suite": "burpsuite"
 }
 
 export const skillsByCategory: Record<SkillCategory, Technology[]> = {
-  web: ["React", "Next.js", "NestJS", "PostgreSQL", "Nginx", "MariaDB"],
+  web: [
+    "React",
+    "Next.js",
+    "Vue.js",
+    "NestJS",
+    "FastAPI",
+    "PostgreSQL",
+    "Nginx",
+    "Tailwind CSS"
+  ],
   devops: [
     "Docker",
     "Kubernetes (K3s)",
     "Vagrant",
     "GNS3",
     "Git",
-    "Argo CD (GitOps)"
+    "Argo CD (GitOps)",
+    "Sentry"
   ],
   network: [
     "TCP/IP",
@@ -85,6 +102,7 @@ export const skillsByCategory: Record<SkillCategory, Technology[]> = {
     "Binary Exploitation",
     "SQL Injection",
     "ARP Spoofing (MITM)",
-    "Malware Analysis"
+    "Malware Analysis",
+    "Burp Suite"
   ]
 }

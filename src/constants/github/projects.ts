@@ -57,11 +57,18 @@ export type Technology =
   | "NestJS"
   | "PostgreSQL"
   | "Nginx"
-  | "MariaDB"
+  | "Tailwind CSS"
   | "Memory Management"
   | "Multithreading (pthreads)"
   | "Assembly (x86-64)"
   | "Git"
+  | "Vue.js"
+  | "FastAPI"
+  | "Figma"
+  | "Hostinger"
+  | "Raspberry Pi"
+  | "Sentry"
+  | "Burp Suite"
 
 interface ProjectOverride {
   htmlUrl: string
@@ -73,7 +80,7 @@ export const projectOverrides: ProjectOverride[] = [
   {
     htmlUrl: "https://github.com/Skalyaev/a-portfolio",
     tags: ["web", "sysadmin"],
-    technologies: ["Next.js", "React", "Git"]
+    technologies: ["Next.js", "React", "Tailwind CSS", "Git"]
   },
   {
     htmlUrl: "https://github.com/Skalyaev/inception-of-things",
@@ -182,7 +189,7 @@ export const projectOverrides: ProjectOverride[] = [
   {
     htmlUrl: "https://github.com/Skalyaev/ft_transcendence",
     tags: ["web"],
-    technologies: ["React", "NestJS", "PostgreSQL", "Docker", "Git"]
+    technologies: ["React", "NestJS", "PostgreSQL", "Tailwind CSS", "Docker", "Git"]
   },
   {
     htmlUrl: "https://github.com/Skalyaev/webserv",
@@ -192,7 +199,7 @@ export const projectOverrides: ProjectOverride[] = [
   {
     htmlUrl: "https://github.com/Skalyaev/inception",
     tags: ["sysadmin", "web"],
-    technologies: ["Docker", "Nginx", "MariaDB", "Git"]
+    technologies: ["Docker", "Nginx", "Git"]
   },
   {
     htmlUrl: "https://github.com/Skalyaev/ft_containers",

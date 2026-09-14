@@ -64,7 +64,7 @@ export function Button({
   const styles = cn(
     "relative cursor-pointer bg-background text-muted text-sm font-medium inline-flex gap-1 items-center justify-center focus-visible:outline-none px-3 py-2 hover:text-foreground focus-visible:text-foreground transition hover:bg-accent focus-visible:bg-accent overflow-hidden select-none",
     disabled &&
-      "cursor-not-allowed opacity-50 hover:text-muted focus-visible:text-muted",
+      "cursor-not-allowed opacity-50 hover:bg-background focus-visible:bg-background hover:text-muted focus-visible:text-muted",
     selected &&
       (animateBackground
         ? "text-background hover:text-background focus-visible:text-background"
