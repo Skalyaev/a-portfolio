@@ -30,7 +30,8 @@ export interface HtbLabData {
   solvedChallenges: HtbEntry[]
 }
 
-const hackTheBoxProfileId = "01a089e9-5e12-7172-88bd-af8834d82d69"
+const hackTheBoxProfileId =
+  process.env.NEXT_PUBLIC_HTB_PROFILE_ID ?? "01a089e9-5e12-7172-88bd-af8834d82d69"
 
 export const hackTheBoxProfile: PlatformProfile = {
   name: "HackTheBox - Lab",

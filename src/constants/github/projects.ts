@@ -7,7 +7,7 @@ import { Variable } from "@/components/svg/Variable"
 
 import type { IconComponent } from "@/constants/icons"
 
-export const githubUsername = "Skalyaev"
+export const githubUsername = process.env.GITHUB_USERNAME ?? "Skalyaev"
 
 export const githubRevalidateSeconds = 3600
 

@@ -27,9 +27,11 @@ export interface RootMeData {
   categories: RootMeCategory[]
 }
 
+const rootMeUsername = process.env.NEXT_PUBLIC_ROOTME_USERNAME ?? "Skalyaev"
+
 export const rootMeProfile: PlatformProfile = {
   name: "Root-Me",
-  profileUrl: "https://www.root-me.org/Skalyaev"
+  profileUrl: `https://www.root-me.org/${rootMeUsername}`
 }
 
 export const rootMeActivityHorizon = "2023-11-01"
