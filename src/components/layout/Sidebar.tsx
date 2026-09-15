@@ -12,6 +12,7 @@ import { useLanguage } from "@/components/i18n/LanguageContext"
 
 import { useClickOutside } from "@/lib/hooks/useClickOutside"
 import { cn } from "@/lib/utils/style"
+import { splitTitle } from "@/lib/utils/i18n"
 
 import { navItems } from "@/constants/nav"
 
@@ -32,7 +33,7 @@ interface BrandProps {
  */
 function Brand({ className, titleClassName }: BrandProps) {
   const { t } = useLanguage()
-  const [title, subtitle] = t("metadata.title").split(" - ")
+  const { title, subtitle } = splitTitle(t("metadata.title"))
 
   return (
     <div className={className}>

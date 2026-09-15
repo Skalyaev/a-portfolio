@@ -5,6 +5,7 @@ export interface GithubRepoSummary {
   htmlUrl: string
   hasLanguages: boolean
   pushedAt: string
+  createdAt: string
 }
 
 export interface GithubLanguageStat {
@@ -22,6 +23,7 @@ interface RawGithubRepo {
   html_url: string
   language: string | null
   pushed_at: string
+  created_at: string
 }
 
 const githubApiBase = "https://api.github.com"
@@ -52,7 +54,8 @@ function isRawGithubRepoList(value: unknown): value is RawGithubRepo[] {
         typeof repo.name === "string" &&
         typeof repo.html_url === "string" &&
         (typeof repo.language === "string" || repo.language === null) &&
-        typeof repo.pushed_at === "string"
+        typeof repo.pushed_at === "string" &&
+        typeof repo.created_at === "string"
     )
   )
 }
@@ -142,7 +145,8 @@ async function fetchGithubUserRepos(
     name: repo.name,
     htmlUrl: repo.html_url,
     hasLanguages: repo.language !== null,
-    pushedAt: repo.pushed_at
+    pushedAt: repo.pushed_at,
+    createdAt: repo.created_at
   }))
 }
 
@@ -179,6 +183,23 @@ async function fetchGithubRepoLanguages(
 }
 
 /**
+ * Fetches a user's repositories matching the given URLs.
+ *
+ * @param username - GitHub login of the user.
+ * @param htmlUrls - Repository URLs to keep, e.g. `https://github.com/owner/repo`.
+ * @param revalidateSeconds - Lifetime of the cached responses, in seconds.
+ * @returns The matching repositories, or an empty array if the repository list fails to load.
+ */
+export async function fetchGithubRepos(
+  username: string,
+  htmlUrls: readonly string[],
+  revalidateSeconds: number
+): Promise<GithubRepoSummary[]> {
+  const repos = await fetchGithubUserRepos(username, revalidateSeconds)
+  return repos.filter((repo) => htmlUrls.includes(repo.htmlUrl))
+}
+
+/**
  * Fetches a user's repositories matching the given URLs, with their language breakdown.
  *
  * @param username - GitHub login of the user.
@@ -193,9 +214,10 @@ export async function fetchGithubReposWithLanguages(
   revalidateSeconds: number,
   concurrency: number
 ): Promise<GithubRepoWithLanguages[]> {
-  const repos = await fetchGithubUserRepos(username, revalidateSeconds)
-  const matchingRepos: GithubRepoSummary[] = repos.filter((repo) =>
-    htmlUrls.includes(repo.htmlUrl)
+  const matchingRepos = await fetchGithubRepos(
+    username,
+    htmlUrls,
+    revalidateSeconds
   )
 
   return mapWithConcurrency(

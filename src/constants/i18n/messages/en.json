@@ -26,7 +26,37 @@
     "loadingLine1": "Thank you for your patience,",
     "loadingLine2": "I'm gathering everything you need."
   },
-  "home": { "title": "Home" },
+  "home": {
+    "greeting": "Hi, I'm",
+    "pitch": "Specialized in information systems architecture, with an interest in cybersecurity, I design software solutions day to day, both in-house and on freelance projects. Fullstack, application-level, DevOps: my training and experience have taught me to design, secure and deploy complete architectures.",
+    "profiles": "Find me on",
+    "availability": {
+      "openToWork": "Open to work",
+      "employed": "Currently at"
+    },
+    "activity": {
+      "title": "Recent activity",
+      "subtitle": "My latest projects, career moves and cybersecurity progress.",
+      "filters": {
+        "projects": "Projects",
+        "career": "Career",
+        "cybersecurity": "Cybersecurity"
+      },
+      "upcoming": "Upcoming",
+      "empty": "No activity to show.",
+      "kinds": {
+        "projectCreated": "New project",
+        "projectsCreated": "new projects",
+        "experienceStarted": "New position",
+        "experienceEnded": "Position ended",
+        "diplomaAwarded": "Diploma awarded",
+        "challengeSolved": "Challenge solved",
+        "challengesSolved": "challenges solved",
+        "moduleCompleted": "Module completed",
+        "modulesCompleted": "modules completed"
+      }
+    }
+  },
   "skills": {
     "title": "Technical Skills",
     "subtitle": "An overview of my technical skills and the tools I use.",

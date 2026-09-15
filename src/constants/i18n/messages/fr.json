@@ -26,7 +26,37 @@
     "loadingLine1": "Merci de patienter un instant,",
     "loadingLine2": "je rassemble tout ce qu'il faut."
   },
-  "home": { "title": "Accueil" },
+  "home": {
+    "greeting": "Bonjour, je suis",
+    "pitch": "Spécialisé en architecture des systèmes d'information, avec un intérêt pour la cybersécurité, je conçois des solutions logicielles au quotidien, en entreprise comme pour des projets freelance. Développement fullstack, applicatif, DevOps : ma formation et mon expérience m'ont appris à concevoir, sécuriser et déployer des architectures complètes.",
+    "profiles": "Retrouvez-moi sur",
+    "availability": {
+      "openToWork": "Ouvert aux opportunités",
+      "employed": "En poste chez"
+    },
+    "activity": {
+      "title": "Activité récente",
+      "subtitle": "Mes derniers projets, évolutions professionnelles et progrès en cybersécurité.",
+      "filters": {
+        "projects": "Projets",
+        "career": "Parcours",
+        "cybersecurity": "Cybersécurité"
+      },
+      "upcoming": "À venir",
+      "empty": "Aucune activité à afficher.",
+      "kinds": {
+        "projectCreated": "Nouveau projet",
+        "projectsCreated": "nouveaux projets",
+        "experienceStarted": "Nouveau poste",
+        "experienceEnded": "Fin de contrat",
+        "diplomaAwarded": "Obtention du diplôme",
+        "challengeSolved": "Challenge résolu",
+        "challengesSolved": "challenges résolus",
+        "moduleCompleted": "Module terminé",
+        "modulesCompleted": "modules terminés"
+      }
+    }
+  },
   "skills": {
     "title": "Compétences techniques",
     "subtitle": "Aperçu de mes compétences techniques et des outils que j'utilise.",

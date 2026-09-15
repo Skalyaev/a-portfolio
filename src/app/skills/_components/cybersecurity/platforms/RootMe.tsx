@@ -9,7 +9,8 @@ import { formatFullDate, fullYearsSince } from "@/lib/utils/date"
 import {
   rootMeActivityHorizon,
   rootMeData,
-  rootMeProfile
+  rootMeProfile,
+  rootMeSolvedChallenges
 } from "@/constants/skills/rootme"
 
 import { toActivityItems } from "../../../_lib/cyberSecurity"
@@ -19,14 +20,6 @@ import { CategoryProgressList } from "../CategoryProgressList"
 import { ActivityList } from "../ActivityList"
 
 import type { ActivityEntry } from "@/constants/skills/profile"
-
-const solvedChallenges: ActivityEntry[] = rootMeData.categories.flatMap(
-  (category) =>
-    category.solvedChallenges.map((challenge) => ({
-      ...challenge,
-      category: category.name
-    }))
-)
 
 /**
  * Displays the Root-Me card: stats, category progress and solved challenges.
@@ -49,7 +42,7 @@ export function RootMe() {
   const activityItems = useMemo<ActivityEntry[]>(
     () =>
       toActivityItems(
-        solvedChallenges,
+        rootMeSolvedChallenges,
         selectedCategories,
         locale,
         olderThanLabel

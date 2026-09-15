@@ -12,6 +12,9 @@ export interface MainProps {
 /**
  * Scrollable main area, scrolled back to the top on every navigation without a hash.
  *
+ * Also resets on `pageshow`, since some browsers restore a scrollable element's position on
+ * reload after this effect's initial run.
+ *
  * @param props - Component props.
  * @param props.children - Active route content.
  * @returns The main area.
@@ -21,8 +24,17 @@ export function Main({ children }: MainProps) {
   const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    if (window.location.hash) return
-    ref.current?.scrollTo({ top: 0 })
+    /**
+     * Scrolls the main area back to the top, unless the URL targets an anchor.
+     */
+    const resetScroll = () => {
+      if (window.location.hash) return
+      ref.current?.scrollTo({ top: 0 })
+    }
+
+    resetScroll()
+    window.addEventListener("pageshow", resetScroll)
+    return () => window.removeEventListener("pageshow", resetScroll)
   }, [pathname])
 
   return (

@@ -1,4 +1,4 @@
-import type { PlatformProfile } from "@/constants/skills/profile"
+import type { ActivityEntry, PlatformProfile } from "@/constants/skills/profile"
 
 interface RootMeChallenge {
   name: string
@@ -816,3 +816,11 @@ export const rootMeData: RootMeData = {
     }
   ]
 }
+
+export const rootMeSolvedChallenges: ActivityEntry[] =
+  rootMeData.categories.flatMap((category) =>
+    category.solvedChallenges.map((challenge) => ({
+      ...challenge,
+      category: category.name
+    }))
+  )

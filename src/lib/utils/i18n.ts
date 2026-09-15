@@ -13,6 +13,27 @@ export function slugify(value: string): string {
     .replace(/^-+|-+$/g, "")
 }
 
+export interface SplitTitle {
+  title: string
+  subtitle: string | undefined
+}
+
+/**
+ * Splits a `"Title - Subtitle"` string on its first `" - "` separator.
+ *
+ * @param value - String to split, e.g. `"Anthony - Software Engineer"`.
+ * @returns The title, and the subtitle when the separator is present.
+ */
+export function splitTitle(value: string): SplitTitle {
+  const separator = " - "
+  const index = value.indexOf(separator)
+  if (index === -1) return { title: value, subtitle: undefined }
+  return {
+    title: value.slice(0, index),
+    subtitle: value.slice(index + separator.length)
+  }
+}
+
 /**
  * Translates a key, falling back to a default when no translation exists.
  *
