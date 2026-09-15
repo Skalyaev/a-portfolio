@@ -4,6 +4,7 @@ import { Button } from "@/components/tag/Button"
 import { Options } from "@/components/tag/Options"
 import { En } from "@/components/svg/i18n/En"
 import { Fr } from "@/components/svg/i18n/Fr"
+import { Ru } from "@/components/svg/i18n/Ru"
 import { useLanguage } from "@/components/i18n/LanguageContext"
 
 import { useClickOutside } from "@/lib/hooks/useClickOutside"
@@ -15,7 +16,7 @@ import type { OptionsFrom } from "@/components/tag/Options"
 import type { Locale } from "@/constants/i18n/config"
 import type { IconComponent } from "@/constants/icons"
 
-const flags: Record<Locale, IconComponent> = { en: En, fr: Fr }
+const flags: Record<Locale, IconComponent> = { en: En, fr: Fr, ru: Ru }
 
 export interface LanguageSwitcherProps {
   className?: string

@@ -65,8 +65,8 @@ function getMailConfig(): MailConfig | null {
  * Identifies the client by IP address for rate limiting.
  *
  * The app is only reachable through the nginx proxy (`proxy/default.conf`), which overwrites
- * `x-forwarded-for` with the address of the connection it received, so its last entry is the
- * client address. Were the app reached directly, Next.js would keep a header sent by the client
+ * `x-forwarded-for` with the client address: the connection's own, or the one Traefik forwards
+ * when the request comes from its network. Were the app reached directly, Next.js would keep a header sent by the client
  * and only fill a missing one with the socket address, letting a client pick its own key.
  *
  * @returns The client IP, or `"unknown"` when the header is empty.

@@ -4,10 +4,13 @@ x-app-common: &app-common
   init: true
   container_name: portfolio-app
   env_file: .env
-  networks:
-    default:
-      aliases:
-        - app
+
+x-proxy-common: &proxy-common
+  init: true
+  container_name: portfolio-proxy
+  build:
+    context: ./proxy
+  image: portfolio-proxy
 
 services:
   app-dev:
@@ -27,6 +30,7 @@ services:
   app-prod:
     <<: *app-common
     profiles: ["prod"]
+    restart: unless-stopped
     build:
       context: .
       target: prod
@@ -34,22 +38,39 @@ services:
         - env
     image: portfolio-app:prod
 
-  proxy:
-    profiles: ["dev", "prod"]
-    init: true
-    container_name: portfolio-proxy
-    build:
-      context: ./proxy
-    image: portfolio-proxy
+  proxy-dev:
+    <<: *proxy-common
+    profiles: ["dev"]
     ports:
       - "80:8080"
     depends_on:
-      app-dev:
-        condition: service_started
-        required: false
-      app-prod:
-        condition: service_started
-        required: false
+      - app-dev
+
+  proxy-prod:
+    <<: *proxy-common
+    profiles: ["prod"]
+    restart: unless-stopped
+    depends_on:
+      - app-prod
+    networks:
+      - default
+      - proxy
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: proxy
+      traefik.http.routers.portfolio.rule: Host(`${DOMAIN:-localhost}`) || Host(`www.${DOMAIN:-localhost}`)
+      traefik.http.routers.portfolio.entrypoints: websecure
+      traefik.http.routers.portfolio.tls.certresolver: letsencrypt
+      traefik.http.routers.portfolio.middlewares: portfolio-www,portfolio-headers
+      traefik.http.middlewares.portfolio-www.redirectregex.regex: ^https?://www\.(.+)
+      traefik.http.middlewares.portfolio-www.redirectregex.replacement: https://$${1}
+      traefik.http.middlewares.portfolio-www.redirectregex.permanent: "true"
+      traefik.http.middlewares.portfolio-headers.headers.stsSeconds: "31536000"
+      traefik.http.services.portfolio.loadbalancer.server.port: "8080"
+
+networks:
+  proxy:
+    external: true
 
 secrets:
   env:

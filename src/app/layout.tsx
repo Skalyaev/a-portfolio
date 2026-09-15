@@ -13,6 +13,7 @@ import {
   localeCookieName,
   messages
 } from "@/constants/i18n/config"
+import { siteUrl } from "@/constants/site"
 
 import "./globals.css"
 
@@ -47,6 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { title, description } = messages[locale].metadata
 
   return {
+    metadataBase: new URL(siteUrl),
     title,
     description,
     icons: {

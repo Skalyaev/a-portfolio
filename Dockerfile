@@ -42,6 +42,8 @@ RUN --mount=type=secret,id=env,target=/home/node/workdir/.env,uid=1000 \
 FROM base AS prod
 
 ENV NODE_ENV=production
+# Docker sets HOSTNAME to the container ID, which server.js would otherwise listen on.
+ENV HOSTNAME=0.0.0.0
 
 COPY --from=builder \
   /home/node/workdir/public ./public

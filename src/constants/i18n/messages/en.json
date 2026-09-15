@@ -20,6 +20,7 @@
   "language": {
     "en": "English",
     "fr": "French",
+    "ru": "Russian",
     "select": "Choose a language"
   },
   "common": {
@@ -212,7 +213,7 @@
     "clearSearch": "Clear search",
     "applyFilters": "Apply filters",
     "clearFilters": "Clear filters",
-    "loadError": "This data is temporarily unavailable.",
+    "loadError": "This data is temporarily unavailable.\nPlease try again later.",
     "resultCountSingular": "matching project",
     "resultCountPlural": "matching projects",
     "otherLanguage": "Others",
