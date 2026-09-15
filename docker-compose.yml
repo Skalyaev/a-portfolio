@@ -46,31 +46,15 @@ services:
     depends_on:
       - app-dev
 
+  # Loopback only: the host's Traefik is the single entry point.
   proxy-prod:
     <<: *proxy-common
     profiles: ["prod"]
     restart: unless-stopped
+    ports:
+      - "127.0.0.1:${PROXY_PORT:-8081}:8080"
     depends_on:
       - app-prod
-    networks:
-      - default
-      - proxy
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: proxy
-      traefik.http.routers.portfolio.rule: Host(`${DOMAIN:-localhost}`) || Host(`www.${DOMAIN:-localhost}`)
-      traefik.http.routers.portfolio.entrypoints: websecure
-      traefik.http.routers.portfolio.tls.certresolver: letsencrypt
-      traefik.http.routers.portfolio.middlewares: portfolio-www,portfolio-headers
-      traefik.http.middlewares.portfolio-www.redirectregex.regex: ^https?://www\.(.+)
-      traefik.http.middlewares.portfolio-www.redirectregex.replacement: https://$${1}
-      traefik.http.middlewares.portfolio-www.redirectregex.permanent: "true"
-      traefik.http.middlewares.portfolio-headers.headers.stsSeconds: "31536000"
-      traefik.http.services.portfolio.loadbalancer.server.port: "8080"
-
-networks:
-  proxy:
-    external: true
 
 secrets:
   env:

@@ -14,8 +14,9 @@ const autoDismissDelayMs = 10_000
 
 const variantClassNames: Record<NotifyVariant, string> = {
   success:
-    "border-green-600 bg-green-100/85 text-green-700 dark:text-green-400",
-  error: "border-red-600 bg-red-100/85 text-red-700 dark:text-red-400"
+    "border-green-600 bg-green-100/85 text-green-700 dark:text-green-400 dark:bg-green-900/50 dark:border-green-400 dark:text-green-300",
+  error:
+    "border-red-600 bg-red-100/85 text-red-700 dark:text-red-400 dark:bg-red-900/50 dark:border-red-400 dark:text-red-300"
 }
 
 /**

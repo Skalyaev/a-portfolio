@@ -12,6 +12,7 @@ prod: build
 
 build:
 	@grep -q '^DOMAIN=.' .env || { echo "DOMAIN must be set in .env"; exit 1; }
+	@grep -q '^PROXY_PORT=.' .env || { echo "PROXY_PORT must be set in .env"; exit 1; }
 	$(COMPOSE) --profile prod build
 
 down:
