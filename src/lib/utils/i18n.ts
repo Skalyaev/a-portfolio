@@ -35,6 +35,37 @@ export function splitTitle(value: string): SplitTitle {
 }
 
 /**
+ * Picks the best supported locale from an `Accept-Language` header value.
+ *
+ * @param acceptLanguage - Raw `Accept-Language` header value, or `null` when absent.
+ * @param supportedLocales - Locales the app can render.
+ * @param fallback - Locale returned when no requested language is supported.
+ * @returns The best matching locale, or `fallback`.
+ */
+export function matchLocale<Locale extends string>(
+  acceptLanguage: string | null,
+  supportedLocales: readonly Locale[],
+  fallback: Locale
+): Locale {
+  if (!acceptLanguage) return fallback
+
+  const ranked = acceptLanguage
+    .split(",")
+    .map((part) => {
+      const [tag, qPart] = part.trim().split(";q=")
+      return { tag: tag?.split("-")[0]?.toLowerCase(), q: Number(qPart) || 1 }
+    })
+    .sort((a, b) => b.q - a.q)
+
+  for (const { tag } of ranked) {
+    const match = supportedLocales.find((locale) => locale === tag)
+    if (match) return match
+  }
+
+  return fallback
+}
+
+/**
  * Translates a key, falling back to a default when no translation exists.
  *
  * @param t - Translation function returning the key itself when missing.
