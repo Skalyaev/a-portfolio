@@ -1,4 +1,4 @@
-import { cookies } from "next/headers"
+import { cookies, headers } from "next/headers"
 import { Geist, Geist_Mono } from "next/font/google"
 
 import { ThemeProvider } from "@/components/theme/ThemeProvider"
@@ -6,6 +6,8 @@ import { LanguageProvider } from "@/components/i18n/LanguageProvider"
 import { NotifyProvider } from "@/components/status/notify/NotifyProvider"
 import { Sidebar } from "@/components/layout/Sidebar"
 import { Main } from "@/components/layout/Main"
+
+import { matchLocale } from "@/lib/utils/i18n"
 
 import {
   defaultLocale,
@@ -28,14 +30,19 @@ const geistMono = Geist_Mono({
 })
 
 /**
- * Reads the locale from the request cookie.
+ * Reads the locale from the request cookie, falling back to the browser's preferred language.
  *
- * @returns The cookie locale when supported, the default locale otherwise.
+ * @returns The cookie locale when supported, else the best `Accept-Language` match, else the
+ * default locale.
  */
 async function getRequestLocale(): Promise<Locale> {
   const cookieStore = await cookies()
-  const value = cookieStore.get(localeCookieName)?.value
-  return locales.find((locale) => locale === value) ?? defaultLocale
+  const cookieValue = cookieStore.get(localeCookieName)?.value
+  const cookieLocale = locales.find((locale) => locale === cookieValue)
+  if (cookieLocale) return cookieLocale
+
+  const headerList = await headers()
+  return matchLocale(headerList.get("accept-language"), locales, defaultLocale)
 }
 
 /**
