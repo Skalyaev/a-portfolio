@@ -4,7 +4,6 @@ export interface GithubRepoSummary {
   name: string
   htmlUrl: string
   hasLanguages: boolean
-  fork: boolean
   pushedAt: string
 }
 
@@ -22,7 +21,6 @@ interface RawGithubRepo {
   name: string
   html_url: string
   language: string | null
-  fork: boolean
   pushed_at: string
 }
 
@@ -30,17 +28,62 @@ const githubApiBase = "https://api.github.com"
 const githubPageSize = 100
 
 /**
- * Calls the GitHub REST API and returns the parsed JSON body.
+ * Tells whether a value is a plain JSON object.
+ *
+ * @param value - Value to check.
+ * @returns Whether `value` is a non-null, non-array object.
+ */
+function isJsonObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value)
+}
+
+/**
+ * Tells whether a value is a list of repositories as returned by the GitHub API.
+ *
+ * @param value - Parsed response body.
+ * @returns Whether every item has the repository fields used here.
+ */
+function isRawGithubRepoList(value: unknown): value is RawGithubRepo[] {
+  return (
+    Array.isArray(value) &&
+    value.every(
+      (repo: unknown) =>
+        isJsonObject(repo) &&
+        typeof repo.name === "string" &&
+        typeof repo.html_url === "string" &&
+        (typeof repo.language === "string" || repo.language === null) &&
+        typeof repo.pushed_at === "string"
+    )
+  )
+}
+
+/**
+ * Tells whether a value is a language breakdown as returned by the GitHub API.
+ *
+ * @param value - Parsed response body.
+ * @returns Whether `value` maps language names to byte counts.
+ */
+function isLanguageBreakdown(value: unknown): value is Record<string, number> {
+  return (
+    isJsonObject(value) &&
+    Object.values(value).every((bytes) => typeof bytes === "number")
+  )
+}
+
+/**
+ * Calls the GitHub REST API and returns the parsed JSON body once checked.
  *
  * Authenticates with `GITHUB_TOKEN` when set. Failures are logged, not thrown.
  *
  * @param path - API path starting with `/`, query string included.
  * @param revalidateSeconds - Lifetime of the cached response, in seconds.
- * @returns The parsed body, or `null` on a non-OK response or network error.
+ * @param isExpectedBody - Type guard the parsed body must pass.
+ * @returns The parsed body, or `null` on a non-OK response, an unexpected body or a network error.
  */
 async function githubGet<T>(
   path: string,
-  revalidateSeconds: number
+  revalidateSeconds: number,
+  isExpectedBody: (value: unknown) => value is T
 ): Promise<T | null> {
   try {
     const token = process.env.GITHUB_TOKEN
@@ -57,7 +100,13 @@ async function githubGet<T>(
       return null
     }
 
-    return (await response.json()) as T
+    const body: unknown = await response.json()
+    if (!isExpectedBody(body)) {
+      console.error(`GitHub API returned an unexpected body: ${path}`)
+      return null
+    }
+
+    return body
   } catch (error) {
     console.error(`GitHub API request failed: ${path}`, error)
     return null
@@ -71,16 +120,17 @@ async function githubGet<T>(
  * @param revalidateSeconds - Lifetime of the cached responses, in seconds.
  * @returns The repositories, or an empty array if any page fails to load.
  */
-export async function fetchGithubUserRepos(
+async function fetchGithubUserRepos(
   username: string,
   revalidateSeconds: number
 ): Promise<GithubRepoSummary[]> {
   const repos: RawGithubRepo[] = []
 
   for (let page = 1; ; page++) {
-    const data = await githubGet<RawGithubRepo[]>(
+    const data = await githubGet(
       `/users/${encodeURIComponent(username)}/repos?per_page=${githubPageSize}&page=${page}&sort=updated`,
-      revalidateSeconds
+      revalidateSeconds,
+      isRawGithubRepoList
     )
     if (!data) return []
 
@@ -92,7 +142,6 @@ export async function fetchGithubUserRepos(
     name: repo.name,
     htmlUrl: repo.html_url,
     hasLanguages: repo.language !== null,
-    fork: repo.fork,
     pushedAt: repo.pushed_at
   }))
 }
@@ -105,20 +154,19 @@ export async function fetchGithubUserRepos(
  * @param revalidateSeconds - Lifetime of the cached response, in seconds.
  * @returns The languages, or an empty array if the request fails or the repository has no code.
  */
-export async function fetchGithubRepoLanguages(
+async function fetchGithubRepoLanguages(
   owner: string,
   repo: string,
   revalidateSeconds: number
 ): Promise<GithubLanguageStat[]> {
-  const data = await githubGet<Record<string, number>>(
+  const data = await githubGet(
     `/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/languages`,
-    revalidateSeconds
+    revalidateSeconds,
+    isLanguageBreakdown
   )
   if (!data) return []
 
-  const totalBytes = Object.values(data).reduce((sum, bytes) => {
-    return sum + bytes
-  }, 0)
+  const totalBytes = Object.values(data).reduce((sum, bytes) => sum + bytes, 0)
   if (totalBytes === 0) return []
 
   return Object.entries(data)

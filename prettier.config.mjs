@@ -1,185 +1,175 @@
 /** @type {import("prettier").Config} */
 const config = {
   /**
-   * always (défaut) : Toujours inclure les parenthèses
-   * autour des arguments d'une fonction fléchée.
+   * always (default): Always include parentheses around
+   * arrow function arguments.
    *
-   * avoid : Ne pas inclure les parenthèses quand il n'y
-   * a qu'un seul argument.
+   * avoid: Omit parentheses when there is a single
+   * argument.
    */
   arrowParens: "always",
 
   /**
-   * true : Place le `>` d'un élément multi-lignes (JSX/HTML)
-   * sur la dernière ligne au lieu d'une ligne à part.
+   * true: Put the `>` of a multi-line element (JSX/HTML)
+   * at the end of the last line instead of on its own line.
    *
-   * false (défaut) : Place le `>` sur une ligne à part.
+   * false (default): Put the `>` on its own line.
    */
   bracketSameLine: true,
 
   /**
-   * true (défaut) : Ajoute des espaces entre les accolades
-   * des littéraux d'objet.
+   * true (default): Print spaces between the braces of
+   * object literals.
    *
-   * false : N'ajoute pas d'espaces entre les accolades.
+   * false: Print no spaces between the braces.
    */
   bracketSpacing: true,
 
   /**
-   * auto (défaut) : Formate le code intégré dans des
-   * chaînes (ex. CSS/GraphQL dans un template literal).
+   * auto (default): Format code embedded in strings
+   * (e.g. CSS/GraphQL in a template literal).
    *
-   * off : Ne formate pas le code intégré dans des chaînes.
+   * off: Never format code embedded in strings.
    */
   embeddedLanguageFormatting: "auto",
 
   /**
-   * lf (défaut) : Utilise le caractère de fin de ligne Unix
+   * lf (default): Use the Unix line ending character
    * (\n).
    *
-   * crlf : Utilise le caractère de fin de ligne Windows
+   * crlf: Use the Windows line ending characters
    * (\r\n).
    *
-   * cr : Utilise le caractère de fin de ligne classique Mac
+   * cr: Use the classic Mac line ending character
    * (\r).
    *
-   * auto : Conserve le caractère de fin de ligne existant.
+   * auto: Keep the existing line ending character.
    */
   endOfLine: "lf",
 
   /**
-   * start : Place l'opérateur en début de ligne quand une
-   * expression binaire est coupée.
+   * start: Put the operator at the start of the line when
+   * a binary expression is broken.
    *
-   * end (défaut) : Place l'opérateur en fin de ligne quand
-   * une expression binaire est coupée.
+   * end (default): Put the operator at the end of the line
+   * when a binary expression is broken.
    */
   experimentalOperatorPosition: "end",
 
   /**
-   * true : Utilise une mise en forme expérimentale des
-   * ternaires, point d'interrogation après la condition.
+   * true: Use the experimental ternary formatting, with the
+   * question mark after the condition.
    *
-   * false (défaut) : Utilise la mise en forme classique des
-   * ternaires.
+   * false (default): Use the classic ternary formatting.
    */
   experimentalTernaries: false,
 
   /**
-   * css (défaut) : Respecte les règles CSS `display` pour
-   * décider si les espaces blancs sont significatifs.
+   * css (default): Follow the CSS `display` rules to decide
+   * whether whitespace is significant.
    *
-   * strict : Considère les espaces blancs comme toujours
-   * significatifs.
+   * strict: Treat whitespace as always significant.
    *
-   * ignore : Considère les espaces blancs comme jamais
-   * significatifs.
+   * ignore: Treat whitespace as never significant.
    */
   htmlWhitespaceSensitivity: "css",
 
   /**
-   * true : Utilise des guillemets simples plutôt que
-   * doubles dans le JSX.
-   *
-   * false (défaut) : Utilise des guillemets doubles dans le
+   * true: Use single quotes instead of double quotes in
    * JSX.
+   *
+   * false (default): Use double quotes in JSX.
    */
   jsxSingleQuote: false,
 
   /**
-   * preserve (défaut) : Conserve le retour à la ligne d'un
-   * littéral d'objet s'il y en avait un dans la source.
+   * preserve (default): Keep an object literal multi-line
+   * if the source had a newline in it.
    *
-   * collapse : Force un littéral d'objet sur une seule
-   * ligne quand c'est possible.
+   * collapse: Fit an object literal on a single line
+   * whenever possible.
    */
   objectWrap: "collapse",
 
   /**
-   * 80 (défaut) : Longueur de ligne, en nombre de
-   * caractères, à partir de laquelle Prettier tente de
-   * retourner à la ligne.
+   * 80 (default): Line length, in characters, beyond which
+   * Prettier tries to wrap.
    */
   printWidth: 80,
 
   /**
-   * always : Reformate le texte Markdown pour respecter
-   * `printWidth`.
+   * always: Wrap Markdown prose to fit `printWidth`.
    *
-   * never : Ne reformate jamais le texte Markdown.
+   * never: Never wrap Markdown prose.
    *
-   * preserve (défaut) : Laisse le texte Markdown tel quel.
+   * preserve (default): Leave Markdown prose as is.
    */
   proseWrap: "preserve",
 
   /**
-   * as-needed (défaut) : Ajoute des guillemets uniquement
-   * quand ils sont nécessaires.
+   * as-needed (default): Only quote object keys when
+   * required.
    *
-   * consistent : Ajoute des guillemets à toutes les clés dès
-   * qu'une seule en a besoin.
+   * consistent: Quote every key as soon as one requires
+   * it.
    *
-   * preserve : Conserve les guillemets tels qu'écrits dans
-   * la source.
+   * preserve: Keep quotes as written in the source.
    */
   quoteProps: "consistent",
 
   /**
-   * true (défaut) : Ajoute un point-virgule à la fin des
-   * instructions.
+   * true (default): Add a semicolon at the end of every
+   * statement.
    *
-   * false : N'ajoute pas de point-virgule, sauf si
-   * nécessaire pour éviter une ambiguïté (ASI).
+   * false: Omit semicolons, except where required to avoid
+   * ambiguity (ASI).
    */
   semi: false,
 
   /**
-   * true : Force un seul attribut par ligne en HTML, Vue et
-   * JSX.
+   * true: Enforce a single attribute per line in HTML, Vue
+   * and JSX.
    *
-   * false (défaut) : Autorise plusieurs attributs par ligne.
+   * false (default): Allow several attributes per line.
    */
   singleAttributePerLine: true,
 
   /**
-   * true : Utilise des guillemets simples plutôt que
-   * doubles.
+   * true: Use single quotes instead of double quotes.
    *
-   * false (défaut) : Utilise des guillemets doubles.
+   * false (default): Use double quotes.
    */
   singleQuote: false,
 
   /**
-   * 2 (défaut) : Nombre d'espaces utilisés par niveau
-   * d'indentation.
+   * 2 (default): Number of spaces per indentation level.
    */
   tabWidth: 2,
 
   /**
-   * all (défaut) : Ajoute des virgules finales partout où
-   * c'est syntaxiquement possible.
+   * all (default): Add trailing commas wherever
+   * syntactically valid.
    *
-   * es5 : Ajoute des virgules finales uniquement là où
-   * elles sont valides en ES5 (tableaux, objets, etc.).
+   * es5: Add trailing commas only where valid in ES5
+   * (arrays, objects, etc.).
    *
-   * none : N'ajoute jamais de virgule finale.
+   * none: Never add trailing commas.
    */
   trailingComma: "none",
 
   /**
-   * true : Indente avec des tabulations plutôt que des
-   * espaces.
+   * true: Indent with tabs instead of spaces.
    *
-   * false (défaut) : Indente avec des espaces.
+   * false (default): Indent with spaces.
    */
   useTabs: false,
 
   /**
-   * true : Indente le contenu des balises `<script>` et
-   * `<style>` dans les fichiers Vue.
+   * true: Indent the content of `<script>` and `<style>`
+   * tags in Vue files.
    *
-   * false (défaut) : N'indente pas le contenu de ces
-   * balises.
+   * false (default): Do not indent the content of these
+   * tags.
    */
   vueIndentScriptAndStyle: false
 }

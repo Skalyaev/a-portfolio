@@ -6,16 +6,18 @@ import { useLanguage } from "@/components/i18n/LanguageContext"
 import { cn } from "@/lib/utils/style"
 import { useClickOutside } from "@/lib/hooks/useClickOutside"
 
+import { labelClassName } from "@/constants/style"
+
 import type { FocusEvent, ReactNode } from "react"
 import type { Experience } from "@/constants/experience/experiences"
 import type { LanguageProject } from "../_lib/getSkills"
 
 const edgeMargin = 16
 const sideMinSpace = 212
+const verticalMinSpace = 160
 const itemClassName =
   "flex shrink-0 flex-col px-2 py-1 hover:bg-accent group transition-colors items-start gap-0"
-const sectionLabelClassName =
-  "px-1 pb-1 text-2xs text-muted uppercase tracking-wide"
+const sectionLabelClassName = cn(labelClassName, "px-1 pb-1")
 
 export interface HoverRelatedProps {
   projects: LanguageProject[]
@@ -28,7 +30,8 @@ export interface HoverRelatedProps {
 /**
  * Wraps content with a popover listing related projects and experiences, opened on hover, focus or click.
  *
- * The popover opens on the side with the most room and is height-capped to the viewport.
+ * The popover opens on the side with the most room, downward unless the viewport lacks room below
+ * and has more above, and is height-capped to the viewport.
  *
  * @param props - Projects, experiences, trigger content, placement and hover handler.
  * @returns The trigger with its popover.
@@ -44,6 +47,7 @@ export function HoverRelated({
   const [visible, setVisible] = useState(false)
   const [entered, setEntered] = useState(false)
   const [fromLeft, setFromLeft] = useState(true)
+  const [opensDown, setOpensDown] = useState(true)
   const [effectivePlacement, setEffectivePlacement] = useState(placement)
   const [maxHeight, setMaxHeight] = useState<number | undefined>(undefined)
   const ref = useRef<HTMLDivElement>(null)
@@ -58,8 +62,8 @@ export function HoverRelated({
     return () => cancelAnimationFrame(frame)
   }, [visible])
 
-  /** Picks the popover side, placement and max height from the trigger position in the viewport. */
-  function computePosition() {
+  /** Picks the popover side, placement, direction and max height from the trigger position in the viewport. */
+  function computePosition(): void {
     const rect = ref.current?.getBoundingClientRect()
     if (!rect) return
 
@@ -72,12 +76,18 @@ export function HoverRelated({
     const nextPlacement = canFitSide ? "side" : "bottom"
     setEffectivePlacement(nextPlacement)
 
-    const anchorBottom = nextPlacement === "side" ? rect.top : rect.bottom
-    setMaxHeight(Math.max(window.innerHeight - anchorBottom - edgeMargin, 0))
+    const isSide = nextPlacement === "side"
+    const spaceBelow =
+      window.innerHeight - (isSide ? rect.top : rect.bottom) - edgeMargin
+    const spaceAbove = (isSide ? rect.bottom : rect.top) - edgeMargin
+    const nextOpensDown =
+      spaceBelow >= verticalMinSpace || spaceBelow >= spaceAbove
+    setOpensDown(nextOpensDown)
+    setMaxHeight(Math.max(nextOpensDown ? spaceBelow : spaceAbove, 0))
   }
 
   /** Notifies the hover start and opens the popover when there is related content. */
-  function handleEnter() {
+  function handleEnter(): void {
     onHoverChange?.(true)
     if (!hasRelated) return
     computePosition()
@@ -85,7 +95,7 @@ export function HoverRelated({
   }
 
   /** Notifies the hover end and closes the popover. */
-  function handleLeave() {
+  function handleLeave(): void {
     onHoverChange?.(false)
     setVisible(false)
     setEntered(false)
@@ -96,15 +106,17 @@ export function HoverRelated({
    *
    * @param event - Blur event of the wrapper.
    */
-  function handleBlur(event: FocusEvent<HTMLDivElement>) {
-    if (event.currentTarget.contains(event.relatedTarget as Node | null)) {
+  function handleBlur(event: FocusEvent<HTMLDivElement>): void {
+    if (
+      event.relatedTarget instanceof Node &&
+      event.currentTarget.contains(event.relatedTarget)
+    )
       return
-    }
     handleLeave()
   }
 
   /** Opens the popover on click, for touch devices without hover. */
-  function handleClick() {
+  function handleClick(): void {
     if (!hasRelated) return
     onHoverChange?.(true)
     computePosition()
@@ -128,8 +140,14 @@ export function HoverRelated({
           className={cn(
             "absolute z-20",
             effectivePlacement === "side"
-              ? cn("top-0", fromLeft ? "left-full pl-1" : "right-full pr-1")
-              : cn("top-full pt-1", fromLeft ? "left-0" : "right-0")
+              ? cn(
+                  opensDown ? "top-0" : "bottom-0",
+                  fromLeft ? "left-full pl-1" : "right-full pr-1"
+                )
+              : cn(
+                  opensDown ? "top-full pt-1" : "bottom-full pb-1",
+                  fromLeft ? "left-0" : "right-0"
+                )
           )}>
           <div
             style={{ maxHeight }}

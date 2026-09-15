@@ -3,23 +3,21 @@ import { Geist, Geist_Mono } from "next/font/google"
 
 import { ThemeProvider } from "@/components/theme/ThemeProvider"
 import { LanguageProvider } from "@/components/i18n/LanguageProvider"
+import { NotifyProvider } from "@/components/status/notify/NotifyProvider"
 import { Sidebar } from "@/components/layout/Sidebar"
 import { Main } from "@/components/layout/Main"
 
 import {
   defaultLocale,
   locales,
-  localeCookieName
+  localeCookieName,
+  messages
 } from "@/constants/i18n/config"
-import en from "@/constants/i18n/messages/en.json"
-import fr from "@/constants/i18n/messages/fr.json"
 
 import "./globals.css"
 
 import type { Metadata } from "next"
-import type { Messages, Locale } from "@/constants/i18n/config"
-
-const messages: Messages = { en, fr }
+import type { Locale } from "@/constants/i18n/config"
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] })
 
@@ -83,13 +81,15 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       lang={locale}
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} text-foreground antialiased h-screen w-screen min-w-[320px]`}>
-      <body className="h-full w-full bg-background transition-colors">
+      <body className="h-full w-full bg-background transition-colors relative">
         <ThemeProvider>
           <LanguageProvider initialLocale={locale}>
-            <div className="h-full w-full flex flex-col md:flex-row">
-              <Sidebar />
-              <Main>{children}</Main>
-            </div>
+            <NotifyProvider>
+              <div className="h-full w-full flex flex-col md:flex-row">
+                <Sidebar />
+                <Main>{children}</Main>
+              </div>
+            </NotifyProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>

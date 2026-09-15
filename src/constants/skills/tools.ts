@@ -56,9 +56,6 @@ export const skillDescriptionKeys: Record<Technology, string> = {
   "Malware Analysis": "malwareAnalysis",
   "Vue.js": "vuejs",
   "FastAPI": "fastapi",
-  "Figma": "figma",
-  "Hostinger": "hostinger",
-  "Raspberry Pi": "raspberryPi",
   "Sentry": "sentry",
   "Burp Suite": "burpsuite"
 }

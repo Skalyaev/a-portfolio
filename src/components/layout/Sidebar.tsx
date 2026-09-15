@@ -1,7 +1,7 @@
 "use client"
 
 import { usePathname } from "next/navigation"
-import { useState, useRef, useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { Button } from "@/components/tag/Button"
 import { Options } from "@/components/tag/Options"
@@ -96,7 +96,6 @@ function NavItems({
               {animateBackground ? (
                 <span
                   className={cn(
-                    "transition-none",
                     isActive
                       ? "text-background"
                       : "text-muted group-hover:transition-colors group-hover:text-foreground"
@@ -114,17 +113,12 @@ function NavItems({
   )
 }
 
-export interface SidebarProps {
-  className?: string
-}
-
 /**
  * Site navigation: a top header with a dropdown menu on mobile and a side panel on desktop.
  *
- * @param props - Extra classes applied to both the header and the side panel.
  * @returns The responsive navigation.
  */
-export function Sidebar({ className }: SidebarProps) {
+export function Sidebar() {
   const [open, setOpen] = useState(false)
   const [visible, setVisible] = useState(false)
   const [navEntered, setNavEntered] = useState(false)
@@ -163,64 +157,60 @@ export function Sidebar({ className }: SidebarProps) {
 
   return (
     <>
-      <div className="flex flex-col md:hidden">
-        <header
-          className={cn(
-            "flex items-center border-b-2 border-border transition duration-400 gap-4 shadow-2xs z-10 justify-between relative",
-            visible
-              ? "translate-y-0 opacity-100 ease-out"
-              : "-translate-y-4 opacity-0 ease-in pointer-events-none",
-            className
-          )}>
-          <Brand
-            className="flex items-center gap-3 px-4 py-3 shrink-0"
-            titleClassName="text-lg font-semibold tracking-wide mb-0.5"
-          />
-          <div
-            ref={mobileNavbarRef}
-            className="h-full">
-            <Button
-              onClick={() => setOpen((value) => !value)}
-              ariaExpanded={open}
-              ariaLabel={t("nav.menu")}
-              title={t("nav.menu")}
-              className="h-full aspect-square">
-              <Bars
-                width={16}
-                height={16}
-                className="shrink-0 transition-colors"
+      <header
+        className={cn(
+          "flex md:hidden items-center border-b-2 border-border transition duration-400 gap-4 shadow-2xs z-10 justify-between relative",
+          visible
+            ? "translate-y-0 opacity-100 ease-out"
+            : "-translate-y-4 opacity-0 ease-in pointer-events-none"
+        )}>
+        <Brand
+          className="flex items-center gap-3 px-4 py-3 shrink-0"
+          titleClassName="text-lg font-semibold tracking-wide mb-0.5"
+        />
+        <div
+          ref={mobileNavbarRef}
+          className="h-full">
+          <Button
+            onClick={() => setOpen((value) => !value)}
+            ariaExpanded={open}
+            ariaLabel={t("nav.menu")}
+            title={t("nav.menu")}
+            className="h-full aspect-square">
+            <Bars
+              width={16}
+              height={16}
+              className="shrink-0 transition-colors"
+            />
+          </Button>
+          <Options
+            open={open}
+            from="bottom"
+            className="py-0 mx-4 left-0 right-0">
+            <NavItems
+              shown={open}
+              cascading={!mobileNavEntered}
+              onNavigate={() => setOpen(false)}
+              className="py-1"
+            />
+            <div className="flex items-center justify-between border-t border-border transition-colors">
+              <ThemeSwitcher className="h-10" />
+              <LanguageSwitcher
+                className="h-10"
+                optionsFrom="bottom"
+                optionsClassName="right-0 bottom-auto"
               />
-            </Button>
-            <Options
-              open={open}
-              from="bottom"
-              className="py-0 mx-4 left-0 right-0">
-              <NavItems
-                shown={open}
-                cascading={!mobileNavEntered}
-                onNavigate={() => setOpen(false)}
-                className="py-1"
-              />
-              <div className="flex items-center justify-between border-t border-border transition-colors">
-                <ThemeSwitcher className="h-10" />
-                <LanguageSwitcher
-                  className="h-10"
-                  optionsFrom="left"
-                  optionsClassName="right-0 top-[calc(100%+1rem)] bottom-auto left-auto"
-                />
-              </div>
-            </Options>
-          </div>
-        </header>
-      </div>
+            </div>
+          </Options>
+        </div>
+      </header>
 
       <aside
         className={cn(
           "hidden md:flex flex-col md:w-60 md:border-r-2 border-border transition duration-400 shadow-xs z-10 relative",
           visible
             ? "translate-x-0 opacity-100 ease-out"
-            : "-translate-x-4 opacity-0 ease-in pointer-events-none",
-          className
+            : "-translate-x-4 opacity-0 ease-in pointer-events-none"
         )}>
         <Brand
           className="flex flex-col gap-0.5 p-6"

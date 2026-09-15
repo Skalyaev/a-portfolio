@@ -1,23 +1,21 @@
 import { cn } from "@/lib/utils/style"
 
-export type OptionsFrom = "top" | "bottom" | "left" | "right"
+import type { ReactNode } from "react"
+
+export type OptionsFrom = "bottom" | "right"
 
 const positionClasses: Record<OptionsFrom, string> = {
-  top: "bottom-[calc(100%+1rem)]",
   bottom: "top-[calc(100%+1rem)]",
-  left: "right-[calc(100%+1rem)]",
   right: "left-[calc(100%+1rem)]"
 }
 
 const hiddenTranslateClasses: Record<OptionsFrom, string> = {
-  top: "-translate-y-4",
   bottom: "translate-y-4",
-  left: "-translate-x-4",
   right: "translate-x-4"
 }
 
 export interface OptionsProps {
-  children?: React.ReactNode
+  children: ReactNode
   open: boolean
   from: OptionsFrom
   className?: string

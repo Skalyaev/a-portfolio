@@ -180,3 +180,18 @@
 .animate-fade-in-slide-left {
   animation: fade-in-slide-left 200ms ease-out;
 }
+
+@keyframes notify-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-notify-from-right {
+  animation: notify-from-right 250ms ease-out;
+}

@@ -1,8 +1,10 @@
+import type { ReactNode } from "react"
+
 export interface FlexColProps {
   title: string
   subtitle: string
   errorMessage?: string
-  children: React.ReactNode
+  children: ReactNode
 }
 
 /**

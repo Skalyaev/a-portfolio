@@ -1,0 +1,56 @@
+name: portfolio
+
+x-app-common: &app-common
+  init: true
+  container_name: portfolio-app
+  env_file: .env
+  networks:
+    default:
+      aliases:
+        - app
+
+services:
+  app-dev:
+    <<: *app-common
+    profiles: ["dev"]
+    build:
+      context: .
+      target: dev
+    image: portfolio-app:dev
+    volumes:
+      - ./postcss.config.mjs:/home/node/workdir/postcss.config.mjs
+      - ./next.config.ts:/home/node/workdir/next.config.ts
+      - ./tsconfig.json:/home/node/workdir/tsconfig.json
+      - ./public:/home/node/workdir/public
+      - ./src:/home/node/workdir/src
+
+  app-prod:
+    <<: *app-common
+    profiles: ["prod"]
+    build:
+      context: .
+      target: prod
+      secrets:
+        - env
+    image: portfolio-app:prod
+
+  proxy:
+    profiles: ["dev", "prod"]
+    init: true
+    container_name: portfolio-proxy
+    build:
+      context: ./proxy
+    image: portfolio-proxy
+    ports:
+      - "80:8080"
+    depends_on:
+      app-dev:
+        condition: service_started
+        required: false
+      app-prod:
+        condition: service_started
+        required: false
+
+secrets:
+  env:
+    file: .env

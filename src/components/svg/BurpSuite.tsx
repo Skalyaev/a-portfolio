@@ -6,11 +6,7 @@ import type { IconProps } from "@/constants/icons"
  * @param props - Size and classes.
  * @returns The SVG icon.
  */
-export function BurpSuite({
-  className,
-  width = 24,
-  height = 24
-}: IconProps) {
+export function BurpSuite({ className, width = 24, height = 24 }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,3 +1,5 @@
+import { useMemo } from "react"
+
 import { RootMe as RootMeIcon } from "@/components/svg/RootMe"
 import { useLanguage } from "@/components/i18n/LanguageContext"
 
@@ -16,13 +18,14 @@ import { StatTile } from "../StatTile"
 import { CategoryProgressList } from "../CategoryProgressList"
 import { ActivityList } from "../ActivityList"
 
-import type { HtbEntry } from "@/constants/skills/hackthebox"
+import type { ActivityEntry } from "@/constants/skills/profile"
 
-const solvedChallenges: HtbEntry[] = rootMeData.categories.flatMap((category) =>
-  category.solvedChallenges.map((challenge) => ({
-    ...challenge,
-    category: category.name
-  }))
+const solvedChallenges: ActivityEntry[] = rootMeData.categories.flatMap(
+  (category) =>
+    category.solvedChallenges.map((challenge) => ({
+      ...challenge,
+      category: category.name
+    }))
 )
 
 /**
@@ -43,6 +46,16 @@ export function RootMe() {
       ? t("skills.cybersecurity.yearSingular")
       : t("skills.cybersecurity.yearPlural")
   }`
+  const activityItems = useMemo<ActivityEntry[]>(
+    () =>
+      toActivityItems(
+        solvedChallenges,
+        selectedCategories,
+        locale,
+        olderThanLabel
+      ),
+    [selectedCategories, locale, olderThanLabel]
+  )
 
   return (
     <ProfileCard
@@ -81,16 +94,7 @@ export function RootMe() {
           />
         </div>
       }
-      right={
-        <ActivityList
-          items={toActivityItems(
-            solvedChallenges,
-            selectedCategories,
-            locale,
-            olderThanLabel
-          )}
-        />
-      }
+      right={<ActivityList items={activityItems} />}
     />
   )
 }

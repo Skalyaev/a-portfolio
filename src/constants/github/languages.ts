@@ -1,5 +1,10 @@
-// Tailwind 500 shades, hardcoded to keep the full palette out of client bundles.
-export const languageColors: Record<string, string> = {
+export interface LanguageShare {
+  name: string
+  percent: number
+  color: string
+}
+
+export const languageColors: Partial<Record<string, string>> = {
   "Python": "oklch(70.4% 0.14 182.503)",
   "TypeScript": "oklch(62.3% 0.214 259.815)",
   "JavaScript": "oklch(79.5% 0.184 86.047)",
@@ -12,8 +17,7 @@ export const languageColors: Record<string, string> = {
   "Dockerfile": "oklch(68.5% 0.169 237.323)"
 }
 
-// Tailwind 100 shades of the colors above.
-export const languageLightColors: Record<string, string> = {
+export const languageLightColors: Partial<Record<string, string>> = {
   "Python": "oklch(95.3% 0.051 180.801)",
   "TypeScript": "oklch(93.2% 0.032 255.585)",
   "JavaScript": "oklch(97.3% 0.071 103.193)",
@@ -26,7 +30,6 @@ export const languageLightColors: Record<string, string> = {
   "Dockerfile": "oklch(95.1% 0.026 236.824)"
 }
 
-// Tailwind gray-500.
 export const otherLanguageColor = "oklch(55.1% 0.027 264.364)"
 
 export const otherLanguageKey = "other"

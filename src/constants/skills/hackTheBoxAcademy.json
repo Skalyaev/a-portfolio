@@ -1,0 +1,323 @@
+{
+  "lastUpdated": "2026-09-12",
+  "categories": [
+    { "name": "General", "solved": 27, "total": 56 },
+    { "name": "Offensive", "solved": 23, "total": 98 },
+    { "name": "Defensive", "solved": 1, "total": 197 },
+    { "name": "Purple", "solved": 1, "total": 3 }
+  ],
+  "modules": [
+    {
+      "name": "Android Fundamentals",
+      "url": "https://academy.hackthebox.com/course/preview/android-fundamentals",
+      "category": "General",
+      "date": "2025-06-25"
+    },
+    {
+      "name": "File Inclusion",
+      "url": "https://academy.hackthebox.com/course/preview/file-inclusion",
+      "category": "Offensive",
+      "date": "2025-04-17"
+    },
+    {
+      "name": "Web Fuzzing",
+      "url": "https://academy.hackthebox.com/course/preview/web-fuzzing",
+      "category": "Offensive",
+      "date": "2025-04-13"
+    },
+    {
+      "name": "Pentest in a Nutshell",
+      "url": "https://academy.hackthebox.com/course/preview/pentest-in-a-nutshell",
+      "category": "Offensive",
+      "date": "2025-04-06"
+    },
+    {
+      "name": "Network Foundations",
+      "url": "https://academy.hackthebox.com/course/preview/network-foundations",
+      "category": "General",
+      "date": "2025-04-01"
+    },
+    {
+      "name": "Intro to Academy's Purple Modules",
+      "url": "https://academy.hackthebox.com/course/preview/intro-to-academys-purple-modules",
+      "category": "Purple",
+      "date": "2025-03-20"
+    },
+    {
+      "name": "Fundamentals of AI",
+      "url": "https://academy.hackthebox.com/course/preview/fundamentals-of-ai",
+      "category": "General",
+      "date": "2025-03-19"
+    },
+    {
+      "name": "Introduction to Information Security",
+      "url": "https://academy.hackthebox.com/course/preview/introduction-to-information-security",
+      "category": "General",
+      "date": "2025-03-19"
+    },
+    {
+      "name": "Introduction to Penetration Testing",
+      "url": "https://academy.hackthebox.com/course/preview/introduction-to-penetration-testing",
+      "category": "Offensive",
+      "date": "2025-03-19"
+    },
+    {
+      "name": "Shells & Payloads",
+      "url": "https://academy.hackthebox.com/course/preview/shells--payloads",
+      "category": "Offensive",
+      "date": "2025-02-20"
+    },
+    {
+      "name": "File Transfers",
+      "url": "https://academy.hackthebox.com/course/preview/file-transfers",
+      "category": "Offensive",
+      "date": "2025-02-19"
+    },
+    {
+      "name": "Vulnerability Assessment",
+      "url": "https://academy.hackthebox.com/course/preview/vulnerability-assessment",
+      "category": "Offensive",
+      "date": "2025-02-19"
+    },
+    {
+      "name": "Using the Metasploit Framework",
+      "url": "https://academy.hackthebox.com/course/preview/using-the-metasploit-framework",
+      "category": "Offensive",
+      "date": "2025-02-18"
+    },
+    {
+      "name": "Cross-Site Scripting (XSS)",
+      "url": "https://academy.hackthebox.com/course/preview/cross-site-scripting-xss",
+      "category": "Offensive",
+      "date": "2025-02-18"
+    },
+    {
+      "name": "Information Gathering - Web Edition",
+      "url": "https://academy.hackthebox.com/course/preview/information-gathering---web-edition",
+      "category": "Offensive",
+      "date": "2025-02-18"
+    },
+    {
+      "name": "Footprinting",
+      "url": "https://academy.hackthebox.com/course/preview/footprinting",
+      "category": "Offensive",
+      "date": "2025-02-17"
+    },
+    {
+      "name": "DNS Enumeration Using Python",
+      "url": "https://academy.hackthebox.com/course/preview/dns-enumeration-using-python",
+      "category": "General",
+      "date": "2024-05-05"
+    },
+    {
+      "name": "Introduction to C#",
+      "url": "https://academy.hackthebox.com/course/preview/introduction-to-c",
+      "category": "General",
+      "date": "2024-05-05"
+    },
+    {
+      "name": "Documentation & Reporting",
+      "url": "https://academy.hackthebox.com/course/preview/documentation--reporting",
+      "category": "General",
+      "date": "2024-05-04"
+    },
+    {
+      "name": "Brief Intro to Hardware Attacks",
+      "url": "https://academy.hackthebox.com/course/preview/brief-intro-to-hardware-attacks",
+      "category": "General",
+      "date": "2024-05-04"
+    },
+    {
+      "name": "Security Incident Reporting",
+      "url": "https://academy.hackthebox.com/course/preview/security-incident-reporting",
+      "category": "General",
+      "date": "2024-05-04"
+    },
+    {
+      "name": "Windows Privilege Escalation",
+      "url": "https://academy.hackthebox.com/course/preview/windows-privilege-escalation",
+      "category": "Offensive",
+      "date": "2024-01-13"
+    },
+    {
+      "name": "SQL Injection Fundamentals",
+      "url": "https://academy.hackthebox.com/course/preview/sql-injection-fundamentals",
+      "category": "Offensive",
+      "date": "2024-01-07"
+    },
+    {
+      "name": "Linux Privilege Escalation",
+      "url": "https://academy.hackthebox.com/course/preview/linux-privilege-escalation",
+      "category": "Offensive",
+      "date": "2024-01-07"
+    },
+    {
+      "name": "Stack-Based Buffer Overflows on Windows x86",
+      "url": "https://academy.hackthebox.com/course/preview/stack-based-buffer-overflows-on-windows-x86",
+      "category": "Offensive",
+      "date": "2024-01-07"
+    },
+    {
+      "name": "Cracking Passwords with Hashcat",
+      "url": "https://academy.hackthebox.com/course/preview/cracking-passwords-with-hashcat",
+      "category": "Offensive",
+      "date": "2024-01-06"
+    },
+    {
+      "name": "Stack-Based Buffer Overflows on Linux x86",
+      "url": "https://academy.hackthebox.com/course/preview/stack-based-buffer-overflows-on-linux-x86",
+      "category": "Offensive",
+      "date": "2024-01-06"
+    },
+    {
+      "name": "Introduction to Python 3",
+      "url": "https://academy.hackthebox.com/course/preview/introduction-to-python-3",
+      "category": "General",
+      "date": "2024-01-06"
+    },
+    {
+      "name": "Bug Bounty Hunting Process",
+      "url": "https://academy.hackthebox.com/course/preview/bug-bounty-hunting-process",
+      "category": "General",
+      "date": "2024-01-05"
+    },
+    {
+      "name": "SQLMap Essentials",
+      "url": "https://academy.hackthebox.com/course/preview/sqlmap-essentials",
+      "category": "Offensive",
+      "date": "2024-01-02"
+    },
+    {
+      "name": "Network Enumeration with Nmap",
+      "url": "https://academy.hackthebox.com/course/preview/network-enumeration-with-nmap",
+      "category": "Offensive",
+      "date": "2023-12-30"
+    },
+    {
+      "name": "Attacking Web Applications with Ffuf",
+      "url": "https://academy.hackthebox.com/course/preview/attacking-web-applications-with-ffuf",
+      "category": "Offensive",
+      "date": "2023-12-30"
+    },
+    {
+      "name": "Login Brute Forcing",
+      "url": "https://academy.hackthebox.com/course/preview/login-brute-forcing",
+      "category": "Offensive",
+      "date": "2023-12-30"
+    },
+    {
+      "name": "Using Web Proxies",
+      "url": "https://academy.hackthebox.com/course/preview/using-web-proxies",
+      "category": "Offensive",
+      "date": "2023-12-30"
+    },
+    {
+      "name": "Incident Handling Process",
+      "url": "https://academy.hackthebox.com/course/preview/incident-handling-process",
+      "category": "General",
+      "date": "2023-12-30"
+    },
+    {
+      "name": "Getting Started",
+      "url": "https://academy.hackthebox.com/course/preview/getting-started",
+      "category": "Offensive",
+      "date": "2023-12-29"
+    },
+    {
+      "name": "Intro to Assembly Language",
+      "url": "https://academy.hackthebox.com/course/preview/intro-to-assembly-language",
+      "category": "General",
+      "date": "2023-12-29"
+    },
+    {
+      "name": "Penetration Testing Process",
+      "url": "https://academy.hackthebox.com/course/preview/penetration-testing-process",
+      "category": "General",
+      "date": "2023-12-29"
+    },
+    {
+      "name": "JavaScript Deobfuscation",
+      "url": "https://academy.hackthebox.com/course/preview/javascript-deobfuscation",
+      "category": "Defensive",
+      "date": "2023-12-28"
+    },
+    {
+      "name": "Web Requests",
+      "url": "https://academy.hackthebox.com/course/preview/web-requests",
+      "category": "General",
+      "date": "2023-12-25"
+    },
+    {
+      "name": "Introduction to Web Applications",
+      "url": "https://academy.hackthebox.com/course/preview/introduction-to-web-applications",
+      "category": "General",
+      "date": "2023-12-25"
+    },
+    {
+      "name": "Intro to Network Traffic Analysis",
+      "url": "https://academy.hackthebox.com/course/preview/intro-to-network-traffic-analysis",
+      "category": "General",
+      "date": "2023-12-25"
+    },
+    {
+      "name": "MacOS Fundamentals",
+      "url": "https://academy.hackthebox.com/course/preview/macos-fundamentals",
+      "category": "General",
+      "date": "2023-12-25"
+    },
+    {
+      "name": "Introduction to Windows Command Line",
+      "url": "https://academy.hackthebox.com/course/preview/introduction-to-windows-command-line",
+      "category": "General",
+      "date": "2023-12-25"
+    },
+    {
+      "name": "Windows Fundamentals",
+      "url": "https://academy.hackthebox.com/course/preview/windows-fundamentals",
+      "category": "General",
+      "date": "2023-12-24"
+    },
+    {
+      "name": "Introduction to Active Directory",
+      "url": "https://academy.hackthebox.com/course/preview/introduction-to-active-directory",
+      "category": "General",
+      "date": "2023-12-24"
+    },
+    {
+      "name": "Introduction to Bash Scripting",
+      "url": "https://academy.hackthebox.com/course/preview/introduction-to-bash-scripting",
+      "category": "General",
+      "date": "2023-12-22"
+    },
+    {
+      "name": "Introduction to Networking",
+      "url": "https://academy.hackthebox.com/course/preview/introduction-to-networking",
+      "category": "General",
+      "date": "2023-12-22"
+    },
+    {
+      "name": "Linux Fundamentals",
+      "url": "https://academy.hackthebox.com/course/preview/linux-fundamentals",
+      "category": "General",
+      "date": "2023-12-20"
+    },
+    {
+      "name": "Setting Up",
+      "url": "https://academy.hackthebox.com/course/preview/setting-up",
+      "category": "General",
+      "date": "2023-12-20"
+    },
+    {
+      "name": "Learning Process",
+      "url": "https://academy.hackthebox.com/course/preview/learning-process",
+      "category": "General",
+      "date": "2023-12-19"
+    },
+    {
+      "name": "Intro to Academy",
+      "url": "https://academy.hackthebox.com/course/preview/intro-to-academy",
+      "category": "General",
+      "date": "2023-12-19"
+    }
+  ]
+}

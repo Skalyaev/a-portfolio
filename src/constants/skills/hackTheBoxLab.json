@@ -1,0 +1,433 @@
+{
+  "lastUpdated": "2026-09-13",
+  "rank": 968,
+  "challengesSolved": 69,
+  "challengesTotal": 853,
+  "machinesSolved": 13,
+  "machinesTotal": 552,
+  "challengeCategories": [
+    { "name": "Reversing", "solved": 11, "total": 101 },
+    { "name": "Crypto", "solved": 10, "total": 132 },
+    { "name": "Web", "solved": 8, "total": 171 },
+    { "name": "Hardware", "solved": 8, "total": 42 },
+    { "name": "Forensics", "solved": 7, "total": 77 },
+    { "name": "Coding", "solved": 6, "total": 18 },
+    { "name": "Blockchain", "solved": 5, "total": 17 },
+    { "name": "Pwn", "solved": 4, "total": 136 },
+    { "name": "GamePwn", "solved": 3, "total": 13 },
+    { "name": "Mobile", "solved": 2, "total": 24 },
+    { "name": "AI/ML", "solved": 2, "total": 18 },
+    { "name": "Misc", "solved": 1, "total": 60 },
+    { "name": "OSINT", "solved": 1, "total": 11 },
+    { "name": "ICS", "solved": 1, "total": 11 },
+    { "name": "Secure Coding", "solved": 0, "total": 6 },
+    { "name": "Quantum", "solved": 0, "total": 7 },
+    { "name": "Satellite", "solved": 0, "total": 9 }
+  ],
+  "solvedChallenges": [
+    {
+      "name": "NoRadar",
+      "url": "https://app.hackthebox.com/challenges/noradar",
+      "category": "GamePwn",
+      "date": "2025-08-08"
+    },
+    {
+      "name": "Token to Wonderland",
+      "url": "https://app.hackthebox.com/challenges/token-to-wonderland",
+      "category": "Blockchain",
+      "date": "2025-08-03"
+    },
+    {
+      "name": "Like a Glove",
+      "url": "https://app.hackthebox.com/challenges/like-a-glove",
+      "category": "AI/ML",
+      "date": "2025-08-03"
+    },
+    {
+      "name": "Desires",
+      "url": "https://app.hackthebox.com/challenges/desires",
+      "category": "Web",
+      "date": "2025-08-03"
+    },
+    {
+      "name": "Magic Vault",
+      "url": "https://app.hackthebox.com/challenges/magic-vault",
+      "category": "Blockchain",
+      "date": "2025-08-02"
+    },
+    {
+      "name": "Honor Among Thieves",
+      "url": "https://app.hackthebox.com/challenges/honor-among-thieves",
+      "category": "Blockchain",
+      "date": "2025-08-02"
+    },
+    {
+      "name": "PINsmith",
+      "url": "https://app.hackthebox.com/challenges/pinsmith",
+      "category": "Coding",
+      "date": "2025-08-02"
+    },
+    {
+      "name": "Line",
+      "url": "https://app.hackthebox.com/challenges/line",
+      "category": "Hardware",
+      "date": "2025-08-02"
+    },
+    {
+      "name": "Rhome",
+      "url": "https://app.hackthebox.com/challenges/rhome",
+      "category": "Crypto",
+      "date": "2025-07-31"
+    },
+    {
+      "name": "Fishy HTTP",
+      "url": "https://app.hackthebox.com/challenges/fishy-http",
+      "category": "Forensics",
+      "date": "2025-07-31"
+    },
+    {
+      "name": "r0bob1rd",
+      "url": "https://app.hackthebox.com/challenges/r0bob1rd",
+      "category": "Pwn",
+      "date": "2025-07-31"
+    },
+    {
+      "name": "CubeMadness2",
+      "url": "https://app.hackthebox.com/challenges/cubemadness2",
+      "category": "GamePwn",
+      "date": "2025-07-30"
+    },
+    {
+      "name": "AI SPACE",
+      "url": "https://app.hackthebox.com/challenges/ai-space",
+      "category": "AI/ML",
+      "date": "2025-07-30"
+    },
+    {
+      "name": "Factory",
+      "url": "https://app.hackthebox.com/challenges/factory",
+      "category": "ICS",
+      "date": "2025-07-19"
+    },
+    {
+      "name": "Protein Cookies",
+      "url": "https://app.hackthebox.com/challenges/protein-cookies",
+      "category": "Crypto",
+      "date": "2025-07-19"
+    },
+    {
+      "name": "Quantum-Safe",
+      "url": "https://app.hackthebox.com/challenges/quantum-safe",
+      "category": "Crypto",
+      "date": "2025-07-19"
+    },
+    {
+      "name": "Partial Encryption",
+      "url": "https://app.hackthebox.com/challenges/partial-encryption",
+      "category": "Reversing",
+      "date": "2025-07-19"
+    },
+    {
+      "name": "Embryonic Plant",
+      "url": "https://app.hackthebox.com/challenges/embryonic-plant",
+      "category": "Crypto",
+      "date": "2025-07-19"
+    },
+    {
+      "name": "RFlag",
+      "url": "https://app.hackthebox.com/challenges/rflag",
+      "category": "Hardware",
+      "date": "2025-07-19"
+    },
+    {
+      "name": "Cyberpsychosis",
+      "url": "https://app.hackthebox.com/challenges/cyberpsychosis",
+      "category": "Reversing",
+      "date": "2025-07-19"
+    },
+    {
+      "name": "ARMs Race",
+      "url": "https://app.hackthebox.com/challenges/arms-race",
+      "category": "Reversing",
+      "date": "2025-07-19"
+    },
+    {
+      "name": "Execute",
+      "url": "https://app.hackthebox.com/challenges/execute",
+      "category": "Pwn",
+      "date": "2025-07-19"
+    },
+    {
+      "name": "POP Restaurant",
+      "url": "https://app.hackthebox.com/challenges/pop-restaurant",
+      "category": "Web",
+      "date": "2025-07-19"
+    },
+    {
+      "name": "Pentest Notes",
+      "url": "https://app.hackthebox.com/challenges/pentest-notes",
+      "category": "Web",
+      "date": "2025-07-16"
+    },
+    {
+      "name": "RAuth",
+      "url": "https://app.hackthebox.com/challenges/rauth",
+      "category": "Reversing",
+      "date": "2025-07-15"
+    },
+    {
+      "name": "RSAisEasy",
+      "url": "https://app.hackthebox.com/challenges/rsaiseasy",
+      "category": "Crypto",
+      "date": "2025-07-15"
+    },
+    {
+      "name": "Wander",
+      "url": "https://app.hackthebox.com/challenges/wander",
+      "category": "Hardware",
+      "date": "2025-07-15"
+    },
+    {
+      "name": "Micro Storage",
+      "url": "https://app.hackthebox.com/challenges/micro-storage",
+      "category": "Misc",
+      "date": "2025-07-15"
+    },
+    {
+      "name": "Suspicious Threat",
+      "url": "https://app.hackthebox.com/challenges/suspicious-threat",
+      "category": "Forensics",
+      "date": "2025-07-15"
+    },
+    {
+      "name": "Signals",
+      "url": "https://app.hackthebox.com/challenges/signals",
+      "category": "Hardware",
+      "date": "2025-07-15"
+    },
+    {
+      "name": "Mission Pinpossible",
+      "url": "https://app.hackthebox.com/challenges/mission-pinpossible",
+      "category": "Hardware",
+      "date": "2025-07-14"
+    },
+    {
+      "name": "TrueSecrets",
+      "url": "https://app.hackthebox.com/challenges/truesecrets",
+      "category": "Forensics",
+      "date": "2025-07-13"
+    },
+    {
+      "name": "Obscure",
+      "url": "https://app.hackthebox.com/challenges/obscure",
+      "category": "Forensics",
+      "date": "2025-07-12"
+    },
+    {
+      "name": "Bypass",
+      "url": "https://app.hackthebox.com/challenges/bypass",
+      "category": "Reversing",
+      "date": "2025-07-12"
+    },
+    {
+      "name": "Reminiscent",
+      "url": "https://app.hackthebox.com/challenges/reminiscent",
+      "category": "Forensics",
+      "date": "2025-07-12"
+    },
+    {
+      "name": "Cat",
+      "url": "https://app.hackthebox.com/challenges/cat",
+      "category": "Mobile",
+      "date": "2025-07-11"
+    },
+    {
+      "name": "Exatlon",
+      "url": "https://app.hackthebox.com/challenges/exatlon",
+      "category": "Reversing",
+      "date": "2025-07-11"
+    },
+    {
+      "name": "emo",
+      "url": "https://app.hackthebox.com/challenges/emo",
+      "category": "Forensics",
+      "date": "2025-07-11"
+    },
+    {
+      "name": "APKey",
+      "url": "https://app.hackthebox.com/challenges/apkey",
+      "category": "Mobile",
+      "date": "2025-07-11"
+    },
+    {
+      "name": "CubeMadness1",
+      "url": "https://app.hackthebox.com/challenges/cubemadness1",
+      "category": "GamePwn",
+      "date": "2025-07-11"
+    },
+    {
+      "name": "Diagnostic",
+      "url": "https://app.hackthebox.com/challenges/diagnostic",
+      "category": "Forensics",
+      "date": "2025-07-11"
+    },
+    {
+      "name": "xorxorxor",
+      "url": "https://app.hackthebox.com/challenges/xorxorxor",
+      "category": "Crypto",
+      "date": "2025-07-11"
+    },
+    {
+      "name": "PDFy",
+      "url": "https://app.hackthebox.com/challenges/pdfy",
+      "category": "Web",
+      "date": "2025-07-11"
+    },
+    {
+      "name": "Baby Time Capsule",
+      "url": "https://app.hackthebox.com/challenges/baby-time-capsule",
+      "category": "Crypto",
+      "date": "2025-07-10"
+    },
+    {
+      "name": "Simple Encryptor",
+      "url": "https://app.hackthebox.com/challenges/simple-encryptor",
+      "category": "Reversing",
+      "date": "2025-07-10"
+    },
+    {
+      "name": "The Last Dance",
+      "url": "https://app.hackthebox.com/challenges/the-last-dance",
+      "category": "Crypto",
+      "date": "2025-07-10"
+    },
+    {
+      "name": "Restaurant",
+      "url": "https://app.hackthebox.com/challenges/restaurant",
+      "category": "Pwn",
+      "date": "2025-07-09"
+    },
+    {
+      "name": "Debugging Interface",
+      "url": "https://app.hackthebox.com/challenges/debugging-interface",
+      "category": "Hardware",
+      "date": "2025-07-09"
+    },
+    {
+      "name": "The Needle",
+      "url": "https://app.hackthebox.com/challenges/the-needle",
+      "category": "Hardware",
+      "date": "2025-07-09"
+    },
+    {
+      "name": "BabyEncryption",
+      "url": "https://app.hackthebox.com/challenges/babyencryption",
+      "category": "Crypto",
+      "date": "2025-07-09"
+    },
+    {
+      "name": "Behind the Scenes",
+      "url": "https://app.hackthebox.com/challenges/behind-the-scenes",
+      "category": "Reversing",
+      "date": "2025-07-09"
+    },
+    {
+      "name": "Distract and Destroy",
+      "url": "https://app.hackthebox.com/challenges/distract-and-destroy",
+      "category": "Blockchain",
+      "date": "2025-07-08"
+    },
+    {
+      "name": "Low Logic",
+      "url": "https://app.hackthebox.com/challenges/low-logic",
+      "category": "Hardware",
+      "date": "2025-07-08"
+    },
+    {
+      "name": "Survival of the Fittest",
+      "url": "https://app.hackthebox.com/challenges/survival-of-the-fittest",
+      "category": "Blockchain",
+      "date": "2025-07-08"
+    },
+    {
+      "name": "Spookifier",
+      "url": "https://app.hackthebox.com/challenges/spookifier",
+      "category": "Web",
+      "date": "2025-07-07"
+    },
+    {
+      "name": "SpookyPass",
+      "url": "https://app.hackthebox.com/challenges/spookypass",
+      "category": "Reversing",
+      "date": "2025-07-07"
+    },
+    {
+      "name": "You know 0xDiablos",
+      "url": "https://app.hackthebox.com/challenges/you-know-0xdiablos",
+      "category": "Pwn",
+      "date": "2024-01-16"
+    },
+    {
+      "name": "Find The Easy Pass",
+      "url": "https://app.hackthebox.com/challenges/find-the-easy-pass",
+      "category": "Reversing",
+      "date": "2024-01-15"
+    },
+    {
+      "name": "Weak RSA",
+      "url": "https://app.hackthebox.com/challenges/weak-rsa",
+      "category": "Crypto",
+      "date": "2024-01-15"
+    },
+    {
+      "name": "Pivot Chain",
+      "url": "https://app.hackthebox.com/challenges/pivot-chain",
+      "category": "Coding"
+    },
+    {
+      "name": "CDNio",
+      "url": "https://app.hackthebox.com/challenges/cdnio",
+      "category": "Web"
+    },
+    {
+      "name": "Sudoking",
+      "url": "https://app.hackthebox.com/challenges/sudoking",
+      "category": "Coding"
+    },
+    {
+      "name": "Dark Runes",
+      "url": "https://app.hackthebox.com/challenges/dark-runes",
+      "category": "Web"
+    },
+    {
+      "name": "Hubbub",
+      "url": "https://app.hackthebox.com/challenges/hubbub",
+      "category": "Reversing"
+    },
+    {
+      "name": "Primed for Action",
+      "url": "https://app.hackthebox.com/challenges/primed-for-action",
+      "category": "Coding"
+    },
+    {
+      "name": "Evaluative",
+      "url": "https://app.hackthebox.com/challenges/evaluative",
+      "category": "Coding"
+    },
+    {
+      "name": "NexusSeven",
+      "url": "https://app.hackthebox.com/challenges/nexusseven",
+      "category": "Web"
+    },
+    {
+      "name": "Cred Hunter",
+      "url": "https://app.hackthebox.com/challenges/cred-hunter",
+      "category": "Coding"
+    },
+    {
+      "name": "The Suspicious Reviewer",
+      "url": "https://app.hackthebox.com/challenges/the-suspicious-reviewer",
+      "category": "OSINT"
+    }
+  ]
+}

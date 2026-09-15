@@ -27,14 +27,12 @@ interface MasonryPosition {
  * @param itemCount - Number of items to lay out.
  * @param getColumnCount - Returns the column count for a viewport width.
  * @param gapPx - Gap between items, in pixels.
- * @param trailingSpacePx - Extra space added below the tallest column, in pixels.
  * @returns A container ref, the container height and a getter of per-item ref and style.
  */
 export function useMasonryLayout(
   itemCount: number,
   getColumnCount: (viewportWidth: number) => number,
-  gapPx: number,
-  trailingSpacePx: number = 0
+  gapPx: number
 ): UseMasonryLayoutResult {
   const containerElementRef = useRef<HTMLElement | null>(null)
   const itemElementsRef = useRef<Array<HTMLElement | null>>([])
@@ -69,14 +67,8 @@ export function useMasonryLayout(
       columnHeights[columnIndex] = top + height + gapPx
     }
 
-    const nextContainerHeight =
-      Math.max(0, Math.max(...columnHeights) - gapPx) + trailingSpacePx
+    const nextContainerHeight = Math.max(0, Math.max(...columnHeights) - gapPx)
 
-    // Bail out on sub-pixel-only changes: a container height update can
-    // toggle the page scrollbar, which nudges clientWidth by a few pixels
-    // and re-triggers this ResizeObserver, feeding back into itself. That
-    // loop of negligible adjustments is what trips the browser's scroll
-    // anchoring safeguard, so we ignore changes below this threshold.
     const epsilonPx = 1
     const previousPositions = previousPositionsRef.current
     const positionsChanged =
@@ -102,7 +94,7 @@ export function useMasonryLayout(
 
     setPositions(nextPositions)
     setContainerHeight(nextContainerHeight)
-  }, [itemCount, getColumnCount, gapPx, trailingSpacePx])
+  }, [itemCount, getColumnCount, gapPx])
 
   useLayoutEffect(() => {
     recompute()
@@ -129,8 +121,6 @@ export function useMasonryLayout(
     containerElementRef.current = element
   }, [])
 
-  // One stable ref per index, so React only re-attaches when the element at
-  // that index changes, which is when the observer must follow the new one.
   const itemRefs = useMemo<Array<RefCallback<HTMLElement>>>(
     () =>
       Array.from(

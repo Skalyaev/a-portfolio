@@ -6,7 +6,7 @@ interface RootMeChallenge {
   date?: string
 }
 
-export interface RootMeCategory {
+interface RootMeCategory {
   name: string
   url: string
   percent: number
@@ -16,7 +16,7 @@ export interface RootMeCategory {
   solvedChallenges: RootMeChallenge[]
 }
 
-export interface RootMeData {
+interface RootMeData {
   score: number
   rank: number
   challengesSolved: number

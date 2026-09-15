@@ -10,8 +10,9 @@ import { useLanguage } from "@/components/i18n/LanguageContext"
 import { useMasonryLayout } from "@/lib/hooks/useMasonryLayout"
 import { useToggleList } from "@/lib/hooks/useToggleList"
 
+import { revealCascadeStepMs } from "@/constants/animation"
 import { languageOrder } from "@/constants/github/languages"
-import { allProjectTags } from "@/constants/github/projects"
+import { projectTags } from "@/constants/github/projects"
 
 import { ProjectCard } from "./result/ProjectCard"
 import { ProjectFilters } from "./search/ProjectFilters"
@@ -20,11 +21,9 @@ import type { Project } from "../_lib/getProjects"
 import type { ProjectTag } from "@/constants/github/projects"
 import type { AvailableLanguage } from "./search/ProjectFilters"
 
-const cardCascadeStepMs = 80
 const cardCascadeBatchSize = 4
 const cardGridGapPx = 16
 const cardGridBreakpointPx = 640
-const cardGridTrailingSpacePx = 0
 
 /**
  * Returns the number of project card columns for a viewport width.
@@ -32,7 +31,7 @@ const cardGridTrailingSpacePx = 0
  * @param viewportWidth - Window width in pixels.
  * @returns 2 columns from the breakpoint upward, 1 otherwise.
  */
-function getCardColumnCount(viewportWidth: number) {
+function getCardColumnCount(viewportWidth: number): number {
   return viewportWidth >= cardGridBreakpointPx ? 2 : 1
 }
 
@@ -64,7 +63,7 @@ export function ProjectsBrowser({ projects }: ProjectsBrowserProps) {
 
   const { t } = useLanguage()
 
-  const availableLanguages = useMemo(() => {
+  const availableLanguages = useMemo<AvailableLanguage[]>(() => {
     const languagesByName = new Map<string, AvailableLanguage>()
     for (const project of projects) {
       for (const language of project.languages) {
@@ -79,15 +78,15 @@ export function ProjectsBrowser({ projects }: ProjectsBrowserProps) {
     )
   }, [projects])
 
-  const availableTags = useMemo(
+  const availableTags = useMemo<ProjectTag[]>(
     () =>
-      allProjectTags.filter((tag) =>
+      projectTags.filter((tag) =>
         projects.some((project) => project.tags.includes(tag))
       ),
     [projects]
   )
 
-  const filteredProjects = useMemo(() => {
+  const filteredProjects = useMemo<Project[]>(() => {
     const term = search.trim().toLowerCase()
     return projects.filter((project) => {
       const matchesSearch =
@@ -118,8 +117,7 @@ export function ProjectsBrowser({ projects }: ProjectsBrowserProps) {
   const { containerRef, containerHeight, getItemProps } = useMasonryLayout(
     filteredProjects.length,
     getCardColumnCount,
-    cardGridGapPx,
-    cardGridTrailingSpacePx
+    cardGridGapPx
   )
 
   /**
@@ -127,7 +125,7 @@ export function ProjectsBrowser({ projects }: ProjectsBrowserProps) {
    *
    * @param value - New search term.
    */
-  function handleSearch(value: string) {
+  function handleSearch(value: string): void {
     setHasInteracted(true)
     setSearch(value)
   }
@@ -137,7 +135,7 @@ export function ProjectsBrowser({ projects }: ProjectsBrowserProps) {
    *
    * @param name - Language name.
    */
-  function toggleLanguage(name: string) {
+  function toggleLanguage(name: string): void {
     setHasInteracted(true)
     toggleSelectedLanguage(name)
   }
@@ -147,13 +145,13 @@ export function ProjectsBrowser({ projects }: ProjectsBrowserProps) {
    *
    * @param tag - Project tag.
    */
-  function toggleTag(tag: ProjectTag) {
+  function toggleTag(tag: ProjectTag): void {
     setHasInteracted(true)
     toggleSelectedTag(tag)
   }
 
   /** Clears the selected languages and tags, keeping the search term. */
-  function clearFilters() {
+  function clearFilters(): void {
     setHasInteracted(true)
     clearSelectedLanguages()
     clearSelectedTags()
@@ -215,7 +213,7 @@ export function ProjectsBrowser({ projects }: ProjectsBrowserProps) {
                 <ProjectCard
                   project={project}
                   animate={!hasInteracted}
-                  delayMs={(index % cardCascadeBatchSize) * cardCascadeStepMs}
+                  delayMs={(index % cardCascadeBatchSize) * revealCascadeStepMs}
                 />
               </div>
             )

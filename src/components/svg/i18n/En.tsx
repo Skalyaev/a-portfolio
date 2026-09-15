@@ -11,9 +11,9 @@ export function En({ className, width = 24, height = 24 }: IconProps) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
-      viewBox="0 0 640 480"
       width={width}
       height={height}
+      viewBox="0 0 640 480"
       className={className}>
       <path
         fill="#012169"

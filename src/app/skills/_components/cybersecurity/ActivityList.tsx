@@ -2,19 +2,20 @@ import { Button } from "@/components/tag/Button"
 import { useLanguage } from "@/components/i18n/LanguageContext"
 
 import { useInView } from "@/lib/hooks/useInView"
-import { cn } from "@/lib/utils/style"
+import { cn, revealClassName } from "@/lib/utils/style"
 
 import { revealRootMargin } from "@/constants/animation"
+import { labelClassName } from "@/constants/style"
 
 import { translateCategory } from "../../_lib/cyberSecurity"
 
-import type { HtbEntry } from "@/constants/skills/hackthebox"
+import type { ActivityEntry } from "@/constants/skills/profile"
 
 const itemCascadeStepMs = 60
 const itemCascadeMaxSteps = 8
 
 export interface ActivityListProps {
-  items: HtbEntry[]
+  items: ActivityEntry[]
 }
 
 /**
@@ -32,7 +33,7 @@ export function ActivityList({ items }: ActivityListProps) {
 
   return (
     <div className="flex min-h-0 flex-1 flex-col">
-      <span className="text-2xs text-muted uppercase tracking-wide border-b border-border px-2 py-1">
+      <span className={cn(labelClassName, "border-b border-border px-2 py-1")}>
         {t("skills.cybersecurity.recentActivity")}
       </span>
       {items.length === 0 ? (
@@ -42,16 +43,13 @@ export function ActivityList({ items }: ActivityListProps) {
       ) : (
         <div
           ref={ref}
-          className="flex min-h-0 flex-1 flex-col overflow-y-auto divide-y divide-border px-4 py-2"
-          tabIndex={-1}>
+          className="flex min-h-0 flex-1 flex-col overflow-y-auto divide-y divide-border px-4 py-2">
           {items.map((item, index) => (
             <div
               key={item.name}
               className={cn(
                 "shrink-0 transition-[opacity,translate] duration-400",
-                inView
-                  ? "translate-y-0 opacity-100 ease-out"
-                  : "translate-y-8 opacity-0 ease-in"
+                revealClassName(inView)
               )}
               style={{
                 transitionDelay: `${Math.min(index, itemCascadeMaxSteps) * itemCascadeStepMs}ms`

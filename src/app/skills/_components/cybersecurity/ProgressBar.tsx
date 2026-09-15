@@ -19,6 +19,8 @@ export interface ProgressBarProps {
 /**
  * Displays a toggleable category progress bar, counting up when it enters the viewport.
  *
+ * A single animated progress drives both the solved count and the percentage.
+ *
  * @param props - Category progress, selection state and toggle handler.
  * @returns The progress bar button.
  */
@@ -34,8 +36,9 @@ export function ProgressBar({
   const { ref, inView } = useInView<HTMLDivElement>({
     rootMargin: revealRootMargin
   })
-  const animatedPercent = useCountUp(percent, inView)
-  const animatedSolved = useCountUp(solved, inView)
+  const progress = useCountUp(1, inView)
+  const animatedPercent = percent * progress
+  const animatedSolved = solved * progress
 
   return (
     <div

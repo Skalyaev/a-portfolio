@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import { LanguageBar } from "@/components/chart/LanguageBar"
+import { Section } from "@/components/layout/Section"
 import { useLanguage } from "@/components/i18n/LanguageContext"
 
 import { groupByKeys } from "@/lib/utils/collection"
@@ -12,20 +13,17 @@ import {
 } from "@/constants/github/languages"
 
 import { HoverRelated } from "../HoverRelated"
-import { SkillsSection } from "../SkillsSection"
 import { LanguageTag } from "./LanguageTag"
 
 import type { Experience } from "@/constants/experience/experiences"
-import type { LanguageStat, LanguageProject } from "../../_lib/getSkills"
+import type { LanguageShare } from "@/constants/github/languages"
+import type { LanguageProject } from "../../_lib/getSkills"
 
 const experiencesByLanguage: Partial<Record<string, Experience[]>> =
-  groupByKeys<Experience, string>(
-    experiences,
-    (experience) => experience.languages
-  )
+  groupByKeys(experiences, (experience) => experience.languages)
 
 export interface LanguagesSectionProps {
-  languages: LanguageStat[]
+  languages: LanguageShare[]
   otherLanguagesPercent: number
   projectsByLanguage: Record<string, LanguageProject[]>
 }
@@ -52,7 +50,7 @@ export function LanguagesSection({
    * @param name - Language name or the "other" key.
    * @param hovering - Whether the language tag is hovered.
    */
-  function handleHoverChange(name: string, hovering: boolean) {
+  function handleHoverChange(name: string, hovering: boolean): void {
     setHoveredLanguage((current) => {
       if (hovering) return name
       return current === name ? null : current
@@ -60,7 +58,7 @@ export function LanguagesSection({
   }
 
   return (
-    <SkillsSection
+    <Section
       title={t("skills.languages.title")}
       subtitle={t("skills.languages.subtitle")}>
       {hasLanguages ? (
@@ -111,6 +109,6 @@ export function LanguagesSection({
           {t("skills.loadError")}
         </p>
       )}
-    </SkillsSection>
+    </Section>
   )
 }

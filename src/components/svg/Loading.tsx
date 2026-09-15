@@ -18,11 +18,7 @@ const dots: Dot[] = [
  * @param props - Size and classes.
  * @returns The SVG animation.
  */
-export function Loading({
-  className,
-  width = "100%",
-  height = "100%"
-}: IconProps) {
+export function Loading({ className, width = 24, height = 24 }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

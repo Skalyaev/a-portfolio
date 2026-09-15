@@ -1,9 +1,9 @@
 import { useLanguage } from "@/components/i18n/LanguageContext"
 
 import { useReveal } from "@/lib/hooks/useReveal"
-import { cn } from "@/lib/utils/style"
+import { cn, revealClassName } from "@/lib/utils/style"
 
-import { revealRootMargin } from "@/constants/animation"
+import { revealDurationMs, revealRootMargin } from "@/constants/animation"
 import {
   skillCategoryIcons,
   skillDescriptionKeys,
@@ -16,8 +16,6 @@ import type { Technology } from "@/constants/github/projects"
 import type { Experience } from "@/constants/experience/experiences"
 import type { SkillCategory } from "@/constants/skills/tools"
 import type { LanguageProject } from "../../_lib/getSkills"
-
-const transitionDurationMs = 400
 
 export interface ToolCategoryProps {
   category: SkillCategory
@@ -44,7 +42,7 @@ export function ToolCategory({
   const { ref, entered, transitionDelay } = useReveal<HTMLDivElement>({
     enabled: true,
     delayMs,
-    durationMs: transitionDurationMs,
+    durationMs: revealDurationMs,
     rootMargin: revealRootMargin
   })
 
@@ -53,9 +51,7 @@ export function ToolCategory({
       ref={ref}
       className={cn(
         "flex flex-col gap-3 border-2 border-border px-4 py-3 cursor-default transition-[opacity,translate] duration-400",
-        entered
-          ? "translate-y-0 opacity-100 ease-out"
-          : "translate-y-8 opacity-0 ease-in"
+        revealClassName(entered)
       )}
       style={{ transitionDelay }}>
       <div className="flex items-center gap-1 text-foreground">

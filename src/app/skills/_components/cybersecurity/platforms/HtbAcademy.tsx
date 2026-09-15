@@ -1,3 +1,5 @@
+import { useMemo } from "react"
+
 import { HackTheBox } from "@/components/svg/HackTheBox"
 import { useLanguage } from "@/components/i18n/LanguageContext"
 
@@ -15,6 +17,8 @@ import { StatTile } from "../StatTile"
 import { CategoryProgressList } from "../CategoryProgressList"
 import { ActivityList } from "../ActivityList"
 
+import type { ActivityEntry } from "@/constants/skills/profile"
+
 const totalModules = hackTheBoxAcademyData.categories.reduce(
   (sum, category) => sum + category.total,
   0
@@ -31,6 +35,10 @@ export function HtbAcademy() {
     useToggleList<string>()
 
   const { lastUpdated, categories, modules } = hackTheBoxAcademyData
+  const activityItems = useMemo<ActivityEntry[]>(
+    () => toActivityItems(modules, selectedCategories, locale),
+    [modules, selectedCategories, locale]
+  )
 
   return (
     <ProfileCard
@@ -60,11 +68,7 @@ export function HtbAcademy() {
           />
         </div>
       }
-      right={
-        <ActivityList
-          items={toActivityItems(modules, selectedCategories, locale)}
-        />
-      }
+      right={<ActivityList items={activityItems} />}
     />
   )
 }

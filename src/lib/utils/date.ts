@@ -1,3 +1,52 @@
+type DateStyle = "monthYear" | "fullDate"
+
+const dateFormatOptions: Record<DateStyle, Intl.DateTimeFormatOptions> = {
+  monthYear: { month: "long", year: "numeric", timeZone: "UTC" },
+  fullDate: { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }
+}
+
+const dateFormatters = new Map<string, Intl.DateTimeFormat>()
+const monthCountFormatters = new Map<string, Intl.NumberFormat>()
+
+/**
+ * Returns a cached date formatter, since building an `Intl.DateTimeFormat` is costly.
+ *
+ * @param locale - BCP 47 locale used for formatting.
+ * @param style - Parts of the date to display.
+ * @returns The formatter for this locale and style.
+ */
+function getDateFormatter(
+  locale: string,
+  style: DateStyle
+): Intl.DateTimeFormat {
+  const key = `${locale}|${style}`
+  const cached = dateFormatters.get(key)
+  if (cached) return cached
+
+  const formatter = new Intl.DateTimeFormat(locale, dateFormatOptions[style])
+  dateFormatters.set(key, formatter)
+  return formatter
+}
+
+/**
+ * Returns a cached month count formatter, since building an `Intl.NumberFormat` is costly.
+ *
+ * @param locale - BCP 47 locale used for formatting.
+ * @returns The formatter for this locale.
+ */
+function getMonthCountFormatter(locale: string): Intl.NumberFormat {
+  const cached = monthCountFormatters.get(locale)
+  if (cached) return cached
+
+  const formatter = new Intl.NumberFormat(locale, {
+    style: "unit",
+    unit: "month",
+    unitDisplay: "long"
+  })
+  monthCountFormatters.set(locale, formatter)
+  return formatter
+}
+
 /**
  * Formats a date as a localized long month and year in UTC, e.g. "March 2024".
  *
@@ -9,11 +58,7 @@
  * @returns The formatted date.
  */
 export function formatMonthYear(date: string | Date, locale: string): string {
-  return new Intl.DateTimeFormat(locale, {
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC"
-  }).format(new Date(date))
+  return getDateFormatter(locale, "monthYear").format(new Date(date))
 }
 
 /**
@@ -24,12 +69,7 @@ export function formatMonthYear(date: string | Date, locale: string): string {
  * @returns The formatted date.
  */
 export function formatFullDate(date: string | Date, locale: string): string {
-  return new Intl.DateTimeFormat(locale, {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC"
-  }).format(new Date(date))
+  return getDateFormatter(locale, "fullDate").format(new Date(date))
 }
 
 /**
@@ -40,21 +80,17 @@ export function formatFullDate(date: string | Date, locale: string): string {
  * @returns The formatted duration.
  */
 export function formatMonthCount(months: number, locale: string): string {
-  return new Intl.NumberFormat(locale, {
-    style: "unit",
-    unit: "month",
-    unitDisplay: "long"
-  }).format(months)
+  return getMonthCountFormatter(locale).format(months)
 }
 
 /**
- * Counts the whole months from a start date up to and including an end date's month, in UTC.
+ * Counts the months between the month of a start date and the month of an end date, in UTC.
  *
  * @param start - ISO string or `Date` marking the first month.
  * @param end - ISO string or `Date` marking the last month.
- * @returns The inclusive month count between the two dates.
+ * @returns The number of months from `start` to `end`, e.g. 1 from January to February.
  */
-export function monthsBetweenInclusive(
+export function monthsBetween(
   start: string | Date,
   end: string | Date
 ): number {
@@ -62,8 +98,7 @@ export function monthsBetweenInclusive(
   const to = new Date(end)
   return (
     (to.getUTCFullYear() - from.getUTCFullYear()) * 12 +
-    (to.getUTCMonth() - from.getUTCMonth()) +
-    1
+    (to.getUTCMonth() - from.getUTCMonth())
   )
 }
 

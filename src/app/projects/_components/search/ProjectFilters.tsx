@@ -6,14 +6,12 @@ import { cn } from "@/lib/utils/style"
 
 import { languageLightColors } from "@/constants/github/languages"
 import { projectTagIcons } from "@/constants/github/projects"
+import { fieldLabelClassName } from "@/constants/style"
 
-import type { CSSProperties } from "react"
+import type { LanguageShare } from "@/constants/github/languages"
 import type { ProjectTag } from "@/constants/github/projects"
 
-export interface AvailableLanguage {
-  name: string
-  color: string
-}
+export type AvailableLanguage = Pick<LanguageShare, "name" | "color">
 
 export interface ProjectFiltersProps {
   availableTags: ProjectTag[]
@@ -46,9 +44,7 @@ export function ProjectFilters({
 
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-xs text-muted select-none">
-        {t("projects.applyFilters")}
-      </span>
+      <span className={fieldLabelClassName}>{t("projects.applyFilters")}</span>
       <div className="flex flex-wrap items-center gap-2">
         {availableTags.map((tag) => {
           const isSelected = selectedTags.includes(tag)
@@ -83,13 +79,11 @@ export function ProjectFilters({
               onClick={() => onToggleLanguage(language.name)}
               selected={isSelected}
               ariaPressed={isSelected}
-              style={
-                {
-                  "--lang-color": language.color,
-                  "--lang-bg":
-                    languageLightColors[language.name] ?? language.color
-                } as CSSProperties
-              }
+              style={{
+                "--lang-color": language.color,
+                "--lang-bg":
+                  languageLightColors[language.name] ?? language.color
+              }}
               className={cn(
                 "border-2 py-1.5 shadow-xs",
                 isSelected

@@ -29,15 +29,14 @@ FROM deps AS builder
 ENV NODE_ENV=production
 
 COPY postcss.config.mjs ./
-COPY next-env.d.ts ./
 COPY next.config.ts ./
 COPY tsconfig.json ./
-COPY eslint.config.mjs ./
 
 COPY public ./public
 COPY src ./src
 
-RUN npm run build
+RUN --mount=type=secret,id=env,target=/home/node/workdir/.env,uid=1000 \
+  npm run build
 
 #================================#
 FROM base AS prod

@@ -1,26 +1,42 @@
+import { Section } from "@/components/layout/Section"
 import { useLanguage } from "@/components/i18n/LanguageContext"
 
-import { diploma } from "@/constants/education/diploma"
+import { useReveal } from "@/lib/hooks/useReveal"
+import { cn, revealClassName } from "@/lib/utils/style"
 
-import { labelClassName } from "../_lib/styles"
-import { EducationSection } from "./EducationSection"
+import { diploma } from "@/constants/education/diploma"
+import {
+  revealCascadeStepMs,
+  revealDurationMs,
+  revealRootMargin
+} from "@/constants/animation"
+import { labelClassName } from "@/constants/style"
 
 import type { CompetencyBlock } from "@/constants/education/diploma"
 
 interface CompetencyBlockItemProps {
   block: CompetencyBlock
+  delayMs: number
 }
 
 /**
  * Displays a collapsible competency block. Its code, kind, title and description stay visible
  * whether the block is collapsed or expanded; its full list of competencies only shows expanded.
+ * Slides in the first time it enters the viewport.
  *
  * @param props - Component props.
  * @param props.block - Competency block to display.
+ * @param props.delayMs - Entrance animation delay in milliseconds.
  * @returns The competency block.
  */
-function CompetencyBlockItem({ block }: CompetencyBlockItemProps) {
+function CompetencyBlockItem({ block, delayMs }: CompetencyBlockItemProps) {
   const { t } = useLanguage()
+  const { ref, entered, transitionDelay } = useReveal<HTMLDetailsElement>({
+    enabled: true,
+    delayMs,
+    durationMs: revealDurationMs,
+    rootMargin: revealRootMargin
+  })
 
   const blockKey = `education.competencies.blocks.${block.id}`
   const kind = block.isOption
@@ -28,10 +44,16 @@ function CompetencyBlockItem({ block }: CompetencyBlockItemProps) {
     : t("education.competencies.common")
 
   return (
-    <details className="group border-2 border-border transition-colors has-[.block-trigger:hover]:border-foreground has-[:focus-visible]:border-foreground">
-      <summary className="flex cursor-pointer list-none items-stretch justify-between gap-4 px-4 py-3 select-none focus-visible:outline-none [&::-webkit-details-marker]:hidden">
+    <details
+      ref={ref}
+      className={cn(
+        "group border-2 border-border transition-[color,background-color,border-color,opacity,translate] duration-[400ms,400ms,200ms,400ms,400ms] has-[.block-trigger:hover]:border-foreground has-[:focus-visible]:border-foreground",
+        revealClassName(entered)
+      )}
+      style={{ transitionDelay }}>
+      <summary className="block-trigger flex cursor-pointer list-none items-stretch justify-between gap-4 px-4 py-3 select-none focus-visible:outline-none [&::-webkit-details-marker]:hidden">
         <span className="flex flex-col gap-1">
-          <span className="block-trigger flex flex-col gap-1">
+          <span className="flex flex-col gap-1">
             <span className="flex flex-wrap items-center gap-2">
               <span className={labelClassName}>{block.code}</span>
               <span className="border border-border px-2 py-0.5 text-2xs text-muted">
@@ -48,7 +70,7 @@ function CompetencyBlockItem({ block }: CompetencyBlockItemProps) {
         </span>
         <span
           aria-hidden="true"
-          className="block-trigger relative flex w-4 shrink-0 items-center justify-center text-muted group-has-[.block-trigger:hover]:text-foreground group-has-[:focus-visible]:text-foreground">
+          className="relative flex w-4 shrink-0 items-center justify-center text-border group-has-[.block-trigger:hover]:text-foreground group-has-[:focus-visible]:text-foreground">
           <span className="absolute h-0.5 w-3 bg-current" />
           <span className="absolute h-3 w-0.5 bg-current group-open:scale-y-0" />
         </span>
@@ -71,16 +93,19 @@ export function CompetenciesSection() {
   const { t } = useLanguage()
 
   return (
-    <EducationSection
+    <Section
       title={t("education.competencies.title")}
       subtitle={t("education.competencies.subtitle")}>
       <ul className="flex flex-col gap-2 pb-6 md:pb-10">
-        {diploma.blocks.map((block) => (
+        {diploma.blocks.map((block, index) => (
           <li key={block.id}>
-            <CompetencyBlockItem block={block} />
+            <CompetencyBlockItem
+              block={block}
+              delayMs={index * revealCascadeStepMs}
+            />
           </li>
         ))}
       </ul>
-    </EducationSection>
+    </Section>
   )
 }

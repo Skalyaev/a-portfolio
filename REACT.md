@@ -48,7 +48,7 @@ Groups in this order, separated by one blank line:
 - JSDoc on every function — components, hooks, helpers, inner handlers: one-line summary; add a paragraph only for non-obvious behavior.
 - Tags: `@param` per parameter (`props`, plus `props.foo` when useful), `@returns` unless `void`, `@throws` if it throws. No types in tags.
 - English only.
-- Other comments explain a non-obvious why (workaround, invariant, constraint), never what the code does.
+- No non-JSDoc comments.
 
 ## HTML
 

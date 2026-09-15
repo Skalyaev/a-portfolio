@@ -1,6 +1,6 @@
 import { useCountUp } from "@/lib/hooks/useCountUp"
 
-import type { CSSProperties } from "react"
+import type { CssVariablesStyle } from "@/lib/utils/style"
 
 const percentAnimationDurationMs = 600
 
@@ -24,17 +24,16 @@ export function LanguageTag({
   highlighted
 }: LanguageTagProps) {
   const animatedPercent = useCountUp(percent, true, percentAnimationDurationMs)
+  const style: CssVariablesStyle = {
+    "--tag-color": color,
+    "borderColor": highlighted ? color : undefined
+  }
 
   return (
     <div
       tabIndex={0}
       className="flex items-center gap-2 border-2 border-border px-3 py-1.5 transition-colors cursor-default focus:outline-none focus:border-[var(--tag-color)]"
-      style={
-        {
-          "--tag-color": color,
-          "borderColor": highlighted ? color : undefined
-        } as CSSProperties
-      }>
+      style={style}>
       <span
         className="h-2 w-2 shrink-0"
         style={{ backgroundColor: color }}

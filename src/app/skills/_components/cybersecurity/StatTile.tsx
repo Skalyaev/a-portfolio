@@ -1,3 +1,7 @@
+import { cn } from "@/lib/utils/style"
+
+import { labelClassName } from "@/constants/style"
+
 export interface StatTileProps {
   label: string
   value: string
@@ -14,7 +18,7 @@ export interface StatTileProps {
 export function StatTile({ label, value }: StatTileProps) {
   return (
     <div className="flex w-28 shrink-0 flex-col justify-between border-2 border-border px-3 py-2 gap-1">
-      <span className="self-start text-2xs text-muted uppercase tracking-wide font-light">
+      <span className={cn(labelClassName, "self-start font-light")}>
         {label}
       </span>
       <span

@@ -4,14 +4,21 @@ import { useCallback, useMemo, useState } from "react"
 
 import { LanguageContext } from "@/components/i18n/LanguageContext"
 
-import { localeCookieName } from "@/constants/i18n/config"
-import en from "@/constants/i18n/messages/en.json"
-import fr from "@/constants/i18n/messages/fr.json"
+import { localeCookieName, messages } from "@/constants/i18n/config"
 
-import type { Messages, Locale } from "@/constants/i18n/config"
+import type { ReactNode } from "react"
 import type { LanguageContextValue } from "@/components/i18n/LanguageContext"
+import type { Locale } from "@/constants/i18n/config"
 
-const messages: Messages = { en, fr }
+/**
+ * Tells whether a value is a non-null object whose keys can be read.
+ *
+ * @param value - Value to check.
+ * @returns `true` when `value` is a non-null object.
+ */
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null
+}
 
 /**
  * Resolves a dot-separated translation key in a messages dictionary.
@@ -25,16 +32,14 @@ function resolve(dict: unknown, key: string): string {
     .split(".")
     .reduce<unknown>(
       (acc, part) =>
-        acc && typeof acc === "object" && part in acc
-          ? (acc as Record<string, unknown>)[part]
-          : undefined,
+        isRecord(acc) && Object.hasOwn(acc, part) ? acc[part] : undefined,
       dict
     )
   return typeof value === "string" ? value : key
 }
 
 export interface LanguageProviderProps {
-  children: React.ReactNode
+  children: ReactNode
   initialLocale: Locale
 }
 

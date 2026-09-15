@@ -13,10 +13,12 @@ export const githubRevalidateSeconds = 3600
 
 export const githubLanguageFetchConcurrency = 8
 
+export const projectDescriptionsKey = "projects.descriptions"
+
 export type ProjectTag =
   "web" | "cybersecurity" | "sysadmin" | "network" | "unix" | "algorithms"
 
-export const allProjectTags: ProjectTag[] = [
+export const projectTags: ProjectTag[] = [
   "web",
   "cybersecurity",
   "sysadmin",
@@ -64,16 +66,13 @@ export type Technology =
   | "Git"
   | "Vue.js"
   | "FastAPI"
-  | "Figma"
-  | "Hostinger"
-  | "Raspberry Pi"
   | "Sentry"
   | "Burp Suite"
 
 interface ProjectOverride {
   htmlUrl: string
   tags: ProjectTag[]
-  technologies?: Technology[]
+  technologies: Technology[]
 }
 
 export const projectOverrides: ProjectOverride[] = [
@@ -189,7 +188,14 @@ export const projectOverrides: ProjectOverride[] = [
   {
     htmlUrl: "https://github.com/Skalyaev/ft_transcendence",
     tags: ["web"],
-    technologies: ["React", "NestJS", "PostgreSQL", "Tailwind CSS", "Docker", "Git"]
+    technologies: [
+      "React",
+      "NestJS",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "Docker",
+      "Git"
+    ]
   },
   {
     htmlUrl: "https://github.com/Skalyaev/webserv",

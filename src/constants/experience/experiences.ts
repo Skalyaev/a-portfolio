@@ -22,13 +22,13 @@ import { VueJs } from "@/components/svg/VueJs"
 import type { Technology } from "@/constants/github/projects"
 import type { IconComponent } from "@/constants/icons"
 
-export type ExperienceId = "klaire" | "limed" | "mbc" | "opale"
+type ExperienceId = "klaire" | "limed" | "mbc" | "opale"
 
-export type ContractType = "internship" | "freelance" | "permanent"
+type ContractType = "internship" | "freelance" | "permanent"
 
-export type LeaderRole = "ceo" | "cto" | "founder" | "cofounder"
+type LeaderRole = "ceo" | "cto" | "founder" | "cofounder"
 
-export type ExperienceTechnology = Extract<
+type ExperienceTechnology = Extract<
   Technology,
   | "React"
   | "Next.js"
@@ -44,8 +44,7 @@ export type ExperienceTechnology = Extract<
   | "Git"
 >
 
-// GitHub linguist names, so they match the language names of the skills page.
-export type ExperienceLanguage =
+type ExperienceLanguage =
   | "Python"
   | "JavaScript"
   | "Rust"
@@ -55,9 +54,8 @@ export type ExperienceLanguage =
   | "HTML"
   | "CSS"
 
-export interface ExperienceLeader {
+interface ExperienceLeader {
   name: string
-  // A leader can hold several roles at once, e.g. sole founder and CEO.
   roles: LeaderRole[]
   linkedinUrl: string
 }
@@ -76,7 +74,6 @@ export interface Experience {
   technologies: ExperienceTechnology[]
 }
 
-// Most recent first.
 export const experiences: Experience[] = [
   {
     id: "klaire",
@@ -103,7 +100,6 @@ export const experiences: Experience[] = [
       "fullstack",
       "fullstackContribution",
       "rituals",
-      "frontendRedesign",
       "bugTracking"
     ],
     languages: ["JavaScript", "TypeScript", "HTML", "CSS", "SQL", "Bash"],
@@ -158,7 +154,13 @@ export const experiences: Experience[] = [
     contract: "freelance",
     startDate: "2024-06-01",
     endDate: "2025-04-01",
-    highlightKeys: ["webInterface", "backend", "crossPlatform", "deployment"],
+    highlightKeys: [
+      "webInterface",
+      "resourceManagement",
+      "backend",
+      "crossPlatform",
+      "deployment"
+    ],
     languages: [
       "JavaScript",
       "TypeScript",
@@ -202,12 +204,12 @@ export const experiences: Experience[] = [
 ]
 
 export const languageIcons: Record<ExperienceLanguage, IconComponent> = {
-  Python: Python,
-  JavaScript: JavaScript,
-  TypeScript: TypeScript,
-  Rust: Rust,
+  Python,
+  JavaScript,
+  TypeScript,
+  Rust,
   SQL: Sql,
-  Bash: Bash,
+  Bash,
   HTML: Html,
   CSS: Css
 }

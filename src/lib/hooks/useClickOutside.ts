@@ -19,8 +19,17 @@ export function useClickOutside(
   useEffect(() => {
     if (!enabled) return
 
-    function handlePointerDown(event: PointerEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
+    /**
+     * Calls the handler when the press target lies outside the element.
+     *
+     * @param event - Pointer press on the document.
+     */
+    function handlePointerDown(event: PointerEvent): void {
+      if (
+        ref.current &&
+        event.target instanceof Node &&
+        !ref.current.contains(event.target)
+      ) {
         handleClickOutside()
       }
     }

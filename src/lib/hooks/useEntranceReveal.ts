@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 
+import { useTransitionDelay } from "@/lib/hooks/useTransitionDelay"
+
 export interface UseEntranceRevealOptions {
   delayMs: number
   durationMs: number
@@ -24,21 +26,12 @@ export function useEntranceReveal({
   durationMs
 }: UseEntranceRevealOptions): UseEntranceRevealResult {
   const [entered, setEntered] = useState(false)
-  const [settled, setSettled] = useState(false)
+  const transitionDelay = useTransitionDelay(entered, delayMs, durationMs)
 
   useEffect(() => {
     const frame = requestAnimationFrame(() => setEntered(true))
     return () => cancelAnimationFrame(frame)
   }, [])
 
-  useEffect(() => {
-    if (!entered) return
-    const timeout = setTimeout(() => setSettled(true), delayMs + durationMs)
-    return () => clearTimeout(timeout)
-  }, [entered, delayMs, durationMs])
-
-  return {
-    entered,
-    transitionDelay: entered && !settled ? `${delayMs}ms` : "0ms"
-  }
+  return { entered, transitionDelay }
 }

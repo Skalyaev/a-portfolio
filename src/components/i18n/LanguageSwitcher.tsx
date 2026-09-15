@@ -1,6 +1,4 @@
-"use client"
-
-import { useState, useRef } from "react"
+import { useRef, useState } from "react"
 
 import { Button } from "@/components/tag/Button"
 import { Options } from "@/components/tag/Options"
@@ -15,8 +13,9 @@ import { locales } from "@/constants/i18n/config"
 
 import type { OptionsFrom } from "@/components/tag/Options"
 import type { Locale } from "@/constants/i18n/config"
+import type { IconComponent } from "@/constants/icons"
 
-const flags: Record<Locale, typeof En> = { en: En, fr: Fr }
+const flags: Record<Locale, IconComponent> = { en: En, fr: Fr }
 
 export interface LanguageSwitcherProps {
   className?: string

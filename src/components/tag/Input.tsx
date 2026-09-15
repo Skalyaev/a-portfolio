@@ -1,20 +1,20 @@
-"use client"
-
 import { Button } from "@/components/tag/Button"
 import { X } from "@/components/svg/X"
+
+import type { ReactNode } from "react"
 
 export interface InputProps {
   value: string
   onChange: (value: string) => void
-  placeholder?: string
-  ariaLabel?: string
-  icon?: React.ReactNode
-  clearAriaLabel?: string
-  clearTitle?: string
+  placeholder: string
+  ariaLabel: string
+  icon: ReactNode
+  clearAriaLabel: string
+  clearTitle: string
 }
 
 /**
- * Controlled text input with an optional leading icon and a clear button shown when not empty.
+ * Controlled text input with a leading icon and a clear button shown when not empty.
  *
  * @param props - Value, change handler, placeholder, icon and clear button labels.
  * @returns The input field.
@@ -30,11 +30,9 @@ export function Input({
 }: InputProps) {
   return (
     <div className="flex items-center border-2 border-border bg-background transition-colors h-9 hover:border-foreground focus-within:border-foreground group">
-      {icon && (
-        <span className="text-muted group-hover:text-foreground group-focus-within:text-foreground pl-2">
-          {icon}
-        </span>
-      )}
+      <span className="text-muted group-hover:text-foreground group-focus-within:text-foreground pl-2">
+        {icon}
+      </span>
       <input
         type="text"
         value={value}

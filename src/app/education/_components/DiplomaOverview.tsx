@@ -5,8 +5,6 @@ import { formatFullDate } from "@/lib/utils/date"
 
 import { diploma } from "@/constants/education/diploma"
 
-import { RevealSection } from "./RevealSection"
-
 const buttonClassName = "border-2 border-border text-xs"
 
 /**
@@ -23,7 +21,7 @@ export function DiplomaOverview() {
   const isAwarded = diploma.downloadUrl !== null
 
   return (
-    <RevealSection>
+    <section className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
         <div className="flex flex-wrap items-baseline justify-between gap-x-4">
           <h4>{t("education.diploma.name")}</h4>
@@ -60,6 +58,6 @@ export function DiplomaOverview() {
           <p className="text-2xs text-muted italic">{awardNote}</p>
         )}
       </div>
-    </RevealSection>
+    </section>
   )
 }

@@ -2,24 +2,18 @@
 
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 
+import type { ReactNode } from "react"
+
 export interface ThemeProviderProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 /**
- * Wraps `next-themes` with the site configuration (class attribute, light/dark, system default).
+ * Wraps `next-themes`, toggling the theme through a class on the root element.
  *
  * @param props - Children to provide the theme to.
  * @returns The theme provider.
  */
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  return (
-    <NextThemesProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      themes={["light", "dark"]}>
-      {children}
-    </NextThemesProvider>
-  )
+  return <NextThemesProvider attribute="class">{children}</NextThemesProvider>
 }

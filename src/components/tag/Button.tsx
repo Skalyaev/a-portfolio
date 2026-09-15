@@ -1,27 +1,49 @@
-"use client"
-
-import { useEffect, useState } from "react"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
 import { cn } from "@/lib/utils/style"
 
+import type { ReactNode } from "react"
+import type { CssVariablesStyle } from "@/lib/utils/style"
+
 export interface ButtonProps {
-  children?: React.ReactNode
+  children: ReactNode
+  type?: "button" | "submit"
   selected?: boolean
-  onClick?: (event: React.MouseEvent) => void
+  onClick?: () => void
   href?: string
   target?: string
   rel?: string
   className?: string
-  style?: React.CSSProperties
+  style?: CssVariablesStyle
   disabled?: boolean
   suppressHydrationWarning?: boolean
-  tabIndex?: number
   title?: string
   ariaLabel?: string
   ariaExpanded?: boolean
   ariaPressed?: boolean
-  animateBackground?: "fromLeft" | "fromRight" | "fromTop" | "fromBottom"
+  animateBackground?: "fromLeft" | "fromRight"
+}
+
+const interactiveVariants: string[] = ["hover", "focus-visible"]
+
+/**
+ * Removes the classes applied on hover or keyboard focus, whatever their other variants.
+ *
+ * @param classNames - Space-separated class list.
+ * @returns The class list without any class carrying a `hover` or `focus-visible` variant.
+ */
+function withoutInteractiveClasses(classNames: string): string {
+  return classNames
+    .split(" ")
+    .filter(
+      (token) =>
+        !token
+          .split(":")
+          .slice(0, -1)
+          .some((variant) => interactiveVariants.includes(variant))
+    )
+    .join(" ")
 }
 
 /**
@@ -33,6 +55,7 @@ export interface ButtonProps {
  */
 export function Button({
   children,
+  type = "button",
   selected,
   onClick,
   href,
@@ -42,7 +65,6 @@ export function Button({
   style,
   disabled,
   suppressHydrationWarning,
-  tabIndex,
   title,
   ariaLabel,
   ariaExpanded,
@@ -57,40 +79,26 @@ export function Button({
     return () => cancelAnimationFrame(frame)
   }, [animateBackground])
 
-  const backgroundGrown = isMounted && selected
-  const isHorizontalAnimation =
-    animateBackground === "fromLeft" || animateBackground === "fromRight"
-
-  const styles = cn(
+  const mergedStyles = cn(
     "relative cursor-pointer bg-background text-muted text-sm font-medium inline-flex gap-1 items-center justify-center focus-visible:outline-none px-3 py-2 hover:text-foreground focus-visible:text-foreground transition hover:bg-accent focus-visible:bg-accent overflow-hidden select-none",
-    disabled &&
-      "cursor-not-allowed opacity-50 hover:bg-background focus-visible:bg-background hover:text-muted focus-visible:text-muted",
+    disabled && "cursor-not-allowed opacity-50",
     selected &&
       (animateBackground
         ? "text-background hover:text-background focus-visible:text-background"
         : "bg-foreground text-background hover:text-background focus-visible:text-background hover:bg-foreground focus-visible:bg-foreground"),
     className
   )
+  const styles = disabled
+    ? withoutInteractiveClasses(mergedStyles)
+    : mergedStyles
 
   const backgroundLayer = animateBackground && (
-    <div
+    <span
       aria-hidden="true"
       className={cn(
-        "absolute bg-foreground pointer-events-none",
-        isHorizontalAnimation
-          ? "top-0 h-full transition-[width] duration-300 ease-out"
-          : "left-0 w-full transition-[height] duration-300 ease-out",
-        animateBackground === "fromLeft" && "left-0",
-        animateBackground === "fromRight" && "right-0",
-        animateBackground === "fromTop" && "top-0",
-        animateBackground === "fromBottom" && "bottom-0",
-        isHorizontalAnimation
-          ? backgroundGrown
-            ? "w-full"
-            : "w-0"
-          : backgroundGrown
-            ? "h-full"
-            : "h-0"
+        "absolute top-0 h-full bg-foreground pointer-events-none transition-[width] duration-300 ease-out",
+        animateBackground === "fromLeft" ? "left-0" : "right-0",
+        isMounted && selected ? "w-full" : "w-0"
       )}
     />
   )
@@ -112,7 +120,6 @@ export function Button({
         onClick={onClick}
         className={styles}
         style={style}
-        tabIndex={tabIndex}
         title={title}
         aria-label={ariaLabel}
         aria-expanded={ariaExpanded}
@@ -126,13 +133,12 @@ export function Button({
 
   return (
     <button
-      type="button"
+      type={type}
       onClick={onClick}
       className={styles}
       style={style}
       disabled={disabled}
       suppressHydrationWarning={suppressHydrationWarning}
-      tabIndex={tabIndex}
       title={title}
       aria-label={ariaLabel}
       aria-expanded={ariaExpanded}

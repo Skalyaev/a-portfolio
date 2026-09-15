@@ -3,8 +3,7 @@ import { useCallback, useRef, useState } from "react"
 import type { RefCallback } from "react"
 
 export interface UseInViewOptions {
-  rootMargin?: string
-  threshold?: number
+  rootMargin: string
 }
 
 export interface UseInViewResult<T extends Element> {
@@ -17,13 +16,12 @@ export interface UseInViewResult<T extends Element> {
  *
  * `inView` stays true once reached and the observer is disconnected.
  *
- * @param options - `IntersectionObserver` root margin and threshold.
+ * @param options - `IntersectionObserver` root margin.
  * @returns A ref to attach to the element and whether it has been seen.
  */
-export function useInView<T extends Element>(
-  options: UseInViewOptions = {}
-): UseInViewResult<T> {
-  const { rootMargin = "0px", threshold = 0 } = options
+export function useInView<T extends Element>({
+  rootMargin
+}: UseInViewOptions): UseInViewResult<T> {
   const [inView, setInView] = useState(false)
   const observerRef = useRef<IntersectionObserver | null>(null)
   const triggeredRef = useRef(false)
@@ -42,12 +40,12 @@ export function useInView<T extends Element>(
           setInView(true)
           observer.disconnect()
         },
-        { rootMargin, threshold }
+        { rootMargin }
       )
       observer.observe(element)
       observerRef.current = observer
     },
-    [rootMargin, threshold]
+    [rootMargin]
   )
 
   return { ref, inView }

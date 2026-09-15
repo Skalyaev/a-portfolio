@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useState } from "react"
 
 import { cn } from "@/lib/utils/style"
@@ -12,7 +10,7 @@ import {
 const dimmedOpacity = "opacity-20"
 const fullOpacity = "opacity-100"
 
-export interface LanguageBarSegment {
+interface LanguageBarSegment {
   name: string
   percent: number
   color: string
@@ -20,24 +18,22 @@ export interface LanguageBarSegment {
 
 export interface LanguageBarProps {
   languages: LanguageBarSegment[]
-  otherPercent?: number
-  otherLabel?: string
-  className?: string
+  otherPercent: number
+  otherLabel: string
   highlightedName?: string | null
   animate?: boolean
 }
 
 /**
- * Horizontal stacked bar showing the share of each language, with an optional "other" segment.
+ * Horizontal stacked bar showing the share of each language, with an "other" segment when non-zero.
  *
- * @param props - Segments, optional "other" share, highlighted language and entry animation flag.
+ * @param props - Segments, "other" share and label, highlighted language and entry animation flag.
  * @returns The rendered language bar.
  */
 export function LanguageBar({
   languages,
-  otherPercent = 0,
+  otherPercent,
   otherLabel,
-  className,
   highlightedName,
   animate = false
 }: LanguageBarProps) {
@@ -55,7 +51,7 @@ export function LanguageBar({
    * @param name - Language name of the segment.
    * @returns Full opacity when nothing or this segment is highlighted, dimmed otherwise.
    */
-  function opacityFor(name: string) {
+  function opacityFor(name: string): string {
     if (!highlightedName) return fullOpacity
     return name === highlightedName ? fullOpacity : dimmedOpacity
   }
@@ -69,8 +65,7 @@ export function LanguageBar({
               "transition-[width,opacity] duration-600 ease-out",
               entered ? "w-full opacity-100" : "w-0 opacity-0"
             )
-          : "w-full",
-        className
+          : "w-full"
       )}>
       {languages.map((language) => (
         <span
@@ -88,11 +83,7 @@ export function LanguageBar({
       ))}
       {otherPercent > 0 && (
         <span
-          title={
-            otherLabel
-              ? `${otherLabel} · ${otherPercent.toFixed(1)}%`
-              : `${otherPercent.toFixed(1)}%`
-          }
+          title={`${otherLabel} · ${otherPercent.toFixed(1)}%`}
           className={cn(
             "transition-opacity duration-200",
             opacityFor(otherLanguageKey)

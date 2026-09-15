@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
 /**
  * Cubic ease-out curve.
@@ -24,25 +24,25 @@ export function useCountUp(
   durationMs: number = 800
 ): number {
   const [value, setValue] = useState(0)
-  const frameRef = useRef<number | null>(null)
 
   useEffect(() => {
     if (!trigger) return
 
     const startTime = performance.now()
 
-    function tick(now: number) {
+    /**
+     * Updates the value for the current frame and schedules the next one until done.
+     *
+     * @param now - Timestamp of the frame, in milliseconds.
+     */
+    function tick(now: number): void {
       const progress = Math.min(1, (now - startTime) / durationMs)
       setValue(target * easeOutCubic(progress))
-      if (progress < 1) {
-        frameRef.current = requestAnimationFrame(tick)
-      }
+      if (progress < 1) frame = requestAnimationFrame(tick)
     }
 
-    frameRef.current = requestAnimationFrame(tick)
-    return () => {
-      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current)
-    }
+    let frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
   }, [trigger, target, durationMs])
 
   return value

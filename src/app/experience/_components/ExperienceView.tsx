@@ -3,11 +3,10 @@
 import { FlexCol } from "@/components/layout/FlexCol"
 import { useLanguage } from "@/components/i18n/LanguageContext"
 
+import { revealCascadeStepMs } from "@/constants/animation"
 import { experiences } from "@/constants/experience/experiences"
 
 import { ExperienceCard } from "./ExperienceCard"
-
-const cardCascadeStepMs = 80
 
 /**
  * Renders the experience page body: one card per professional experience, most recent first.
@@ -28,7 +27,7 @@ export function ExperienceView() {
             className="pt-4 first:pt-0">
             <ExperienceCard
               experience={experience}
-              delayMs={index * cardCascadeStepMs}
+              delayMs={index * revealCascadeStepMs}
               isLast={index === experiences.length - 1}
             />
           </li>

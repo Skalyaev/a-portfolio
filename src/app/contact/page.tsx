@@ -1,10 +1,10 @@
-import Loading from "../loading"
+import { ContactView } from "./_components/ContactView"
 
 /**
- * Renders the contact page, a loader until its content exists.
+ * Renders the contact form.
  *
  * @returns The contact page content.
  */
 export default function ContactPage() {
-  return <Loading />
+  return <ContactView />
 }

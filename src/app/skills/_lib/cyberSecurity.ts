@@ -1,7 +1,7 @@
 import { formatMonthYear } from "@/lib/utils/date"
 import { slugify, translateWithFallback } from "@/lib/utils/i18n"
 
-import type { HtbEntry } from "@/constants/skills/hackthebox"
+import type { ActivityEntry } from "@/constants/skills/profile"
 
 /**
  * Returns the timestamp used to sort an activity entry.
@@ -23,11 +23,11 @@ function getSortTime(date: string | undefined): number {
  * @returns The entries ready to display.
  */
 export function toActivityItems(
-  entries: HtbEntry[],
+  entries: ActivityEntry[],
   selectedCategories: string[],
   locale: string,
   undatedLabel?: string
-): HtbEntry[] {
+): ActivityEntry[] {
   return entries
     .filter(
       (entry) =>

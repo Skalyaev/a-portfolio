@@ -2,7 +2,7 @@ import { createContext, useContext } from "react"
 
 import type { Locale } from "@/constants/i18n/config"
 
-export type LanguageContextValue = {
+export interface LanguageContextValue {
   locale: Locale
   setLocale: (locale: Locale) => void
   t: (key: string) => string

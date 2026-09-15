@@ -5,14 +5,11 @@ import {
   githubLanguageFetchConcurrency,
   githubRevalidateSeconds,
   githubUsername,
+  projectDescriptionsKey,
   projectOverrides
 } from "@/constants/github/projects"
 
-export interface LanguageStat {
-  name: string
-  percent: number
-  color: string
-}
+import type { LanguageShare } from "@/constants/github/languages"
 
 export interface LanguageProject {
   name: string
@@ -20,8 +17,8 @@ export interface LanguageProject {
   descriptionKey: string
 }
 
-export interface SkillsData {
-  languages: LanguageStat[]
+interface SkillsData {
+  languages: LanguageShare[]
   otherLanguagesPercent: number
   projectsByLanguage: Record<string, LanguageProject[]>
 }
@@ -47,14 +44,14 @@ export async function getSkills(): Promise<SkillsData> {
     const project: LanguageProject = {
       name: repo.name,
       htmlUrl: repo.htmlUrl,
-      descriptionKey: `projects.descriptions.${repo.name}`
+      descriptionKey: `${projectDescriptionsKey}.${repo.name}`
     }
     for (const language of repo.languages) {
       totalBytesByLanguage.set(
         language.name,
         (totalBytesByLanguage.get(language.name) ?? 0) + language.bytes
       )
-      if (language.name in languageColors) {
+      if (languageColors[language.name]) {
         const projects = (projectsByLanguage[language.name] ??= [])
         projects.push(project)
       }
@@ -69,19 +66,19 @@ export async function getSkills(): Promise<SkillsData> {
     return { languages: [], otherLanguagesPercent: 0, projectsByLanguage: {} }
   }
 
-  const languages: LanguageStat[] = Array.from(totalBytesByLanguage.entries())
-    .filter(([name]) => name in languageColors)
-    .map(([name, bytes]) => ({
-      name,
-      percent: (bytes / grandTotalBytes) * 100,
-      color: languageColors[name]
-    }))
+  const languages: LanguageShare[] = Array.from(totalBytesByLanguage.entries())
+    .flatMap(([name, bytes]): LanguageShare[] => {
+      const color = languageColors[name]
+      return color
+        ? [{ name, percent: (bytes / grandTotalBytes) * 100, color }]
+        : []
+    })
     .sort(
       (a, b) => languageOrder.indexOf(a.name) - languageOrder.indexOf(b.name)
     )
 
   const otherLanguagesPercent = Array.from(totalBytesByLanguage.entries())
-    .filter(([name]) => !(name in languageColors))
+    .filter(([name]) => !languageColors[name])
     .reduce((sum, [, bytes]) => sum + (bytes / grandTotalBytes) * 100, 0)
 
   return { languages, otherLanguagesPercent, projectsByLanguage }

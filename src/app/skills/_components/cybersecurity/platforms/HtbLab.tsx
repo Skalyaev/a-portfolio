@@ -1,19 +1,20 @@
+import { useMemo } from "react"
+
 import { HackTheBox } from "@/components/svg/HackTheBox"
 import { useLanguage } from "@/components/i18n/LanguageContext"
 
 import { useToggleList } from "@/lib/hooks/useToggleList"
 import { formatFullDate } from "@/lib/utils/date"
 
-import {
-  hackTheBoxLabData,
-  hackTheBoxProfile
-} from "@/constants/skills/hackthebox"
+import { hackTheBoxLab, hackTheBoxLabData } from "@/constants/skills/hackthebox"
 
 import { toActivityItems } from "../../../_lib/cyberSecurity"
 import { ProfileCard } from "../ProfileCard"
 import { StatTile } from "../StatTile"
 import { CategoryProgressList } from "../CategoryProgressList"
 import { ActivityList } from "../ActivityList"
+
+import type { ActivityEntry } from "@/constants/skills/profile"
 
 const unknownRankLabel = "—"
 
@@ -37,6 +38,10 @@ export function HtbLab() {
     challengeCategories,
     solvedChallenges
   } = hackTheBoxLabData
+  const activityItems = useMemo<ActivityEntry[]>(
+    () => toActivityItems(solvedChallenges, selectedCategories, locale),
+    [solvedChallenges, selectedCategories, locale]
+  )
 
   return (
     <ProfileCard
@@ -46,8 +51,8 @@ export function HtbLab() {
           height={20}
         />
       }
-      title={hackTheBoxProfile.name}
-      href={hackTheBoxProfile.profileUrl}
+      title={hackTheBoxLab.name}
+      href={hackTheBoxLab.profileUrl}
       viewProfileLabel={t("skills.cybersecurity.viewProfile")}
       description={t("skills.cybersecurity.htb.description")}
       headerNote={`${t("skills.cybersecurity.lastUpdated")} ${formatFullDate(lastUpdated, locale)}`}
@@ -74,11 +79,7 @@ export function HtbLab() {
           />
         </div>
       }
-      right={
-        <ActivityList
-          items={toActivityItems(solvedChallenges, selectedCategories, locale)}
-        />
-      }
+      right={<ActivityList items={activityItems} />}
     />
   )
 }

@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils/style"
 
 import type { ReactNode } from "react"
 
-export interface SkillsSectionProps {
+export interface SectionProps {
   title: string
   subtitle: string
   className?: string
@@ -10,17 +10,17 @@ export interface SkillsSectionProps {
 }
 
 /**
- * Renders a skills page section with a title and subtitle.
+ * Renders a page section with a title and subtitle.
  *
  * @param props - Section heading, extra classes and content.
  * @returns The section.
  */
-export function SkillsSection({
+export function Section({
   title,
   subtitle,
   className,
   children
-}: SkillsSectionProps) {
+}: SectionProps) {
   return (
     <section className={cn("flex flex-col gap-4", className)}>
       <div className="flex flex-col gap-1">

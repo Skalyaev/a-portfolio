@@ -7,10 +7,11 @@ import { LanguagesSection } from "./languages/LanguagesSection"
 import { ToolsSection } from "./tools/ToolsSection"
 import { CyberSecuritySection } from "./cybersecurity/CyberSecuritySection"
 
-import type { LanguageStat, LanguageProject } from "../_lib/getSkills"
+import type { LanguageShare } from "@/constants/github/languages"
+import type { LanguageProject } from "../_lib/getSkills"
 
 export interface SkillsViewProps {
-  languages: LanguageStat[]
+  languages: LanguageShare[]
   otherLanguagesPercent: number
   projectsByLanguage: Record<string, LanguageProject[]>
 }

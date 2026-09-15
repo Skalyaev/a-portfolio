@@ -3,27 +3,26 @@ import { useLanguage } from "@/components/i18n/LanguageContext"
 import { Globe } from "@/components/svg/Globe"
 import { LinkedIn } from "@/components/svg/LinkedIn"
 
-import { cn } from "@/lib/utils/style"
+import { useReveal } from "@/lib/hooks/useReveal"
+import { cn, revealClassName } from "@/lib/utils/style"
 import {
   formatMonthCount,
   formatMonthYear,
-  monthsBetweenInclusive
+  monthsBetween
 } from "@/lib/utils/date"
 
+import { revealDurationMs, revealRootMargin } from "@/constants/animation"
 import {
   languageIcons,
   technologyIcons
 } from "@/constants/experience/experiences"
 import { skillDescriptionKeys } from "@/constants/skills/tools"
-
-import { useEntranceReveal } from "../_lib/useEntranceReveal"
+import { labelClassName } from "@/constants/style"
 
 import type { Experience } from "@/constants/experience/experiences"
 import type { IconComponent } from "@/constants/icons"
 
-const transitionDurationMs = 400
 const linkClassName = "px-3 py-2 text-2xs text-muted hover:text-foreground"
-const labelClassName = "text-2xs text-muted uppercase tracking-wide"
 
 interface StackItem {
   key: string
@@ -34,18 +33,17 @@ interface StackItem {
 interface StackGroupProps {
   title: string
   items: StackItem[]
-  className?: string
 }
 
 /**
  * Displays a titled list of stack badges, each with its logo.
  *
- * @param props - Group title, badges and extra classes.
+ * @param props - Group title and badges.
  * @returns The stack group.
  */
-function StackGroup({ title, items, className }: StackGroupProps) {
+function StackGroup({ title, items }: StackGroupProps) {
   return (
-    <div className={cn("flex flex-col gap-1.5", className)}>
+    <div className="flex flex-col gap-1.5">
       <span className={labelClassName}>{title}</span>
       <ul className="flex flex-wrap gap-1.5">
         {items.map(({ key, label, Icon }) => (
@@ -74,9 +72,9 @@ export interface ExperienceCardProps {
 /**
  * Displays an experience: company and its links, role, contract, highlights, languages and technologies.
  *
- * The card is anchored by the experience id, so `/experience#<id>` scrolls to it. Unless it is the
- * last one, a bottom border separates it from the next card; it fades in with the rest of the card
- * since it lives on the same animated element.
+ * The card is anchored by the experience id, so `/experience#<id>` scrolls to it, and slides in the
+ * first time it enters the viewport. Unless it is the last one, a bottom border separates it from
+ * the next card; it fades in with the rest of the card since it lives on the same animated element.
  *
  * @param props - Component props.
  * @param props.experience - Experience to display.
@@ -90,15 +88,16 @@ export function ExperienceCard({
   isLast
 }: ExperienceCardProps) {
   const { t, locale } = useLanguage()
-  const { entered, transitionDelay } = useEntranceReveal({
+  const { ref, entered, transitionDelay } = useReveal<HTMLElement>({
+    enabled: true,
     delayMs,
-    durationMs: transitionDurationMs
+    durationMs: revealDurationMs,
+    rootMargin: revealRootMargin
   })
 
   const itemKey = `experience.items.${experience.id}`
   const contract = t(`experience.contracts.${experience.contract}`)
-  const months =
-    monthsBetweenInclusive(experience.startDate, experience.endDate) - 1
+  const months = monthsBetween(experience.startDate, experience.endDate)
   const period = `${formatMonthYear(experience.startDate, locale)} - ${formatMonthYear(experience.endDate, locale)} (${formatMonthCount(months, locale)})`
 
   const languageItems: StackItem[] = experience.languages.map((language) => ({
@@ -116,13 +115,12 @@ export function ExperienceCard({
 
   return (
     <article
+      ref={ref}
       id={experience.id}
       className={cn(
         "flex scroll-mt-6 flex-col gap-2 transition-[opacity,translate] duration-400 md:scroll-mt-10",
         !isLast && "border-b border-border pb-6",
-        entered
-          ? "translate-y-0 opacity-100 ease-out"
-          : "translate-y-8 opacity-0 ease-in"
+        revealClassName(entered)
       )}
       style={{ transitionDelay }}>
       <div className="flex flex-col gap-1">

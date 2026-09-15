@@ -1,5 +1,3 @@
-"use client"
-
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/tag/Button"
@@ -10,10 +8,19 @@ import { useLanguage } from "@/components/i18n/LanguageContext"
 import { useHasMounted } from "@/lib/hooks/useHasMounted"
 import { cn } from "@/lib/utils/style"
 
-const options = [
+import type { ButtonProps } from "@/components/tag/Button"
+import type { IconComponent } from "@/constants/icons"
+
+interface ThemeOption {
+  value: "light" | "dark"
+  Icon: IconComponent
+  animateBackground: NonNullable<ButtonProps["animateBackground"]>
+}
+
+const options: ThemeOption[] = [
   { value: "light", Icon: Sun, animateBackground: "fromRight" },
   { value: "dark", Icon: Moon, animateBackground: "fromLeft" }
-] as const
+]
 
 export interface ThemeSwitcherProps {
   className?: string

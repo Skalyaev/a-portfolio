@@ -22,7 +22,10 @@ export function useMatchHeight<T extends HTMLElement>(
   useLayoutEffect(() => {
     const mediaQuery = window.matchMedia(query)
 
-    function updateHeight() {
+    /**
+     * Stores the element height while the query matches, `undefined` otherwise.
+     */
+    function updateHeight(): void {
       setHeight(
         mediaQuery.matches && element
           ? element.getBoundingClientRect().height

@@ -3,15 +3,13 @@ import { Button } from "@/components/tag/Button"
 import { useLanguage } from "@/components/i18n/LanguageContext"
 
 import { useReveal } from "@/lib/hooks/useReveal"
-import { cn } from "@/lib/utils/style"
+import { cn, revealClassName } from "@/lib/utils/style"
 import { formatMonthYear } from "@/lib/utils/date"
 
-import { revealRootMargin } from "@/constants/animation"
+import { revealDurationMs, revealRootMargin } from "@/constants/animation"
 import { otherLanguageColor } from "@/constants/github/languages"
 
 import type { Project } from "../../_lib/getProjects"
-
-const transitionDurationMs = 400
 
 export interface ProjectCardProps {
   project: Project
@@ -33,7 +31,7 @@ export function ProjectCard({ project, animate, delayMs }: ProjectCardProps) {
   const { ref, entered, transitionDelay } = useReveal<HTMLDivElement>({
     enabled: animate,
     delayMs,
-    durationMs: transitionDurationMs,
+    durationMs: revealDurationMs,
     rootMargin: revealRootMargin
   })
 
@@ -47,9 +45,7 @@ export function ProjectCard({ project, animate, delayMs }: ProjectCardProps) {
         rel="noopener noreferrer"
         className={cn(
           "group flex w-full select-text flex-col items-stretch justify-start gap-3 border-2 border-border px-4 py-3 text-left shadow-xs transition-[color,background-color,border-color,opacity,translate] duration-[400ms,400ms,200ms,400ms,400ms] hover:border-foreground focus-visible:border-foreground focus-visible:outline-none hover:bg-transparent focus-visible:bg-transparent",
-          entered
-            ? "translate-y-0 opacity-100 ease-out"
-            : "translate-y-8 opacity-0 ease-in"
+          revealClassName(entered)
         )}
         style={{ transitionDelay }}>
         <div className="flex flex-col gap-2">

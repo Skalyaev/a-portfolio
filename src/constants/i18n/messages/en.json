@@ -77,9 +77,6 @@
         "malwareAnalysis": "Malware Analysis",
         "vuejs": "Vue.js",
         "fastapi": "FastAPI",
-        "figma": "Figma",
-        "hostinger": "Hostinger",
-        "raspberryPi": "Raspberry Pi",
         "sentry": "Sentry",
         "burpsuite": "Burp Suite"
       },
@@ -124,7 +121,6 @@
       "rank": "Rank",
       "ctf": "Machines CTF",
       "lastUpdated": "Last updated on",
-      "dataSynced": "Data synchronized",
       "moreThan": "More than",
       "yearSingular": "year",
       "yearPlural": "years",
@@ -155,7 +151,6 @@
         "osint": "OSINT",
         "misc": "Misc",
         "hardware": "Hardware",
-        "cloud": "Cloud",
         "blockchain": "Blockchain",
         "coding": "Coding",
         "ai-ml": "AI / Machine Learning",
@@ -265,7 +260,6 @@
           "fullstack": "Development of fullstack solutions for a platform leveraging generative AI for notaries, from feature design through to production deployment.",
           "fullstackContribution": "Contribute to the fullstack development of the application.",
           "rituals": "Take part in daily and weekly meetings with the team to track product progress.",
-          "frontendRedesign": "Lead the frontend's visual redesign.",
           "bugTracking": "Ensure bug tracking and customer feedback follow-up through Sentry."
         }
       },
@@ -284,6 +278,7 @@
         "role": "Software Engineer · Tech Lead",
         "highlights": {
           "webInterface": "Design and deployment of a software infrastructure for storing, scheduling and streaming music to connected devices (Raspberry Pi & Android).",
+          "resourceManagement": "Develop a web interface to manage the company's resources.",
           "backend": "Develop a complete, secure and high-performance backend service.",
           "crossPlatform": "Develop a cross-platform solution for streaming music.",
           "deployment": "Deploy the services to production."
@@ -294,7 +289,7 @@
         "role": "Software Engineer",
         "highlights": {
           "fullstack": "Development of full stack solutions for a platform leveraging generative AI to improve M&A decision-making.",
-          "designCollab": "Collaborate with a designer to develop an optimized web interface.",
+          "designCollab": "Collaborate with a designer to develop an optimized frontend.",
           "backend": "Contribute to the development of a secure and high-performance backend service.",
           "testing": "Develop a robust and scalable test suite."
         }
@@ -377,5 +372,40 @@
       }
     }
   },
-  "contact": { "title": "Contact" }
+  "contact": {
+    "title": "Contact",
+    "subtitle": "A question, an opportunity or a project? Write to me and I will get back to you quickly.",
+    "email": "Your email",
+    "emailPlaceholder": "you@example.com",
+    "subject": "Subject",
+    "subjectPlaceholder": "What is this about?",
+    "message": "Message",
+    "messagePlaceholder": "Hello,",
+    "attachments": "Attachments",
+    "addFiles": "Add files",
+    "dropHint": "or drop them here",
+    "limits": {
+      "files": "files max",
+      "perFile": "per file",
+      "total": "in total"
+    },
+    "removeFile": "Remove file",
+    "send": "Send",
+    "sending": "Sending...",
+    "success": "Message sent! I will reply as soon as possible.",
+    "errors": {
+      "invalidEmail": "The email address entered is invalid.",
+      "subjectRequired": "The subject is required.",
+      "subjectTooLong": "The subject is too long.",
+      "messageTooLong": "The message is too long.",
+      "tooManyFiles": "Too many files",
+      "fileTooLarge": "File too large",
+      "totalTooLarge": "Total attachment size exceeded",
+      "blockedFileType": "File type not allowed",
+      "unreadableArchive": "Unreadable archive",
+      "attachmentRejected": "The mail provider rejected an attachment for security reasons",
+      "rateLimited": "Too many messages sent, please try again later.",
+      "serverError": "The message could not be sent, please try again later."
+    }
+  }
 }

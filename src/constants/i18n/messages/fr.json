@@ -77,9 +77,6 @@
         "malwareAnalysis": "Analyse de malwares",
         "vuejs": "Vue.js",
         "fastapi": "FastAPI",
-        "figma": "Figma",
-        "hostinger": "Hostinger",
-        "raspberryPi": "Raspberry Pi",
         "sentry": "Sentry",
         "burpsuite": "Burp Suite"
       },
@@ -124,7 +121,6 @@
       "rank": "Rang",
       "ctf": "Machines CTF",
       "lastUpdated": "Dernière mise à jour le",
-      "dataSynced": "Données synchronisées",
       "moreThan": "Plus de",
       "yearSingular": "an",
       "yearPlural": "ans",
@@ -155,7 +151,6 @@
         "osint": "OSINT",
         "misc": "Divers",
         "hardware": "Hardware",
-        "cloud": "Cloud",
         "blockchain": "Blockchain",
         "coding": "Programmation",
         "ai-ml": "IA / Machine Learning",
@@ -265,7 +260,6 @@
           "fullstack": "Développement de solutions fullstack pour une plateforme exploitant l'IA générative au service des notaires, de la conception des fonctionnalités jusqu'à leur mise en production.",
           "fullstackContribution": "Contribuer au développement fullstack de l'application.",
           "rituals": "Participer aux daily et weekly avec l'équipe pour suivre l'avancement du produit.",
-          "frontendRedesign": "Piloter la refonte graphique du frontend de l'application.",
           "bugTracking": "Assurer un suivi des bugs et des retours clients via Sentry."
         }
       },
@@ -284,6 +278,7 @@
         "role": "Ingénieur logiciel · Lead technique",
         "highlights": {
           "webInterface": "Conception et déploiement d'une infrastructure logicielle permettant le stockage, la planification et la diffusion de musiques sur des appareils connectés (Raspberry Pi & Android).",
+          "resourceManagement": "Développer une interface web pour gérer les ressources de l'entreprise.",
           "backend": "Développer un service backend complet, sécurisé et performant.",
           "crossPlatform": "Développer une solution cross-plateforme pour diffuser de la musique.",
           "deployment": "Déployer les services en production."
@@ -294,7 +289,7 @@
         "role": "Ingénieur logiciel",
         "highlights": {
           "fullstack": "Développement de solutions full stack pour une plateforme exploitant l'IA générative pour améliorer la prise de décisions M&A.",
-          "designCollab": "Collaborer avec un graphiste pour développer une interface web optimisée.",
+          "designCollab": "Collaborer avec un graphiste pour développer un frontend optimisé.",
           "backend": "Contribuer au développement d'un service backend sécurisé et performant.",
           "testing": "Développer un programme de tests robuste et scalable."
         }
@@ -377,5 +372,40 @@
       }
     }
   },
-  "contact": { "title": "Contact" }
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Une question, une opportunité ou un projet ? Écrivez-moi, je vous réponds rapidement.",
+    "email": "Votre email",
+    "emailPlaceholder": "vous@exemple.com",
+    "subject": "Objet",
+    "subjectPlaceholder": "De quoi s'agit-il ?",
+    "message": "Message",
+    "messagePlaceholder": "Bonjour,",
+    "attachments": "Pièces jointes",
+    "addFiles": "Ajouter des fichiers",
+    "dropHint": "ou glissez-les ici",
+    "limits": {
+      "files": "fichiers max",
+      "perFile": "par fichier",
+      "total": "au total"
+    },
+    "removeFile": "Retirer le fichier",
+    "send": "Envoyer",
+    "sending": "Envoi...",
+    "success": "Message envoyé ! Je vous réponds dès que possible.",
+    "errors": {
+      "invalidEmail": "L'adresse email renseignée est invalide.",
+      "subjectRequired": "L'objet est obligatoire.",
+      "subjectTooLong": "L'objet est trop long.",
+      "messageTooLong": "Le message est trop long.",
+      "tooManyFiles": "Trop de fichiers",
+      "fileTooLarge": "Fichier trop volumineux",
+      "totalTooLarge": "Taille totale des pièces jointes dépassée",
+      "blockedFileType": "Type de fichier non autorisé",
+      "unreadableArchive": "Archive illisible",
+      "attachmentRejected": "Le fournisseur de messagerie a refusé une pièce jointe pour des raisons de sécurité",
+      "rateLimited": "Trop de messages envoyés, veuillez réessayer plus tard.",
+      "serverError": "Le message n'a pas pu être envoyé, veuillez réessayer plus tard."
+    }
+  }
 }

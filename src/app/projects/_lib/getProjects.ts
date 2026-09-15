@@ -5,22 +5,18 @@ import {
   githubLanguageFetchConcurrency,
   githubRevalidateSeconds,
   githubUsername,
+  projectDescriptionsKey,
   projectOverrides
 } from "@/constants/github/projects"
 
+import type { LanguageShare } from "@/constants/github/languages"
 import type { ProjectTag } from "@/constants/github/projects"
-
-export interface ProjectLanguage {
-  name: string
-  percent: number
-  color: string
-}
 
 export interface Project {
   name: string
   descriptionKey: string
   htmlUrl: string
-  languages: ProjectLanguage[]
+  languages: LanguageShare[]
   otherLanguagesPercent: number
   tags: ProjectTag[]
   lastModified: string
@@ -46,17 +42,16 @@ export async function getProjects(): Promise<Project[]> {
 
   const projects: Project[] = repos.map((repo) => ({
     name: repo.name,
-    descriptionKey: `projects.descriptions.${repo.name}`,
+    descriptionKey: `${projectDescriptionsKey}.${repo.name}`,
     htmlUrl: repo.htmlUrl,
-    languages: repo.languages
-      .filter((language) => language.name in languageColors)
-      .map((language) => ({
-        name: language.name,
-        percent: language.percent,
-        color: languageColors[language.name]
-      })),
+    languages: repo.languages.flatMap((language): LanguageShare[] => {
+      const color = languageColors[language.name]
+      return color
+        ? [{ name: language.name, percent: language.percent, color }]
+        : []
+    }),
     otherLanguagesPercent: repo.languages
-      .filter((language) => !(language.name in languageColors))
+      .filter((language) => !languageColors[language.name])
       .reduce((sum, language) => sum + language.percent, 0),
     tags: tagsByUrl.get(repo.htmlUrl) ?? [],
     lastModified: repo.pushedAt

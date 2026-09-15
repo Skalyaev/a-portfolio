@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
-
 import { useInView } from "@/lib/hooks/useInView"
+import { useTransitionDelay } from "@/lib/hooks/useTransitionDelay"
 
 import type { RefCallback } from "react"
 
@@ -8,7 +7,7 @@ export interface UseRevealOptions {
   enabled: boolean
   delayMs: number
   durationMs: number
-  rootMargin?: string
+  rootMargin: string
 }
 
 export interface UseRevealResult<T extends Element> {
@@ -20,7 +19,7 @@ export interface UseRevealResult<T extends Element> {
 /**
  * Drives a delayed entrance transition started the first time an element enters the viewport.
  *
- * The delay is dropped once the entrance is over, so later transitions (hover, focus) start immediately.
+ * The delay is dropped once the entrance is over, or as soon as the entrance gets disabled.
  *
  * @param options - Whether the entrance is animated, its delay, its duration and the viewport margin.
  * @returns A ref to attach, whether the element has entered and the transition delay to apply.
@@ -32,18 +31,11 @@ export function useReveal<T extends Element>({
   rootMargin
 }: UseRevealOptions): UseRevealResult<T> {
   const { ref, inView } = useInView<T>({ rootMargin })
-  const entered = !enabled || inView
-  const [settled, setSettled] = useState(!enabled)
+  const transitionDelay = useTransitionDelay(
+    enabled && inView,
+    delayMs,
+    durationMs
+  )
 
-  useEffect(() => {
-    if (!enabled || !entered) return
-    const timeout = setTimeout(() => setSettled(true), delayMs + durationMs)
-    return () => clearTimeout(timeout)
-  }, [enabled, entered, delayMs, durationMs])
-
-  return {
-    ref,
-    entered,
-    transitionDelay: entered && !settled ? `${delayMs}ms` : "0ms"
-  }
+  return { ref, entered: !enabled || inView, transitionDelay }
 }

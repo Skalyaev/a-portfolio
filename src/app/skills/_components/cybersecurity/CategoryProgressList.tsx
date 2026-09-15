@@ -3,11 +3,7 @@ import { useLanguage } from "@/components/i18n/LanguageContext"
 import { translateCategory } from "../../_lib/cyberSecurity"
 import { ProgressBar } from "./ProgressBar"
 
-export interface CategoryProgress {
-  name: string
-  solved: number
-  total: number
-}
+import type { CategoryProgress } from "@/constants/skills/profile"
 
 export interface CategoryProgressListProps {
   categories: CategoryProgress[]

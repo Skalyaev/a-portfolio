@@ -21,7 +21,6 @@ export function Main({ children }: MainProps) {
   const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    // The router has already scrolled to the hash anchor; resetting would undo it.
     if (window.location.hash) return
     ref.current?.scrollTo({ top: 0 })
   }, [pathname])

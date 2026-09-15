@@ -3,27 +3,16 @@
 import { Loading } from "@/components/svg/Loading"
 import { useLanguage } from "@/components/i18n/LanguageContext"
 
-import { cn } from "@/lib/utils/style"
-
-export interface LoaderProps {
-  className?: string
-}
-
 /**
  * Centered loading animation with a localized message.
  *
- * @param props - Extra container classes.
  * @returns The loader.
  */
-export function Loader({ className }: LoaderProps) {
+export function Loader() {
   const { t } = useLanguage()
 
   return (
-    <div
-      className={cn(
-        "grow flex flex-col items-center justify-center mb-44",
-        className
-      )}>
+    <div className="grow flex flex-col items-center justify-center mb-44">
       <Loading
         width={150}
         height={150}
