@@ -62,7 +62,7 @@ export function LanguagesSection({
       title={t("skills.languages.title")}
       subtitle={t("skills.languages.subtitle")}>
       {hasLanguages ? (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           <LanguageBar
             languages={languages}
             otherPercent={otherLanguagesPercent}

@@ -22,8 +22,8 @@ export function DiplomaOverview() {
 
   return (
     <section className="flex flex-col gap-4">
-      <div className="flex flex-col gap-1">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+      <div className="flex flex-col gap-2">
+        <div className="flex flex-wrap gap-y-2 items-baseline justify-between gap-x-4">
           <h4>{t("education.diploma.name")}</h4>
           <span className="text-2xs text-muted">
             {diploma.certifierName} · {levelLabel} (

@@ -75,7 +75,7 @@ export function ToolCategory({
               experiences={experiencesByTechnology[item] ?? []}>
               <div
                 tabIndex={0}
-                className="group flex flex-col gap-0.5 px-2 py-1.5 focus:outline-none">
+                className="group flex flex-col gap-0.5 px-2 py-3 focus:outline-none">
                 <span className="text-xs font-medium text-foreground group-hover:underline group-focus:underline">
                   {t(`skills.tools.names.${key}`)}
                 </span>

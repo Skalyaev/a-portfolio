@@ -177,7 +177,7 @@ export function Sidebar() {
             ariaExpanded={open}
             ariaLabel={t("nav.menu")}
             title={t("nav.menu")}
-            className="h-full aspect-square">
+            className="h-full aspect-square active:bg-accent">
             <Bars
               width={16}
               height={16}
@@ -187,12 +187,12 @@ export function Sidebar() {
           <Options
             open={open}
             from="bottom"
-            className="py-0 mx-4 left-0 right-0">
+            className="py-0 px-0 mx-4 left-0 right-0">
             <NavItems
               shown={open}
               cascading={!mobileNavEntered}
               onNavigate={() => setOpen(false)}
-              className="py-1"
+              className="px-2 py-1"
             />
             <div className="flex items-center justify-between border-t border-border transition-colors">
               <ThemeSwitcher className="h-10" />

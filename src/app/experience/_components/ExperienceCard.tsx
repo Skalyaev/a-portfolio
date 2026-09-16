@@ -118,7 +118,7 @@ export function ExperienceCard({
       ref={ref}
       id={experience.id}
       className={cn(
-        "flex scroll-mt-6 flex-col gap-2 transition-[opacity,translate] duration-400 md:scroll-mt-10",
+        "flex scroll-mt-6 flex-col gap-3 transition-[opacity,translate] duration-400 md:scroll-mt-10",
         !isLast && "border-b border-border pb-6",
         revealClassName(entered)
       )}
@@ -161,7 +161,7 @@ export function ExperienceCard({
           {t(`${itemKey}.about`)}
         </p>
         {experience.leaders.length > 0 && (
-          <div className="flex flex-wrap gap-x-3 items-center">
+          <div className="flex flex-wrap gap-x-3 items-center mt-1">
             <span className={labelClassName}>{t("experience.leadership")}</span>
             <div className="flex flex-wrap">
               {experience.leaders.map((leader) => (
@@ -200,7 +200,7 @@ export function ExperienceCard({
         </p>
       )}
       {experience.highlightKeys.length > 1 && (
-        <ul className="flex list-[square] list-inside flex-col gap-1 text-xs text-muted mx-4">
+        <ul className="flex list-[square] list-inside flex-col gap-2 text-xs text-muted mx-4">
           {experience.highlightKeys.slice(1).map((key) => (
             <li key={key}>{t(`${itemKey}.highlights.${key}`)}</li>
           ))}
