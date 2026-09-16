@@ -60,8 +60,10 @@ export function ActivityList({ items }: ActivityListProps) {
                 rel={item.url ? "noopener noreferrer" : undefined}
                 disabled={!item.url}
                 className="group flex w-full min-w-0 select-text items-center justify-between gap-2 bg-transparent text-xs text-muted hover:bg-transparent focus-visible:bg-transparent py-1.5">
-                <span className="flex min-w-0 flex-col items-start">
-                  <span className="min-w-0 truncate text-foreground group-hover:underline group-focus-visible:underline">
+                <span className="flex min-w-0 flex-col">
+                  <span
+                    title={item.name}
+                    className="min-w-0 truncate text-foreground group-hover:underline group-focus-visible:underline">
                     {item.name}
                   </span>
                   <span className="text-2xs min-w-0 truncate font-light text-muted">

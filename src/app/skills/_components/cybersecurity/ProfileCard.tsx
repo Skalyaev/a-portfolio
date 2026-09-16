@@ -41,7 +41,7 @@ export function ProfileCard({
 
   return (
     <div className={cn("flex flex-col gap-2 px-4", className)}>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-col gap-2 md:hidden">
         <div className="flex items-center gap-2">
           {icon}
           <h6>{title}</h6>
@@ -50,23 +50,41 @@ export function ProfileCard({
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-2xs text-muted hover:text-foreground">
+          className="self-start text-2xs shrink-0 text-muted hover:text-foreground">
           <span>{viewProfileLabel}</span>
         </Button>
-        <span className="ml-auto flex shrink-0 items-center gap-2 text-2xs text-muted">
+        <span className="flex items-center gap-2 text-2xs text-muted">
+          {headerNote}
+        </span>
+      </div>
+      <div className="hidden items-center justify-between gap-2 md:flex">
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
+            {icon}
+            <h6>{title}</h6>
+          </div>
+          <Button
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-2xs shrink-0 text-muted hover:text-foreground">
+            <span>{viewProfileLabel}</span>
+          </Button>
+        </div>
+        <span className="flex items-center gap-2 text-2xs text-muted">
           {headerNote}
         </span>
       </div>
       <p className="text-xs text-muted">{description}</p>
 
-      <div className="grid gap-3 lg:grid-cols-[minmax(22rem,1fr)_minmax(0,1.15fr)] mt-2">
+      <div className="grid gap-4 lg:grid-cols-[minmax(22rem,1fr)_minmax(0,1.15fr)] mt-2">
         <div
           ref={leftRef}
-          className="min-h-0 self-start">
+          className="min-h-0 min-w-0 self-start">
           {left}
         </div>
         <div
-          className="flex min-h-0 flex-col border-2 border-border max-h-96"
+          className="flex min-h-0 min-w-0 flex-col border-2 border-border max-h-96"
           style={matchedHeight ? { maxHeight: matchedHeight } : undefined}>
           {right}
         </div>
