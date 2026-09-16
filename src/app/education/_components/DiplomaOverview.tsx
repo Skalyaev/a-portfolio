@@ -35,7 +35,7 @@ export function DiplomaOverview() {
         </p>
       </div>
 
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
         <div className="flex flex-wrap gap-2">
           <Button
             href={diploma.franceCompetencesUrl}
