@@ -41,27 +41,15 @@ export function ProfileCard({
 
   return (
     <div className={cn("flex flex-col gap-2 px-4", className)}>
-      <div className="flex flex-col gap-2 md:hidden">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div className="flex items-center gap-2">
-          {icon}
-          <h6>{title}</h6>
-        </div>
-        <Button
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="self-start text-2xs shrink-0 text-muted hover:text-foreground">
-          <span>{viewProfileLabel}</span>
-        </Button>
-        <span className="flex items-center gap-2 text-2xs text-muted">
-          {headerNote}
-        </span>
-      </div>
-      <div className="hidden items-center justify-between gap-2 md:flex">
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2">
-            {icon}
-            <h6>{title}</h6>
+          <div className="flex items-center gap-2 truncate">
+            <div className="shrink-0">{icon}</div>
+            <h6
+              className="truncate"
+              title={title}>
+              {title}
+            </h6>
           </div>
           <Button
             href={href}
