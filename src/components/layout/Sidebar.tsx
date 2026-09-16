@@ -50,7 +50,7 @@ function Brand({ className, titleClassName }: BrandProps) {
 interface NavItemsProps {
   shown: boolean
   cascading: boolean
-  className: string
+  className?: string
   animateBackground?: ButtonProps["animateBackground"]
   onNavigate?: () => void
 }
@@ -192,7 +192,6 @@ export function Sidebar() {
               shown={open}
               cascading={!mobileNavEntered}
               onNavigate={() => setOpen(false)}
-              className="px-2 py-1"
             />
             <div className="flex items-center justify-between border-t border-border transition-colors">
               <ThemeSwitcher className="h-10" />
