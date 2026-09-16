@@ -193,12 +193,12 @@ export function Sidebar() {
               cascading={!mobileNavEntered}
               onNavigate={() => setOpen(false)}
             />
-            <div className="flex items-center justify-between border-t border-border transition-colors">
+            <div className="flex items-center justify-between border-t border-border transition-colors relative">
               <ThemeSwitcher className="h-10" />
               <LanguageSwitcher
                 className="h-10"
-                optionsFrom="bottom"
-                optionsClassName="right-0 bottom-auto"
+                optionsFrom="left"
+                optionsClassName="right-0 bottom-auto top-[calc(100%+0.5rem)]"
               />
             </div>
           </Options>
