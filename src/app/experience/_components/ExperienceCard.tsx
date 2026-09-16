@@ -195,7 +195,7 @@ export function ExperienceCard({
       </div>
 
       {experience.highlightKeys.length > 0 && (
-        <p className="text-xs -mt-0.5">
+        <p className="text-xs -mt-0.5 leading-4.5">
           {t(`${itemKey}.highlights.${experience.highlightKeys[0]}`)}
         </p>
       )}
