@@ -54,7 +54,7 @@ export function LanguageSwitcher({
         ariaExpanded={open}
         ariaLabel={t("language.select")}
         title={t("language.select")}
-        className="h-full gap-2 font-normal">
+        className="h-full gap-2 font-normal active:bg-accent">
         <span>{locale.toUpperCase()}</span>
         <Flag className={flagClassName} />
       </Button>
