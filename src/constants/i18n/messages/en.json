@@ -226,7 +226,8 @@
       "algorithms": "Algorithms"
     },
     "descriptions": {
-      "a-portfolio": "Showcase website built with Next.js, integrating various external APIs to display the progress of my journey in real-time.",
+      "a-jobseeker": "Command line tool that scrapes job offers, selects the best matches with an AI and generates a tailored CV and cover letter for each.",
+      "a-portfolio": "Showcase website server-side rendered with Next.js: content generated on the server for performance and SEO.",
       "inception-of-things": "Deployment of a Kubernetes cluster (K3s) with Vagrant and Argo CD (GitOps).",
       "boot2root": "Security audit of a Linux machine: network mapping, discovery and exploitation of various vulnerabilities, privilege escalation through several methods.",
       "override": "CTF: reverse engineering of 32-bit and 64-bit ELF binaries.",

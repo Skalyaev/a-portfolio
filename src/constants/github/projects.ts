@@ -77,6 +77,11 @@ interface ProjectOverride {
 
 export const projectOverrides: ProjectOverride[] = [
   {
+    htmlUrl: "https://github.com/Skalyaev/a-jobseeker",
+    tags: ["web"],
+    technologies: ["Git"]
+  },
+  {
     htmlUrl: "https://github.com/Skalyaev/a-portfolio",
     tags: ["web", "sysadmin"],
     technologies: ["Next.js", "React", "Tailwind CSS", "Git"]
