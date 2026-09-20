@@ -226,7 +226,8 @@
       "algorithms": "Algorithmie"
     },
     "descriptions": {
-      "a-portfolio": "Site vitrine avec Next.js intégrant différentes API externes pour afficher l'avancement de mon parcours en temps réel.",
+      "a-jobseeker": "Outil en ligne de commande qui scrape des offres d'emploi, sélectionne les plus pertinentes avec une IA et génère un CV et une lettre de motivation adaptés à chacune.",
+      "a-portfolio": "Site vitrine en rendu serveur avec Next.js : contenu généré côté serveur pour la performance et le référencement.",
       "inception-of-things": "Déploiement d'un cluster Kubernetes (K3s) avec Vagrant et Argo CD (GitOps).",
       "boot2root": "Audit de sécurité d'une machine Linux : mapping réseau, recherche et exploitation de vulnérabilités variées, élévation de privilèges par plusieurs méthodes.",
       "override": "CTF : Reverse engineering de binaires ELF 32 et 64 bits.",
