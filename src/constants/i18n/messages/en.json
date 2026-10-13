@@ -307,7 +307,7 @@
       },
       "mbc": {
         "about": "International music agency curating bespoke playlists for luxury hotels, restaurants and spas since 2006.",
-        "role": "Software Engineer · Tech Lead",
+        "role": "Software Engineer · Project Manager",
         "highlights": {
           "webInterface": "Design and deployment of a software infrastructure for storing, scheduling and streaming music to connected devices (Raspberry Pi & Android).",
           "resourceManagement": "Develop a web interface to manage the company's resources.",
