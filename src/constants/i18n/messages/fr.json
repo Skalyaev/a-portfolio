@@ -307,7 +307,7 @@
       },
       "mbc": {
         "about": "Agence musicale internationale créant depuis 2006 des playlists sur mesure pour des hôtels, restaurants et spas de luxe.",
-        "role": "Ingénieur logiciel · Lead technique",
+        "role": "Ingénieur logiciel · Chef de projet",
         "highlights": {
           "webInterface": "Conception et déploiement d'une infrastructure logicielle permettant le stockage, la planification et la diffusion de musiques sur des appareils connectés (Raspberry Pi & Android).",
           "resourceManagement": "Développer une interface web pour gérer les ressources de l'entreprise.",
