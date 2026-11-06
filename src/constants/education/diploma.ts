@@ -22,7 +22,7 @@ export const diploma: Diploma = {
   franceCompetencesUrl:
     "https://www.francecompetences.fr/recherche/rncp/39774/",
   awardDate: "2026-10-29",
-  downloadUrl: null,
+  downloadUrl: "/documents/diploma-rncp39774.pdf",
   blocks: [
     {
       id: "bc01",
